@@ -1,0 +1,35 @@
+---
+title: 'Why can't I play the audio file using startAudioMixing or playEffect on Android 9?'
+sidebar_position: 176 
+category: 'update links' 
+platform: '["Voice","Video","Interactive Broadcast"]'
+products: 'startaudiomixing, cannot play, music file fail, fail to play, mp3, mp4'   
+description: '' 
+
+---
+
+export const toc = [{}];
+
+## Issue description
+
+Cannot play an mp3, mp4, or any other music format using `startAudioMixing` or `playEffect` on Android 9.
+
+## Reason
+
+This is caused by an Android permission limit. If `targetSdkVersion` &ge; 28, you need to add relevant app privileges to play the a music file.
+
+## Solution
+
+For Android projects with `targetSdkVersion` &ge; 28, add the following line in the `application` zone of the AndroidManifest.xml file to play the music file:
+
+```xml
+<application
+   android:usesCleartextTraffic="true"
+   android:requestLegacyExternalStorage="true"
+   …
+</application>
+```
+
+## Relevant links
+
+For more Android permission settings and considerations, see [Project setup](https://docs.agora.io/en/Video/start_call_android?platform=Android#project-setup).

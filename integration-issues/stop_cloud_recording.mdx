@@ -1,0 +1,15 @@
+---
+title: 'How can I stop cloud recording?'
+sidebar_position: 1184 
+category: 'NULL' 
+platform: '["cloud-recording"]'
+products: 'stop cloud recording, stop recording'   
+description: '' 
+
+---
+
+export const toc = [{}];
+
+You can call the [`stop`](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest?platform=All%20Platforms#stop) method to leave the channel and stop recording.
+
+Agora Cloud Recording automatically stops recording and leaves the channel when there is no user in the recording channel after a time period (30 seconds by default). You can set this timeout interval by the `maxIdleTime` parameter when you start the recording.

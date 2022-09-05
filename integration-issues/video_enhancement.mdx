@@ -1,0 +1,105 @@
+---
+title: 'How to enable the video enhancement extensions?'
+sidebar_position: 936 
+category: 'NULL' 
+platform: '["video-call-4.x-preview","live-streaming-4.x-preview","live-streaming-standard-4.x-preview","voice-call-4.x-beta","video-call-4.x-beta","live-streaming-premium-4.x-beta","live-streaming-standard-4.x-beta"]'
+products: 'video enhancement, extension'   
+description: '' 
+
+---
+
+export const toc = [{}];
+
+The Video SDK v4.0.0 Beta provides the Agora video enhancement extensions to allow you to take advantage of underexposed video enhancement, color enhancement, and video denoising.
+
+## Functions
+
+The major functions of the video enhancement extensions are as follows:
+
+- Image enhancement 
+
+  You can achieve different image enhancement effects by adjusting parameters such as contrast, brightness, smoothness, redness, and sharpness levels.
+
+- Underexposed video enhancement
+
+  When you are in a location where the light is insufficient, the illumination is uneven, or the light source is behind you, you can use the underexposed video enhancement function to turn on supplement light, dynamically increase the overall brightness of the video, and improve the visual range and viewing quality.
+
+- Color enhancement
+
+  Due to the deficiencies of some cameras, the captured video can have insufficient saturation or grayish images. Use the color enhancement function to adjust the saturation of the image and video to make the color richer and more realistic, and enhance people's subjective visual experience.
+
+  At the same time, the algorithm specifically provides skin color protection to prevent people's skin color from being excessively affected.
+
+- Video denoising
+
+  When the ambient light is dark or the capture equipment performance is poor, you can use the video denoising function to eliminate video noise.
+
+  
+
+<div class="alert info">
+
+- Video enhancement functions may affect device performance. Please consider your actual requirements and user device performance when using these extensions.
+- Before using video enhancement extensions, ensure that the relevant dynamic library is integrated. See [Extension libraries](./faq/reduce_app_size_ng).
+
+	</div>
+ 
+
+## Parameter settings
+
+### **Image enhancement**
+
+Call the `setBeautyEffectOptions` method, and adjust various image enhancement effects through the parameters. See the `setBeautyEffectOptions` description for details.
+
+### Underexposed video enhancement
+
+Call `setExtensionProperty,` and set the parameters as follows:
+
+- `provider_name` : `agora`
+
+- `extension_name` : `beauty`
+
+- `key` : `lowlight_enhance_option`
+
+- `enable`, `mode,` and `level` in the `value` field are shown in the following table:
+
+  | Parameter | Description                                                  |
+  | :-------- | :----------------------------------------------------------- |
+  | `enable` | Whether to enable the function: <ul><li>0: (Default) Disable underexposed video enhancement.<li>1: Enable underexposed video enhancement. |
+  | `mode`    | The underexposed video enhancement mode: <ul><li>0: (Default) Adaptive mode. The SDK automatically enables or disables this function according to the ambient lighting conditions.<li>1: Manual mode. |
+  | `level`   | The underexposed video enhancement level: <ul><li>0: (Default) Prioritize the video quality and eliminate image noise while increasing the brightness. This consumes more CPU resources.<li>1: Prioritize performance. This conserves CPU resources and reduces processing time. |
+
+### Color enhancement
+
+Call `setExtensionProperty,` and set the parameters as follows:
+
+- `provider_name` : `agora`
+
+- `extension_name` : `beauty`
+
+- `key` : `color_enhance_option`
+
+- `enable`, `Strength,` and `Skin Protection` in the `value` field are shown in the following table:
+
+  | Parameter         | Description                                                  |
+  | :---------------- | :----------------------------------------------------------- |
+  | `enable`         | Whether to enable the function: <ul><li>0: (Default) Disable color enhancement.<li>1: Enable color enhancement. |
+  | `Strength`        | The level of color saturation improvement. The value range is [0.0,1.0], and the default value is 0.5.<br> The larger the parameter value, the higher the screen color saturation. |
+  | `Skin Protection` | The level of skin protection. The value range is [0.0, 1.0], and the default value is 1.0.<br> The larger the parameter value, the less the skin color is affected by color enhancement. |
+
+### Video denoising
+
+Call `setExtensionProperty,` and set the parameters as follows:
+
+- `provider_name` : `agora`
+
+- `extension_name` : `beauty`
+
+- `key` : `video_denoiser_option`
+
+- `enable`, `mode,` and `level` in the `value` field are shown in the following table:
+
+  | Parameter | Description                                                  |
+  | :-------- | :----------------------------------------------------------- |
+	 | `enable` | Whether to enable the function: <ul><li>0: (Default) Disable video denoising.<li>1: Enable video denoising. |
+  | `mode`    | Video denoising mode: <ul><li>0: (Default) Adaptive mode. The SDK automatically enables or disables this function according to the ambient lighting conditions.<li>1: Manual mode. |
+	 | `level`   | Video denoising level: <ul><li>0: (Default) Time domain denoising. The denoising effect is medium, the anti-smearing effect is good, application robustness is high. Applicable to most scenarios.<li>1: Fast denoising. The denoising effect is medium. Applicable to fixed camera scenarios.<li>2: Time domain denoising plus spatial domain denoising. The denoising effect is excellent and picture purity is improved. Applicable to high-noise scenarios. |
