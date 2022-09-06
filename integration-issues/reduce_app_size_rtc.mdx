@@ -1,17 +1,18 @@
 ---
 title: 'How can I reduce the app size after integrating the RTC Native SDK?'
-sidebar_position: 1168 
-category: 'NULL' 
-platform: '["Voice","Video","Interactive Broadcast","live-streaming"]'
-products: 'app size, package size, extension library'   
-description: '' 
-
+sidebar_position: 1168
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
 
-<div class="alert note">This page applies to SDKs earlier than v3.6.2 only. As of v3.6.2, Agora offers additional methods for reducing app size. See <a href="https://docs.agora.io/en/Interactive%20Broadcast/reduce_rtc_app_size">Reduce App Size</a> for the latest details.</div>
-
+<div class="alert note">
+  This page applies to SDKs earlier than v3.6.2 only. As of v3.6.2, Agora offers additional methods
+  for reducing app size. See{' '}
+  <a href="https://docs.agora.io/en/Interactive%20Broadcast/reduce_rtc_app_size">Reduce App Size</a>{' '}
+  for the latest details.
+</div>
 
 This article describes how to reduce the app size after integrating the RTC Native SDK.
 
@@ -32,16 +33,16 @@ The SDK enables traditional noise reduction by default to reduce most of the sta
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 
-| Platform | Architecture | Library name | App size increase after integration (KB)  |
-| :------ | :---------- | :---------------------------------- | :-------------------------- |
-| Android | arm64-v8a | `libagora_ai_denoise_extension.so` | 1120 |
-| Android | armeabi-v7a | `libagora_ai_denoise_extension.so` | 792 |
-| iOS | arm64 | `AgoraAIDenoiseExtension.xcframework` | 502 |
-| iOS | armv7 | `AgoraAIDenoiseExtension.xcframework` | 448 |
-| macOS | arm64 | `AgoraAIDenoiseExtension.framework` | 496 |
-| macOS | x86_64 | `AgoraAIDenoiseExtension.framework` | 588 |
-| Windows | x86 | `libagora_ai_denoise_extension.dll` | 5312 |
-| Windows | x86_64 | `libagora_ai_denoise_extension.dll` | 5424 |
+| Platform | Architecture | Library name                          | App size increase after integration (KB) |
+| :------- | :----------- | :------------------------------------ | :--------------------------------------- |
+| Android  | arm64-v8a    | `libagora_ai_denoise_extension.so`    | 1120                                     |
+| Android  | armeabi-v7a  | `libagora_ai_denoise_extension.so`    | 792                                      |
+| iOS      | arm64        | `AgoraAIDenoiseExtension.xcframework` | 502                                      |
+| iOS      | armv7        | `AgoraAIDenoiseExtension.xcframework` | 448                                      |
+| macOS    | arm64        | `AgoraAIDenoiseExtension.framework`   | 496                                      |
+| macOS    | x86_64       | `AgoraAIDenoiseExtension.framework`   | 588                                      |
+| Windows  | x86          | `libagora_ai_denoise_extension.dll`   | 5312                                     |
+| Windows  | x86_64       | `libagora_ai_denoise_extension.dll`   | 5424                                     |
 
 ### AV1 library (beta feature)
 
@@ -49,15 +50,15 @@ The AV1 function improves the clarity of texts when users share the screen. To u
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 
-| Platform | Architecture | Library name | App size increase after integration (KB)  |
-| :------ | :---------- | :----------------------------------------------------------- | :-------------------------- |
-| Android | arm64-v8a | `libagora_dav1d_extension.so` | 696 |
-| Android | armeabi-v7a | `libagora_dav1d_extension.so` | 608 |
-| iOS | arm64 | `AgoraDav1dExtension.xcframework` | 959 |
-| iOS | armv7 | `AgoraDav1dExtension.xcframework` | 746 |
-| macOS | x86_64 | `AgoraDav1dExtension.framework` | 1316 |
-| Windows | x86 | `libagora_dav1d_extension.dll` | 1252 |
-| Windows | x86_64 | `libagora_dav1d_extension.dll` | 1756 |
+| Platform | Architecture | Library name                      | App size increase after integration (KB) |
+| :------- | :----------- | :-------------------------------- | :--------------------------------------- |
+| Android  | arm64-v8a    | `libagora_dav1d_extension.so`     | 696                                      |
+| Android  | armeabi-v7a  | `libagora_dav1d_extension.so`     | 608                                      |
+| iOS      | arm64        | `AgoraDav1dExtension.xcframework` | 959                                      |
+| iOS      | armv7        | `AgoraDav1dExtension.xcframework` | 746                                      |
+| macOS    | x86_64       | `AgoraDav1dExtension.framework`   | 1316                                     |
+| Windows  | x86          | `libagora_dav1d_extension.dll`    | 1252                                     |
+| Windows  | x86_64       | `libagora_dav1d_extension.dll`    | 1756                                     |
 
 ### JND library (beta feature)
 
@@ -65,16 +66,16 @@ The JND (Just-noticeable difference) function is used for video perceptual codin
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 
-| Platform | Architecture | Library name | App size increase after integration (KB) |
-| :------ | :---------- | :----------------------------------------------------------- | :-------------------------- |
-| Android | arm64-v8a | `libagora_jnd_extension.so` | 1172 |
-| Android | armeabi-v7a | `libagora_jnd_extension.so` | 816 |
-| iOS | arm64 | `AgoraJNDExtension.xcframework` | 78 |
-| iOS | armv7 | `AgoraJNDExtension.xcframework` | 69 |
-| macOS | arm64 | `AgoraJNDExtension.framework` | 720 |
-| macOS | x86_64 | `AgoraJNDExtension.framework` | 616 |
-| Windows | x86 | `libagora_jnd_extension.dll` | 1528 |
-| Windows | x86_64 | `libagora_jnd_extension.dll` | 1948 |
+| Platform | Architecture | Library name                    | App size increase after integration (KB) |
+| :------- | :----------- | :------------------------------ | :--------------------------------------- |
+| Android  | arm64-v8a    | `libagora_jnd_extension.so`     | 1172                                     |
+| Android  | armeabi-v7a  | `libagora_jnd_extension.so`     | 816                                      |
+| iOS      | arm64        | `AgoraJNDExtension.xcframework` | 78                                       |
+| iOS      | armv7        | `AgoraJNDExtension.xcframework` | 69                                       |
+| macOS    | arm64        | `AgoraJNDExtension.framework`   | 720                                      |
+| macOS    | x86_64       | `AgoraJNDExtension.framework`   | 616                                      |
+| Windows  | x86          | `libagora_jnd_extension.dll`    | 1528                                     |
+| Windows  | x86_64       | `libagora_jnd_extension.dll`    | 1948                                     |
 
 ### Virtual background library (beta feature)
 
@@ -82,16 +83,16 @@ After integrating the virtual background library, you can call `enableVirtualBac
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 
-| Platform | Architecture | Library name | App size increase after integration (KB)  |
-| :------ | :---------- | :-------------------------------| :-------------------------- |
-| Android | arm64-v8a   | `libagora_segmentation_extension.so`          | 3331    |
-| Android | armeabi-v7a | `libagora_segmentation_extension.so`          | 2232    |
-| iOS     | arm64       | `AgoraVideoSegmentationExtension.xcframework` | 2210     |
-| iOS     | armv7       | `AgoraVideoSegmentationExtension.xcframework` | 1514   |
-| macOS   | arm64       | `AgoraVideoSegmentationExtension.framework`   | 2802     |
-| macOS   | x86_64      | `AgoraVideoSegmentationExtension.framework`   | 2449      |
-| Windows | x86         | `libagora_segmentation_extension.dll`         | 4401      |
-| Windows | x86_64      | `libagora_segmentation_extension.dll`         | 5193    |
+| Platform | Architecture | Library name                                  | App size increase after integration (KB) |
+| :------- | :----------- | :-------------------------------------------- | :--------------------------------------- |
+| Android  | arm64-v8a    | `libagora_segmentation_extension.so`          | 3331                                     |
+| Android  | armeabi-v7a  | `libagora_segmentation_extension.so`          | 2232                                     |
+| iOS      | arm64        | `AgoraVideoSegmentationExtension.xcframework` | 2210                                     |
+| iOS      | armv7        | `AgoraVideoSegmentationExtension.xcframework` | 1514                                     |
+| macOS    | arm64        | `AgoraVideoSegmentationExtension.framework`   | 2802                                     |
+| macOS    | x86_64       | `AgoraVideoSegmentationExtension.framework`   | 2449                                     |
+| Windows  | x86          | `libagora_segmentation_extension.dll`         | 4401                                     |
+| Windows  | x86_64       | `libagora_segmentation_extension.dll`         | 5193                                     |
 
 ### ROI library (beta feature）
 
@@ -116,12 +117,12 @@ After integrating the super resolution library, you can call `enableRemoteSuperR
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 
-| Platform | Architecture | Library name | App size increase after integration (KB)  |
-| :------ | :---------- | :-------------------------------| :-------------------------- |
-| Android | arm64-v8a   | `libagora_super_resolution_extension.so`    | 837                         |
-| Android | armeabi-v7a | `libagora_super_resolution_extension.so`    | 550                         |
-| iOS     | arm64       | `AgoraSuperResolutionExtension.xcframework` | 342                         |
-| iOS     | armv7       | `AgoraSuperResolutionExtension.xcframework` | 340                         |
+| Platform | Architecture | Library name                                | App size increase after integration (KB) |
+| :------- | :----------- | :------------------------------------------ | :--------------------------------------- |
+| Android  | arm64-v8a    | `libagora_super_resolution_extension.so`    | 837                                      |
+| Android  | armeabi-v7a  | `libagora_super_resolution_extension.so`    | 550                                      |
+| iOS      | arm64        | `AgoraSuperResolutionExtension.xcframework` | 342                                      |
+| iOS      | armv7        | `AgoraSuperResolutionExtension.xcframework` | 340                                      |
 
 ### Image enhancement library
 
@@ -129,13 +130,13 @@ As of v3.6.0, ensure that you have integrated the image enhancement library befo
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 
-| Platform | Architecture | Library name | App size increase after integration (KB)  |
-| :------ | :---------- | :-------------------------------| :-------------------------- |
-| Android | arm64-v8a   | `libagora_video_process_extension.so`     | 1290                        |
-| Android | armeabi-v7a | `libagora_video_process_extension.so`     | 962                         |
-| iOS     | arm64       | `AgoraVideoProcessExtension.xcframework` | 819                         |
-| iOS     | armv7       | `AgoraVideoProcessExtension.xcframework` | 768                         |
-| macOS   | arm64       | `AgoraVideoProcessExtension.framework`   | 1785                        |
-| macOS   | x86_64      | `AgoraVideoProcessExtension.framework`   | 895                         |
-| Windows | x86         | `libagora_video_process_extension.dll`    | 2171                        |
-| Windows | x86_64      | `libagora_video_process_extension.dll`    | 2541                        |
+| Platform | Architecture | Library name                             | App size increase after integration (KB) |
+| :------- | :----------- | :--------------------------------------- | :--------------------------------------- |
+| Android  | arm64-v8a    | `libagora_video_process_extension.so`    | 1290                                     |
+| Android  | armeabi-v7a  | `libagora_video_process_extension.so`    | 962                                      |
+| iOS      | arm64        | `AgoraVideoProcessExtension.xcframework` | 819                                      |
+| iOS      | armv7        | `AgoraVideoProcessExtension.xcframework` | 768                                      |
+| macOS    | arm64        | `AgoraVideoProcessExtension.framework`   | 1785                                     |
+| macOS    | x86_64       | `AgoraVideoProcessExtension.framework`   | 895                                      |
+| Windows  | x86          | `libagora_video_process_extension.dll`   | 2171                                     |
+| Windows  | x86_64       | `libagora_video_process_extension.dll`   | 2541                                     |

@@ -1,11 +1,8 @@
 ---
 title: 'How can I get the URL of the M3U8 file?'
-sidebar_position: 1152 
-category: 'NULL' 
-platform: '["cloud-recording"]'
-products: 'NULL'   
-description: '' 
-
+sidebar_position: 1152
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
@@ -15,5 +12,6 @@ The URL of the M3U8 file consists of the domain of your cloud storage and the fi
 ![](https://web-cdn.agora.io/docs-files/1556174270602)
 
 You can get the filename of the M3U8 file from the following fileds:
-- The `fileList` field in the responses of [`query`](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest#query) and [`stop`](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest#stop) 
+
+- The `fileList` field in the responses of [`query`](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest#query) and [`stop`](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest#stop)
 - The `fileList` field in the [`cloud_recording_file_infos`](https://docs.agora.io/en/cloud-recording/cloud_recording_callback_rest?platform=RESTful#a-name4a4-cloud_recording_file_infos) callback event

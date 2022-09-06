@@ -1,11 +1,8 @@
 ---
-title: 'Why can't I answer calls through a Bluetooth device after connecting it to an iOS or Android device?'
-sidebar_position: 264 
-category: 'iOS 或 Android 蓝牙耳机相关问题' 
-platform: '["Voice","Video","Interactive Broadcast"]'
-products: '蓝牙耳机,bluetooth, iOS, Android, phone call, VoIP call'   
-description: '' 
-
+title: "Why can't I answer calls through a Bluetooth device after connecting it to an iOS or Android device?"
+sidebar_position: 264
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
@@ -26,6 +23,7 @@ The possible reasons include:
 1. The iOS system selects audio routes for phone and VoIP calls, and the default audio routes are different from what you expect. Phone calls also include FaceTime calls and other calls implemented with CallKit.
 
    **The default audio route for a phone call after connecting an iOS device to a Bluetooth device:**
+
    - After tapping the answer button on iPhone, the default audio route is the iPhone speaker.
    - After tapping the answer button on a Bluetooth device, the default audio route is the Bluetooth device.
 
@@ -39,8 +37,8 @@ The possible reasons include:
 2. On an iOS device, the audio route for audio inputs and outputs must be the same. If you set the Bluetooth device as the audio route for recording, the system switches the audio route for playback to the Bluetooth device accordingly.
 
 3. A Bluetooth speaker can only record audio during a system phone call. If the app does not use the CallKit, the following happens:
-     - Users who send audio streams cannot record or play audio through the Bluetooth speaker.
-     - Users who only receive audio streams can only play audio through the Bluetooth speaker.
+   - Users who send audio streams cannot record or play audio through the Bluetooth speaker.
+   - Users who only receive audio streams can only play audio through the Bluetooth speaker.
 
 ### <a name="solution"></a>Solutions
 
@@ -50,7 +48,7 @@ Depending on which type of call you have an issue with, choose one of the follow
 
 - Before answering a phone call, change the audio route setting in **Settings**: swipe down to reveal the search field, search **Call Audio Routing**, and change the audio route to **Bluetooth Headset**. All incoming calls will be answered through the Bluetooth device even if you press the answer button on the iPhone.
 
- ![](https://web-cdn.agora.io/docs-files/1599030765099) ![](https://web-cdn.agora.io/docs-files/1599030771759)
+![](https://web-cdn.agora.io/docs-files/1599030765099) ![](https://web-cdn.agora.io/docs-files/1599030771759)
 
 - During a phone call, you can switch between the **Bluetooth Headset**, **Handset**, or **Speaker** options in the call interface.
 - If you connect an iOS device to a Bluetooth speaker and answer calls in an app, ensure that the app uses the CallKit, otherwise, the above settings do not work.
@@ -60,7 +58,7 @@ Depending on which type of call you have an issue with, choose one of the follow
 - Before making a VoIP call, you need to switch to the **Bluetooth Headset** mode in the **Control Center**. Apps can call the iOS native API `setPreferredInput` method to change the audio route.
 - When a VoIP call through the Bluetooth device is interrupted by a phone call, tap the answer button on the Bluetooth device to answer the phone call, after which you can continue the VoIP call through the Bluetooth device once the phone call ends.
 
-## Android devices 
+## Android devices
 
 ### Reasons
 
@@ -74,12 +72,12 @@ Depending on which type of call you have an issue with, choose one of the follow
 
 1. Add the following lines in the `AndroidManifest.xml` file to request permissions to access the Bluetooth device:
 
-    ```
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-	<!-- Add the following permission on devices running Android 12.0 or later -->
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"  />
+   ```
+   <uses-permission android:name="android.permission.BLUETOOTH" />
+   <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+   <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+   <!-- Add the following permission on devices running Android 12.0 or later -->
+   <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"  />
    ```
 
 2. Check if the Bluetooth device supports SCO. If not, switch to a SCO-capable Bluetooth device.

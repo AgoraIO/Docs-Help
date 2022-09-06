@@ -1,11 +1,8 @@
 ---
 title: 'Why is the camera light still on after I disable my video on the Web?'
-sidebar_position: 136 
-category: 'NULL' 
-platform: '["Voice","Video","Interactive Broadcast"]'
-products: 'camera on, mute camera'   
-description: '' 
-
+sidebar_position: 136
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
@@ -16,7 +13,7 @@ When you use the Agora RTC Web SDK to disable local video through `muteVideo`, t
 
 ## Reason
 
-The Web SDK does not support enabling/disabling video capture independently. Calling  `muteVideo` for a local stream essentially sets  `MediaStreamTrack.enabled` to `false`, but black video frames are still being sent, and the video capture is not disabled. Therefore, the camera light remains on.
+The Web SDK does not support enabling/disabling video capture independently. Calling `muteVideo` for a local stream essentially sets `MediaStreamTrack.enabled` to `false`, but black video frames are still being sent, and the video capture is not disabled. Therefore, the camera light remains on.
 
 ## Solution
 

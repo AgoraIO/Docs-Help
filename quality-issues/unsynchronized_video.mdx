@@ -1,11 +1,8 @@
 ---
 title: 'How can I fix unsynchronized audio and video?'
-sidebar_position: 192 
-category: 'This article describes how to fix unsynchronized audio and video.' 
-platform: '["Video","Interactive Broadcast"]'
-products: 'unsynchronized audio and video'   
-description: '' 
-
+sidebar_position: 192
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
@@ -25,11 +22,14 @@ Check the following:
 
 - Check whether the unsynchronized audio and video is intermittent or consistent. Occasional, intermittent unsynchronized audio and video is normal due to the nature of the network and device.
 
-- If you use a custom video source, check whether the `timeStamp` parameter of each video frame is correct. Ensure that you are using millisecond units. 
+- If you use a custom video source, check whether the `timeStamp` parameter of each video frame is correct. Ensure that you are using millisecond units.
 
-  <div class="alert note">If you use a camera to capture video, the system reports the timestamp of each video frame. That is the value you need to pass in <code>timeStamp</code>.</div>
+  <div class="alert note">
+    If you use a camera to capture video, the system reports the timestamp of each video frame. That
+    is the value you need to pass in <code>timeStamp</code>.
+  </div>
 
-- Check whether the network connection is stable. You can switch to another network connection and check if the audio and video are synchronized. 
+- Check whether the network connection is stable. You can switch to another network connection and check if the audio and video are synchronized.
 
 - If you use a third-party image enhancement SDK, disable it and re-check. If the audio and video become synchronized, then the third-party image enhancement SDK is the likely cause. Contact that SDK provider for technical support.
 
@@ -56,5 +56,3 @@ If the issue persists, contact [support@agora.io](mailto:support@agora.io). Plea
 - Screen recording files.
 
 - SDK log files. See [How can I set the log file?](https://docs.agora.io/en/faq/logfile)
-
-  

@@ -1,11 +1,8 @@
 ---
 title: 'How can I determine whether a call is an audio call or a video call?'
-sidebar_position: 816 
-category: 'NULL' 
-platform: '["Real-time-Messaging","Video","Voice","Interactive Broadcast"]'
-products: 'NULL'   
-description: '' 
-
+sidebar_position: 816
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
@@ -39,8 +36,8 @@ During a call, the receiver can determine the call type according to the followi
 
 This article references the names of Java methods and callbacks. The following table shows the corresponding methods and callbacks for other languages.
 
-| Java/C++                  | Objective-C                                       | JavaScript          |
-| ------------------------- | ------------------------------------------------- | ------------------- |
+| Java/C++                    | Objective-C                                         | JavaScript            |
+| --------------------------- | --------------------------------------------------- | --------------------- |
 | `sendMessageToPeer`         | `sendMessage:toPeer:sendMessageOptions:completion:` | `sendMessage`         |
 | `onRemoteAudioStateChanged` | `remoteAudioStateChangedOfUid`                      | `getRemoteAudioStats` |
 | `onRemoteVideoStateChanged` | `remoteVideoStateChangedOfUid`                      | `getRemoteVideoStats` |

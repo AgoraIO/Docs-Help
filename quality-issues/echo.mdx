@@ -1,16 +1,13 @@
 ---
 title: 'How can I solve echo problems?'
-sidebar_position: 488 
-category: 'NULL' 
-platform: '["Voice","Video","Interactive Broadcast"]'
-products: 'echo, earphone, headset'   
-description: '' 
-
+sidebar_position: 488
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
 
-The Agora SDK supports echo cancellation. In most cases, this problem can be fixed by using a headset, and ensure that the headset does not cause an echo. 
+The Agora SDK supports echo cancellation. In most cases, this problem can be fixed by using a headset, and ensure that the headset does not cause an echo.
 
 In a channel joined by multiple users, if a device does not work properly, chances are that all other users in the channel can hear echoes. Therefore, beware that the user hearing the echo may not necessarily be the one having the problem.
 
@@ -22,15 +19,15 @@ Check the following:
 - Check if the echo is occasional or continuous. An occasional echo may be caused by CPU overload. By using [Call Search](https://docs.agora.io/en/Agora%20Platform/aa_call_search?platform=All%20Platforms#analyze-quality-issues) function of Agora Analytics, you can check the CPU usage on the **End-to-End Details** page.
 - Ensure that all users are in separated physical environments and do not sit too close to each other.
 - Check the SDK version:
-	- Android/iOS: v1.6.0+.
-	- Windows/macOS: v1.7.0+.
+  - Android/iOS: v1.6.0+.
+  - Windows/macOS: v1.7.0+.
 - Check if you enabled an external audio source. If so, echo cancellation is turned off by default.
-- In Windows, ensure the `Monitoring Microphone` option is not checked. 
+- In Windows, ensure the `Monitoring Microphone` option is not checked.
 - On iOS, check whether the app sets Audio Session as `AVAudioSessionCategoryOptionMixWithOthers`. If so, you may encounter echoes when other apps use the audio device at the same time.
 - Systems of some Android or Windows devices support echo cancellation function by default, and you may encounter echoes if the echo cancellation of the system is poor. In this case, Agora recommends disableing the echo cancellation in system and using the echo cancellation of Agora.
 - Use a headset:
-	- In a one-to-one call, if you hear an echo, ask the other user to use a headset.
-	- In a multi-user call, ask users to mute in turn to figure out who causes the echo. The users who cause the echo should use headsets or mute themselves.
+  - In a one-to-one call, if you hear an echo, ask the other user to use a headset.
+  - In a multi-user call, ask users to mute in turn to figure out who causes the echo. The users who cause the echo should use headsets or mute themselves.
 
 ## Step 2: Contact Agora Customer Support
 

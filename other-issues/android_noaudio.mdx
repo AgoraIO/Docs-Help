@@ -1,11 +1,8 @@
 ---
 title: 'Why is the audio routing abnormal after the Android device joins the channel?'
-sidebar_position: 1088 
-category: 'Android 设备进入频道后，耳机无声/语音路由不正常' 
-platform: '["Voice","Video","Interactive Broadcast"]'
-products: 'workerthread, no audio'   
-description: '' 
-
+sidebar_position: 1088
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
@@ -20,5 +17,5 @@ By calling `destroy`, the RtcEngine removes all registered system listeners (in 
 
 Agora recommends using one of the following solutions to solve this problem:
 
-* Maintain one WorkerThreader.
-* Call `destroy` to release the RtcEngine instance when exiting the channel.
+- Maintain one WorkerThreader.
+- Call `destroy` to release the RtcEngine instance when exiting the channel.

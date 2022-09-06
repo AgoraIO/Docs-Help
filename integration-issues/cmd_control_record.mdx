@@ -1,11 +1,8 @@
 ---
 title: 'How do I control recording sessions in the command-line interface?'
-sidebar_position: 1008 
-category: 'How to stop recording in cmd line' 
-platform: '["Recording"]'
-products: 'stop recording, stop demo'   
-description: '' 
-
+sidebar_position: 1008
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
@@ -20,17 +17,17 @@ If you use the manual mode (`triggerMode` set as 1), use the following methods t
 
   - Start recording: `killall -s 10 recorder_local`
   - Pause recording：`killall -s 12 recorder_local`
-  
+
 - To control an individual recording session:
 
-   1. Get the PID：`ps aux | grep 'channelName'`
-   2. Control the recording session by the PID
+  1.  Get the PID：`ps aux | grep 'channelName'`
+  2.  Control the recording session by the PID
 
       - Start recording：`kill -s 10 PID`
       - Pause recording：`kill -s 12 PID`
 
 ### Stop recording
 
-The recording stops automatically when there is no user in the channel after a time period set by the idle parameter. The default value is 300 seconds. 
+The recording stops automatically when there is no user in the channel after a time period set by the idle parameter. The default value is 300 seconds.
 
 To manually stop recording, press **Ctrl** + **C** to end the command-line session.

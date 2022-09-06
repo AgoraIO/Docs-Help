@@ -1,11 +1,8 @@
 ---
 title: 'Why do I see a prompt to find local network devices when launching an iOS app integrated with the Agora RTM SDK?'
-sidebar_position: 272 
-category: 'NULL' 
-platform: '["Real-time-Messaging"]'
-products: 'NULL'   
-description: '' 
-
+sidebar_position: 272
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
@@ -22,7 +19,6 @@ iOS 14.0 adds a privacy setting relating to local network usage, and your app ne
 
 ## Solution
 
-
 ### Solution one: Use the SDK version v1.4.1 and above
 
 Integrate the RTM SDK v1.4.1 and above, and users will not see the prompt to find local network devices. The availability of the RTM service will not be affected.
@@ -33,10 +29,14 @@ The default prompt shows as follows: **This app will be able to discover and con
 
 1. Open your Xcode project, find the `info.plist` file, and click **+** to add **Privacy - Local Network Usage Description**.
 
- <div class="alert info">In Xcode 11, you need to add <b>NSLocalNetworkUsageDescription</b>.</div>
- 
-2. According to your business requirements, add the purpose of obtaining local network device permissions in the **Value** column of **Privacy-Local Network Usage Description**. For example, add **This app will not connect to devices on your network, it only detects the connectivity with your local gateway**.
-   ![](https://web-cdn.agora.io/docs-files/1599798113793)
+{' '}
+
+<div class="alert info">
+  In Xcode 11, you need to add <b>NSLocalNetworkUsageDescription</b>.
+</div>
+2. According to your business requirements, add the purpose of obtaining local network device permissions
+in the **Value** column of **Privacy-Local Network Usage Description**. For example, add **This app will
+not connect to devices on your network, it only detects the connectivity with your local gateway**. ![](https://web-cdn.agora.io/docs-files/1599798113793)
 
 After modification, users will see the following prompt when launching an iOS app:
 
@@ -44,8 +44,6 @@ After modification, users will see the following prompt when launching an iOS ap
 
 - If users tap **OK**, the app can connect to more edge servers with the DNS parsing function of the router.
 - If users tap **Don't Allow**, the app cannot connect to extra edge servers, which may slightly affect the availability of the RTM service.
-
-
 
 ## References
 

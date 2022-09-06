@@ -1,11 +1,8 @@
 ---
 title: 'How many users can Agora RTC SDK support at the same time?'
-sidebar_position: 432 
-category: 'NULL' 
-platform: '["Video","Voice","Audio Broadcast","Interactive Broadcast","One-to-one Classroom","Small Classroom","Lecture Hall","Breakout Classroom","Single Host","Multiple Hosts","PK Host","Virtual Host","Live-stream Shopping","agora-meeting"]'
-products: 'NULL'   
-description: '' 
-
+sidebar_position: 432
+platforms: []
+products: []
 ---
 
 export const toc = [{}];
@@ -16,6 +13,26 @@ In most scenarios, Agora recommends limiting the number of users sending streams
 
 As of v3.7.0, a single channel can support up to 128 concurrent online hosts, who can publish audio and video streams at the same time. The number of audience members in a channel is unlimited. Each host or audience member can subscribe to a maximum of 50 hosts at the same time. To experience this improvement, contact [support@agora.io](mailto:support@agora.io).
 
-<div class="alert note"><li>If the number of users sending streams concurrently exceeds the recommended limit, each user in the channel only sees or hears streams equal to the recommended limit, and these streams are assigned at random for each user. For example, if 18 hosts are sending streams concurrently in a live streaming channel, each user sees or hears 17 of the 18 streams, and the missing stream is random.</li>
-<li>Agora does not provide APIs for limiting the number of users sending streams concurrently. However, you can implement such a limitation in your application layer.</li>
-<li>To minimize bandwidth consumption and ensure smooth communication in a real-time video streaming scenario with multiple users, Agora recommends referring to <a href="https://docs.agora.io/en/Interactive%20Broadcast/multi_user_video?platform=All%20Platforms">Video for Multiple Users</a >. If you want to use the 128-host feature, contact <a href="mailto:support@agora.io">support@agora.io</a > to help with the implementation. </li></div>
+<div class="alert note">
+  <li>
+    If the number of users sending streams concurrently exceeds the recommended limit, each user in
+    the channel only sees or hears streams equal to the recommended limit, and these streams are
+    assigned at random for each user. For example, if 18 hosts are sending streams concurrently in a
+    live streaming channel, each user sees or hears 17 of the 18 streams, and the missing stream is
+    random.
+  </li>
+  <li>
+    Agora does not provide APIs for limiting the number of users sending streams concurrently.
+    However, you can implement such a limitation in your application layer.
+  </li>
+  <li>
+    To minimize bandwidth consumption and ensure smooth communication in a real-time video streaming
+    scenario with multiple users, Agora recommends referring to{' '}
+    <a href="https://docs.agora.io/en/Interactive%20Broadcast/multi_user_video?platform=All%20Platforms">
+      Video for Multiple Users
+    </a>
+    . If you want to use the 128-host feature, contact <a href="mailto:support@agora.io">
+      support@agora.io
+    </a> to help with the implementation.{' '}
+  </li>
+</div>
