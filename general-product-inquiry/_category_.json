@@ -1,0 +1,14 @@
+{
+  "position": 3,
+  "label": "General Product Inquiry",
+  "collapsible": false,
+  "collapsed": false,
+  "className": "docs-help-menu",
+  "link": {
+    "type": "generated-index",
+    "title": "General Product Inquiry"
+  },
+  "customProps": {
+    "description": "This description can be used in the swizzled DocCard"
+  }
+}

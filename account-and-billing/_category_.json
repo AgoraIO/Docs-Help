@@ -1,0 +1,14 @@
+{
+  "position": 4,
+  "label": "Account and Billing",
+  "collapsible": false,
+  "collapsed": false,
+  "className": "docs-help-menu",
+  "link": {
+    "type": "generated-index",
+    "title": "Account and Billing"
+  },
+  "customProps": {
+    "description": "This description can be used in the swizzled DocCard"
+  }
+}

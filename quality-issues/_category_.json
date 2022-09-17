@@ -1,0 +1,14 @@
+{
+  "position": 2,
+  "label": "Quality Issues",
+  "collapsible": false,
+  "collapsed": false,
+  "className": "docs-help-menu",
+  "link": {
+    "type": "generated-index",
+    "title": "Quality Issues"
+  },
+  "customProps": {
+    "description": "This description can be used in the swizzled DocCard"
+  }
+}

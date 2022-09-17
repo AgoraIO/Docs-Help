@@ -1,0 +1,14 @@
+{
+  "position": 5,
+  "label": "Other Issues",
+  "collapsible": false,
+  "collapsed": false,
+  "className": "docs-help-menu",
+  "link": {
+    "type": "generated-index",
+    "title": "Other Issues"
+  },
+  "customProps": {
+    "description": "This description can be used in the swizzled DocCard"
+  }
+}
