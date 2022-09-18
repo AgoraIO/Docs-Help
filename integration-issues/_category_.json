@@ -6,7 +6,8 @@
   "className": "docs-help-menu",
   "link": {
     "type": "generated-index",
-    "title": "Integration Issues"
+    "title": "Integration Issues",
+    "slug": "/integration-issues"
   },
   "customProps": {
     "description": "This description can be used in the swizzled DocCard"

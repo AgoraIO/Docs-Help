@@ -6,7 +6,8 @@
   "className": "docs-help-menu",
   "link": {
     "type": "generated-index",
-    "title": "Account and Billing"
+    "title": "Account and Billing",
+    "slug": "/account-and-billing"
   },
   "customProps": {
     "description": "This description can be used in the swizzled DocCard"
