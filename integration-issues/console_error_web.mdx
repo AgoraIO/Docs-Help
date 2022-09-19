@@ -1,5 +1,5 @@
 ---
-title: 'What are the common error messages to expect in Web browsers' console logs?'
+title: "What are the common error messages to expect in Web browsers' console logs?"
 sidebar_position: 660
 platforms: []
 products: []
@@ -15,34 +15,34 @@ The played DOM does not exist, or the element ID cannot be found.
 
 ### Solution
 
-Ensure that the parent DOM exists when you call  `Stream.play`.
+Ensure that the parent DOM exists when you call `Stream.play`.
 
 ## Cannot read property 'stringuid' of undefined
 
 ### Reason
 
-You have called `Client.publish`  before the `Client.join`  method call succeeds.
+You have called `Client.publish` before the `Client.join` method call succeeds.
 
 ### Solution
 
-Check your code logic and ensure that you call `Client.publish` after the `Client.join`  method call succeeds.
+Check your code logic and ensure that you call `Client.publish` after the `Client.join` method call succeeds.
 
 ## Connect choose server timeout
 
 Same reason and solution as [Failed to load resource](#resource).
 
-## DTLS failed<a name="DTLS"></a> 
+## DTLS failed<a name="DTLS"></a>
 
 The following table lists the possible reasons and corresponding solutions:
 
-| Reason                                                       | Solution                                                     |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| The web browser does not fully support WebRTC.               | Use a [Web browser](https://docs.agora.io/en/faq/browser_support) supporting WebRTC. |
-| The web browser has plugins that prevent WebRTC from getting an ICE candidate on the local device. | Disable the problematic browser plugins.                     |
-| The user's gateway firewall disables the UDP protocol or the UDP ports greater than 10000. | Disable the firewall or use the [Agora Cloud Proxy](https://docs.agora.io/en/Interactive%20Broadcast/cloud_proxy_web?platform=Web&_ga=2.48236646.1902132163.1591578206-1606769437.1589868329) service. |
-| You set the web browser to use the VP8 codec, but the user uses the Safari browser that does not support VP8. | The user can either upgrade the Safari browser to versions later than 12.1, or use the Chrome browser. |
-| You set the web browser to use the H.264 codec, but the user's device hardware does not support H.264. | Set the web browser to use VP8.                              |
-| Connection issues of a network provider.                     | The user can try switching to a different network, for example, using a cellular data connection. |
+| Reason                                                                                                        | Solution                                                                                                                                                                                               |
+| :------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The web browser does not fully support WebRTC.                                                                | Use a [Web browser](https://docs.agora.io/en/faq/browser_support) supporting WebRTC.                                                                                                                   |
+| The web browser has plugins that prevent WebRTC from getting an ICE candidate on the local device.            | Disable the problematic browser plugins.                                                                                                                                                               |
+| The user's gateway firewall disables the UDP protocol or the UDP ports greater than 10000.                    | Disable the firewall or use the [Agora Cloud Proxy](https://docs.agora.io/en/Interactive%20Broadcast/cloud_proxy_web?platform=Web&_ga=2.48236646.1902132163.1591578206-1606769437.1589868329) service. |
+| You set the web browser to use the VP8 codec, but the user uses the Safari browser that does not support VP8. | The user can either upgrade the Safari browser to versions later than 12.1, or use the Chrome browser.                                                                                                 |
+| You set the web browser to use the H.264 codec, but the user's device hardware does not support H.264.        | Set the web browser to use VP8.                                                                                                                                                                        |
+| Connection issues of a network provider.                                                                      | The user can try switching to a different network, for example, using a cellular data connection.                                                                                                      |
 
 If the error persists after troubleshooting, contact support@agora.io.
 
@@ -50,13 +50,13 @@ If the error persists after troubleshooting, contact support@agora.io.
 
 ### Reason
 
-You have called `Client.publish`  before the `Stream.init`  method call succeeds.
+You have called `Client.publish` before the `Stream.init` method call succeeds.
 
 ### Solution
 
-Call  `publish`  in the `onSuccess` callback of  `Stream.init`.
+Call `publish` in the `onSuccess` callback of `Stream.init`.
 
-## Failed to load resource<a name="resource"></a> 
+## Failed to load resource<a name="resource"></a>
 
 ### Reason
 
@@ -65,12 +65,13 @@ The local DNS resolution fails.
 ### Solution
 
 The user can change the DNS server address and try joining the channel again.
+
 - For a user in Mainland China, change the DNS server address to `114.114.114.114`.
 - For a user outside Mainland China, change the DNS server address to `8.8.8.8`.
 
 ## Failed to set remote answer sdp: Called in wrong state: kStable
 
-This error is caused by calling `switchDevice`  and can be ignored.
+This error is caused by calling `switchDevice` and can be ignored.
 
 ## Media access MEDIA_NOT_SUPPORT: video/audio streams not supported yet /enumerateDevices() not supported
 
@@ -91,11 +92,11 @@ Possible reasons:
 
 ### Reason
 
- The `HTMLElementID`  specified in `Stream.play`  is invalid.
+The `HTMLElementID` specified in `Stream.play` is invalid.
 
 ### Solution
 
-Ensure that the string in `HTMLElementID` contains only "_", "-", ".", or any digits and letters in the ASCII character set. The string must be non-empty and less than 256 bytes in length.
+Ensure that the string in `HTMLElementID` contains only "\_", "-", ".", or any digits and letters in the ASCII character set. The string must be non-empty and less than 256 bytes in length.
 
 ## INVALID_VENDOR_KEY
 
@@ -108,19 +109,22 @@ Possible reasons:
 
 ### Solution
 
-Check your settings for `appId` in  `Client.init` and `tokenOrKey`  in  `Client.join`. Ensure that the App ID and token are correct and valid.
+Check your settings for `appId` in `Client.init` and `tokenOrKey` in `Client.join`. Ensure that the App ID and token are correct and valid.
 
 ## NO_CANDIDATES_IN_OFFER
 
 Same reason and solution as [None Ice Candidate not allowed](#candidate).
 
-## None Ice Candidate not allowed<a name="candidate"></a> 
+## None Ice Candidate not allowed<a name="candidate"></a>
 
 ### Reason
 
 When establishing a WebRTC connection, the SDK fails to find any [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) (Interactive Connectivity Establishment) candidate.
 
-<div class="alert info">A candidate contains the IP address and port information for connecting to a remote device.</div>
+<div class="alert info">
+  A candidate contains the IP address and port information for connecting to a
+  remote device.
+</div>
 
 ### Solution
 
@@ -169,7 +173,7 @@ Agora Web SDK does not support mobile device emulators. Do not use an emulator t
 
 ### Reason
 
-The connection has not been established. This is usually the result of an incorrect API call sequence, for example, calling  `Client.publish` after `Client.leave`.
+The connection has not been established. This is usually the result of an incorrect API call sequence, for example, calling `Client.publish` after `Client.leave`.
 
 ### Solution
 
