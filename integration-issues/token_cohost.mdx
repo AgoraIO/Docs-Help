@@ -1,0 +1,120 @@
+---
+title: 'How do I use co-host token authentication?'
+sidebar_position: 649
+platforms: []
+products: []
+---
+
+<div class="alert warning"><ul>
+	<li>Using co-host authentication requires app logic changes. Ensure that you read this article before enabling this function.</li>
+	<li>Co-host authentication applies to scenarios where the channel profile is set to <code>LIVE_BROADCASTING</CODE>.</li>
+	</ul></div>
+
+## Understand the tech
+
+Co-host authentication is the means by which the SDK authenticates whether a user has the privilege to publish streams in a live streaming channel. 
+
+This function guarantees that only authorized users can publish streams in a channel and prevents illegal users from deliberately disrupting a streaming session.
+
+## Prerequisites
+
+Before proceeding, ensure that your app meets the following requirements:
+
+- Uses the Agora RTC SDK v2.1.0 or later.
+- Uses only token-based authentication on all app clients to authenticate users. For details, see [Upgrade authentication mechanism](https://docs.agora.io/en/Interactive%20Broadcast/token?platform=Android#upgrade-authentication-mechanism).
+
+## Implementation
+
+### 1. Modify the parameter setting
+
+This section introduces how to set the role parameter when generating a token using C++ as an example. The principles and goals are the same if you are using another programming language.
+
+```C++
+// API
+static std::string buildTokenWithUid(
+    const std::string& appId,
+    const std::string& appCertificate,
+    const std::string& channelName,
+    uint32_t uid,
+    UserRole role,
+    uint32_t privilegeExpiredTs = 0);
+  
+  
+// Code sample
+int main(int argc, char const *argv[]) {
+  
+  // Your App ID
+  std::string appID  = "970Cxxxxxxxxxxxxxxxxxxxxxxx1b33";
+  // Your App Certificate
+  std::string  appCertificate = "5CFdxxxxxxxxxxxxxxxxxxxxxxx5d3b";
+  // The channel name
+  std::string channelName= "7d72xxxxxxxxxxxxxxxxxxxxxxbdda";
+  // The user ID. If you set it as 0, the SDK does not authenticate the user
+  uint32_t uid = 2882341273;
+  // The expiration time of the token
+  uint32_t expirationTimeInSeconds = 3600;
+  uint32_t currentTimeStamp = time(NULL);
+  uint32_t privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds;
+  std::string result;
+  
+  result = RtcTokenBuilder::buildTokenWithUid(
+      appID, appCertificate, channelName, uid, UserRole::Role_Publisher,
+      privilegeExpiredTs);
+  std::cout << "Token With Int Uid:" << result << std::endl;
+```
+
+| Parameter | Description |
+| ---- | ---- |
+| `role` | The publishing privilege of the user: <ul><li>`Role_Publisher(1)`: (Default) The user has the publishing privilege.</li><li>`Role_Subscriber(2)`: The user does not have the publishing privilege.</li></ul> |
+
+<a name="app_logic"></a>
+
+### 2. Change the app logic
+
+Refer to the following steps to authenticate whether a user has the publishing privilege (in scenarios where an audience member wants to become a host:
+
+1. Before joining a channel, the app client applies for a token with the privilege of a subscriber. The app server generates a token and passes it to the app client.
+2. The app client calls `joinChannel` and passes the token to the SDK.
+3. Before changing the user role, the app client applies for a token with the privilege of a publisher. The app client generates a second toke, and passes it to the app client.
+4. The app client calls `renewToken` and passes the new token to the SDK.
+5. The app client calls `setClientRole` to change the user role from an audience member to a host. The Agora server authenticates the token when the app client calls `setClientRole`. If the token is generated with the privilege of a publisher, the app client can publish a stream.
+
+<div class="alert note">
+<ul>
+	<li>If the user wants to switch from a host to an audience member, repeat steps 3 to 5. Apply for a token with the privilege of an audience, call <code>renewToken</code> on the app client, and then call <code>setClientRole</code>.</li>
+	<li>Once the token expires, you need to generate a new token on the app server and call <code>renewToken</code> to pass the new token to the SDK. The new token also has a service validity period.</li>
+</ul>
+</div>
+
+
+### 3. Enable co-host authentication
+
+Refer to the following steps to enable this function in Agora Console:
+
+1. Log on to [Agora Console](https://console.agora.io/). Under **Projects**, choose a project for which you want to enable co-host authentication, click the **Edit** icon, and enter the **Edit Project** page.
+2. In the Features area, click **Enable authentication**.
+3. Follow the on-screen instructions to know more about this function, check the box, and click **Enable**.
+
+Co-host authentication takes effect in 5 minutes.
+
+Once you have enabled co-host authentication, a user using your app must meet both of the following requirements to publish streams in a channel:
+
+- The user role in `setClientRole` is set as `BROADCASTER`.
+- The user joins the channel with a token that has the privilege of a publisher (by setting the `role` parameter in the `buildToken` method as `Role_Publisher`).
+
+
+## Reference
+
+**1. Suppose a user takes the role of broadcaster. After I enable co-host authentication, will the user be able to publish streams?**
+
+Answer: Yes. After the token expires, you need to generate a new token with the privilege of a publisher, and call renewToken to pass the new token to the SDK.
+
+**2. Suppose a user takes the role of audience. After I enable co-host authentication, what should I do if this user wants to switch to broadcaster and publish streams?**
+
+Answer: Once co-host authentication is enabled, a user needs to meet both of the following requirements to publish streams:
+
+1. The user role in `setClientRole` is set as `BROADCASTER`.
+2. The user joins the channel with a token that has the privilege of a publisher (by setting the `role` parameter in the `buildToken` method as `Role_Publisher`).
+
+Therefore, for an audience member to become a host and publish streams, you need to follow steps in [Change the app logic](#app_logic): generate a token with the privilege of a publisher, call `renewToken` to pass the new token to the SDK, and then call `setClientRole` to change the user role to broadcaster.
+
