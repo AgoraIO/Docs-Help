@@ -100,7 +100,7 @@ export const data = {
       products: ['all-products'],
       popular: false,
     },
-    log_native: {
+    log: {
       platforms: ['all-platforms'],
       products: ['all-products'],
       popular: false,
