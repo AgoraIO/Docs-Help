@@ -7,7 +7,7 @@ products: []
 
 The Agora SDK provides API methods for you to generate an output log file that records all the log data of the SDK operation.
 
-## Native 
+## Native
 
 The native platform includes Android, iOS, macOS, and Windows.
 
@@ -25,7 +25,7 @@ The default output log file path for each platform is as follows:
 
 - Android: `/storage/emulated/0/Android/data/<package name>/files/agorasdk.log`
 - iOS：`App Sandbox/Library/Caches/agorasdk.log`
-- macOS: 
+- macOS:
   - Sandbox enabled: `App Sandbox/Library/Logs/agorasdk.log`, such as `/Users/<username>/Library/Containers/<App Bundle Identifier>/Data/Library/Logs/agorasdk.log`
   - Sandbox disabled: `/Users/<username>/Library/Caches/<App Bundle Identifier>/Logs/agorasdk.log`
 - Windows：`C:\Users\<user_name>\AppData\Local\Agora\<process_name>\agorasdk.log`
@@ -62,7 +62,7 @@ File file = new File(filepath);
 engine.setLogFile(filepath);
 ```
 
-```oc
+```objective-c
 // Objective-C
 // Set the log filter to debug
 [engine setLogFilter: AgoraLogFilterDebug];
@@ -80,7 +80,7 @@ NSString *logFilePath = [NSString stringWithFormat:@"%@/%@.log", [paths objectAt
 [engine setLogFile:logFilePath]
 ```
 
-```c++
+```cpp
 // C++
 TCHAR szAppFolder[MAX_PATH] = { 0 };
 SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, szAppFolder);
@@ -136,8 +136,6 @@ You can use the `level` parameter in `mLogConfig` to set the output log level. S
 - FATAL: Outputs logs of the FATAL level.
 - NONE: Do not output any log.
 
-
-
 **Set the log file size**
 
 The Agora SDK has five log files, each with a default size of 1024 KB. Use the `fileSize` parameter in `mLogConfig` to set the size of each log file.
@@ -165,7 +163,7 @@ config.mLogConfig = logConfig;
 mRtcEngine = RtcEngine.create(config);
 ```
 
-```oc
+```objective-c
 // Swift
 let logConfig = AgoraLogConfig()
 // Set the log filter to ERROR
@@ -182,10 +180,10 @@ let config = AgoraRtcEngineConfig()
 config.appId = KeyCenter.AppId
 config.areaCode = GlobalSettings.shared.area.rawValue
 config.logConfig = logConfig
-agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)  
+agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
 ```
 
-```c++
+```cpp
 // C++
 LogConfig logConfig;
 // Set the log filter to ERROR
@@ -210,7 +208,6 @@ context.eventHandler = &m_eventHandler;
 int ret = m_rtcEngine->initialize(context);
 ```
 
-
 **API reference**
 
 - Android
@@ -219,7 +216,6 @@ int ret = m_rtcEngine->initialize(context);
   - [sharedEngineWithConfig](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithConfig:delegate:)
 - Windows
   - [initialize](https://docs.agora.io/cn/Video/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ac71db65e66942e4e0a0550e95c16890f)
-
 
 ### Get the stack information
 
@@ -289,4 +285,3 @@ AgoraRTC.setLogLevel(1);
 - [`enableLogUpload`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web_ng/interfaces/iagorartc.html#enablelogupload)
 - [`disableLogUpload`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web_ng/interfaces/iagorartc.html#disablelogupload)
 - [`setLogLevel`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web_ng/interfaces/iagorartc.html#setloglevel)
-
