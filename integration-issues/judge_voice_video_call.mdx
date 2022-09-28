@@ -13,24 +13,24 @@ In real-time audio or video communication, you can use the Agora RTM SDK or the 
 
 If you need to determine and send the call type to the receiver before a call, ensure that you have integrated the RTM SDK and the RTC SDK. Refer to the following articles to learn more about integration:
 
-- [RTM SDK Quickstart](https://docs.agora.io/en/Real-time-Messaging/messaging_android?platform=Android)
-- [RTC SDK Quickstart](https://docs.agora.io/en/Interactive%20Broadcast/start_live_android?platform=Android)
+- [RTM SDK Quickstart](../../signaling/get-started/get-started-sdk)
+- [RTC SDK Quickstart](../../interactive-live-streaming/get-started/get-started-sdk)
 
 Complete the following steps to determine the call type:
 
-1. When the caller sends a call, use the [Call Invitation API](/en/Real-time-Messaging/rtm_invite_android?platform=Android) of the RTM SDK to send a call invitation to the callee.
+1. When the caller sends a call, use the [Call Invitation API](../../signaling/develop/call-invitation) of the RTM SDK to send a call invitation to the callee.
 2. Call [`sendMessageToPeer`](/en/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a729079805644b3307297fb2e902ab4c9) to send the call type to the callee via peer-to-peer message. The callee gets the call type from the received peer-to-peer message.
 
 ## After a call
 
 If you need to determine and send the call type to the receiver during a call, ensure that you have integrated the RTC SDK. Refer to the following article:
 
-- [RTC SDK Quickstart](https://docs.agora.io/en/Interactive%20Broadcast/start_live_android?platform=Android)
+- [RTC SDK Quickstart](../../interactive-live-streaming/get-started/get-started-sdk)
 
 During a call, the receiver can determine the call type according to the following guideline:
 
-- If the receiver receives the [`onRemoteVideoStateChanged`](https://docs.agora.io/en/Video/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a93ebe88d2544253bf4b13faf34873131) callback, the current call is a video call.
-- If the receiver does not receive the [`onRemoteVideoStateChanged`](https://docs.agora.io/en/Video/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a93ebe88d2544253bf4b13faf34873131) callback and receives the [`onRemoteAudioStateChanged`](https://docs.agora.io/cn/Video/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a24fd6b0d12214f6bc6fa7a9b6235aeff) callback, the current call is an audio call.
+- If the receiver receives the <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onremotevideostatechanged">onRemoteVideoStateChange</Link> callback, the current call is a video call.
+- If the receiver does not receive the <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onremotevideostatechanged">onRemoteVideoStateChange</Link> callback and receives the <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onremoteaudiostatechanged">onRemoteVideoStateChange</Link> callback, the current call is an audio call.
 
 ## Corresponding methods and callbacks
 

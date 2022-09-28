@@ -7,15 +7,15 @@ products: []
 
 <div class="alert note">This article only applies to the Agora Web SDK 3.x and earlier versions.</div>
 
-[Pushing streams to the CDN](https://docs.agora.io/en/Interactive%20Broadcast/cdn_streaming_web?platform=Web) refers to the process where a host publishes multiple media streams to the CDN (Content Delivery Network).
+[Pushing streams to the CDN](../../media-push/overview/product-overview) refers to the process where a host publishes multiple media streams to the CDN (Content Delivery Network).
 
 During pushing streams, the SDK connects to the dedicated Agora server for pushing streams. When the connection is interrupted, the SDK tries to reconnect to the server to continue pushing streams. If it fails to reconnect, the SDK triggers a callback to report a disconnection.
 
-Based on [live transcoding setting](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#startlivestreaming), the SDK connects to different servers for pushing streams and triggers different callbacks after disconnection.
+Based on <Link to="{{Global.API_REF_WEB_ROOT}}/interfaces/iagorartcclient.html#startlivestreaming">live transcoding setting</Link>, the SDK connects to different servers for pushing streams and triggers different callbacks after disconnection.
 
 | `enableTranscoding` | Callback triggered when a disconnection happens                        |
 | -------- | ----------------------------------------- |
 | `true`     | `Client.on("mix-streaming-disconnected")` |
 | `false`   | `Client.on("raw-streaming-disconnected")` |
 
-When either of the previously-mentioned events occurs, call [`stopLiveStreaming`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#stoplivestreaming) to stop pushing all streams, and then [`startLiveStreaming`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/web/interfaces/agorartc.client.html#startlivestreaming) to restart the process.
+When either of the previously-mentioned events occurs, call <Link to="{{Global.API_REF_WEB_ROOT}}/interfaces/iagorartcclient.html#stopLiveStreaming">`stopLiveStreaming`</Link> to stop pushing all streams, and then <Link to="{{Global.API_REF_WEB_ROOT}}/interfaces/iagorartcclient.html#startlivestreaming">`startLiveStreaming`</Link> to restart the process.
