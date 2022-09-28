@@ -20,8 +20,8 @@ You can implement this function by combining the following features:
 
 Before proceeding, ensure that you have integrated both the Agora RTM SDK and RTC SDK in your project. For how to integrate these SDKs, see the following guides:
 
-- [Agora RTM SDK Quickstart](https://docs.agora.io/en/Real-time-Messaging/messaging_android?platform=Android)
-- [Agora RTC SDK Quickstart](https://docs.agora.io/en/Interactive%20Broadcast/start_live_android?platform=Android)
+- [Agora RTM SDK Quickstart](../../signaling/get-started/get-started-sdk)
+- [Agora RTC SDK Quickstart](../../interactive-live-streaming/get-started/get-started-sdk)
 
 The basic API call sequence is as follows:
 
@@ -29,12 +29,12 @@ The basic API call sequence is as follows:
 
 Refer to the detailed steps for implementation:
 
-1. The host calls [`sendMessageToPeer`](https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a729079805644b3307297fb2e902ab4c9) to send a peer-to-peer message that invites an audience to take on the role pf co-host.
-2. The audience receives the invitation message in the [`onMessageReceived`](https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_java/interfaceio_1_1agora_1_1rtm_1_1_rtm_client_listener.html#af760814981718fb31d88acb8251d19b6) callback.
-3. The audience calls [`setClientRole`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa2affa28a23d44d18b6889fba03f47ec) to change the user role to `CLIENT_ROLE_BROADCASTER`.
+1. The host calls v to send a peer-to-peer message that invites an audience to take on the role pf co-host.
+2. The audience receives the invitation message in the <Link to="{{Global.SIG_SDK_API_ANDROID}}/interfaceio_1_1agora_1_1rtm_1_1_rtm_client_listener.html#af760814981718fb31d88acb8251d19b6">`onMessageReceived`</Link> callback.
+3. The audience calls <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_setclientrole">`setClientRole`</Link> to change the user role to `CLIENT_ROLE_BROADCASTER`.
 4. After successfully changing the user role, the audience receives the `onClientRoleChanged` callback, and becomes a co-host.
-5. The new co-host calls [`addOrUpdateChannelAttributes`](https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a997a31e6bfe1edc9b6ef58a931ef3f23) to notify the role change to all users in the channel.
-6. The host receives the [`onAttributesUpdated`](https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_java/interfaceio_1_1agora_1_1rtm_1_1_rtm_channel_listener.html#a2904a1f1f78c497b9176fffb853be96f) callback, and starts co-hosting with the new co-host.
+5. The new co-host calls <Link to="{{Global.SIG_SDK_API_ANDROID}}/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a997a31e6bfe1edc9b6ef58a931ef3f23">`onMessageReceived`</Link> to notify the role change to all users in the channel.
+6. The host receives the <Link to="{{Global.SIG_SDK_API_ANDROID}}/interfaceio_1_1agora_1_1rtm_1_1_rtm_channel_listener.html#a2904a1f1f78c497b9176fffb853be96f">`onAttributesUpdated`</Link>) callback, and starts co-hosting with the new co-host.
 
 To change a co-host back to an audience, follow the same steps, except when calling `setClientRole`, set the user role as `CLIENT_ROLE_AUDIENCE`.
 

@@ -17,20 +17,13 @@ The message notification service enables you to listen for various service event
 
 ### Implementation
 
-1. Follow the steps in [User configuration](https://docs-preview.agoralab.co/en/Agora%20Platform/ncs#user-configuration) to enable the message notification service.
+1. Enable the message notification service.
 2. Once the service is enabled, the message notification service sends messages to your Server as HTTP/HTTPS POST requests. Listen for the following events of the **Real-Time Communication** service to detect whether an audience joins or leaves an interactive live streaming channel:
 
 | event_type | event_name | Description | Field name of payload |
 | ---------------- | ---------------- | ---------------- | ----------------- |
 | 105      | `audience join channel`      | In the `LIVE_BROADCASTING` profile, an audience joins the channel.      |<ul><li>channelName</li><li>uid</li><li>platform</li><li>ts</li></ul> |
 | 106      | `audience leave channel`   | In the `LIVE_BROADCASTING` profile, an audience leaves the channel      |<ul><li>channelName</li><li>uid</li><li>platform</li><li>reason</li><li>ts</li></ul> |
-
-### Reference
-
-Refer to the following documents for more detailed steps and descriptions:
-
-- [Message Notification Service](https://docs-preview.agoralab.co/en/Agora%20Platform/ncs?platform=All%20Platforms)
-- [RTC event type](https://docs-preview.agoralab.co/en/Agora%20Platform/rtc_eventtype?platform=All%20Platforms)
 
 ## Use the signaling service
 
@@ -49,6 +42,6 @@ By integrating both the Agora RTC SDK and the Agora RTM SDK, you can listen for 
 Refer to the following documents for detailed integration guide and API reference:
 
 - [RTM quickstart](/signaling/get-started/get-started-sdk)
-- [RTM APIs for joining or leaving a channel](https://agora-api-reference.vercel.app/signaling-sdk/android/1.x/index.html#joinorleavechannel https://docs.agora.io/en/Real-time-Messaging/API%20Reference/RTM_java/index.html#joinorleavechannel)
+- <Link to="{{Global.SIG_SDK_API_ANDROID}}/index.html#joinorleavechannel">RTM APIs for joining or leaving a channel</Link>
 	
 	
