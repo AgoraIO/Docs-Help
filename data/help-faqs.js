@@ -19,6 +19,6 @@ export const data = [
   },
   {
     question: 'Free-of-charge policy for the first 10,000 minutes',
-    link: '/help/account-and-billing/billing_free',
+    link: '/video-calling/reference/billing-policies',
   },
 ];

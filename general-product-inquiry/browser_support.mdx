@@ -46,15 +46,15 @@ Other browser support on desktop:
 The browser support on mobile devices heavily depends on the capabilities of devices and the codec implementation of browsers.
 
 - On Android 4.1 or later, the Web SDK supports Chrome 58 or later. Agora recommends using VP8 on Android Chrome, because whether Google Chrome for Android supports H.264 is hardware dependent and some Android devices do not support H.264.
-- On iOS 11 or later, the Web SDK supports Safari or later. However, Agora does not recommend using the Web SDK on iOS Safari due to the large amount of known issues and limitations of [iOS Safari](#ios). For better user experience on iOS, try the [Agora RTC iOS SDK](https://docs.agora.io/en/Interactive%20Broadcast/downloads).
+- On iOS 11 or later, the Web SDK supports Safari or later. However, Agora does not recommend using the Web SDK on iOS Safari due to the large amount of known issues and limitations of [iOS Safari](#ios). For better user experience on iOS, try the [Agora RTC iOS SDK](../../sdks?platform=ios).
 
-The support for in-app browsers on mobile devices is complicated. For details, see [How can I use Agora RTC Web SDK on mobile devices?](https://docs.agora.io/en/faq/web_on_mobile)
+The support for in-app browsers on mobile devices is complicated. For details, see [Supported Platforms](../../video-calling/reference/supported-platforms).
 
 ## Limitation
 
 Due to the various browser engine implementations, support for some features may vary by browser and platform. The following are known issues and limitations.
 
-On Chrome 81 or later, Safari, and Firefox, device IDs are only available after the user has granted permissions to use the media device. See [Why can't I get device ID on Chrome 81?](https://docs.agora.io/en/faq/empty_deviceId)
+On Chrome 81 or later, Safari, and Firefox, device IDs are only available after the user has granted permissions to use the media device. See [Why can't I get device ID on Chrome 81?](../../help/integration-issues/empty_deviceId)
 
 ### Chrome
 
@@ -93,7 +93,7 @@ The following lists other known issues and limitations of Safari on iOS and macO
   - If **Auto-Play** is not enabled on Safari (as the following figure shows), the stream playback has no audio. You have to call the `navigator.mediaDevices.getUserMedia` method to get the device permissions before playing a stream.
     ![](https://web-cdn.agora.io/docs-files/1591079062644)
 - Safari does not support the `addTrack` and `removeTrack` methods.
-- Safari does not support enabling [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#dual-stream).
+- Safari does not support enabling [dual-stream mode](../../signaling/reference/glossary#dual-stream-mode).
 - On Safari, when calling APIs to get quality statistics, the values of some properties are 0. For example, when calling `getLocalAudioStats` to get the audio statistics of the local stream, the values of `RecordingLevel` and `SendLevel` are 0.
 
 ### Firefox
@@ -108,4 +108,4 @@ The following lists other known issues and limitations of Safari on iOS and macO
 
 ## Reference
 
-[How to use Agora Web SDK on mobile devices?](https://docs.agora.io/en/faq/web_on_mobile)
+[Supported Platforms](../../video-calling/reference/supported-platforms)
