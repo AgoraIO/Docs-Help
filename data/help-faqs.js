@@ -1,27 +1,24 @@
 export const data = [
   {
-    question: 'Free Minutes and billing details',
-    link: '/help/integration-issues/empty_deviceId',
-  },
-  {
-    question: 'I cannot hear any voice in a call',
-    link: '/help/integration-issues/video_profile',
-  },
-  {
-    question: 'Black screen occurs in a call',
-    link: '/help/integration-issues/unity_crash',
+    question: 'How to implement basic HTTP authentication?',
+    link: '/video-calling/reference/restful-authentication',
   },
   {
     question:
-      'I connect a Bluetooth to a phone, but not all calls are answered through the Bluetooth headset',
-    link: '/help/integration-issues/web_camera_light',
+      "Why can't I answer calls with Bluetooth after connecting it to an iOS or Android device?",
+    link: '/help/quality-issues/ios_bluetooth',
   },
   {
-    question: 'How to pass the basic HTTP authentication',
-    link: '/help/integration-issues/ncs_vs_query',
+    question: 'How can I fix black screen issues?',
+    link: '/help/quality-issues/video_blank',
   },
   {
-    question: 'Does Agora have reconnection mechanisms?',
-    link: '/help/integration-issues/web_recording',
+    question:
+      'What is the difference between the in-call volume and the media volume?',
+    link: '/help/integration-issues/system_volume',
+  },
+  {
+    question: 'Free-of-charge policy for the first 10,000 minutes',
+    link: '/video-calling/reference/billing-policies',
   },
 ];

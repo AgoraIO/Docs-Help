@@ -29,7 +29,7 @@ This function guarantees that only authorized users can publish streams in a cha
 Before proceeding, ensure that your app meets the following requirements:
 
 - Uses the Agora RTC SDK v2.1.0 or later.
-- Uses only token-based authentication on all app clients to authenticate users. For details, see [Upgrade authentication mechanism](https://docs.agora.io/en/Interactive%20Broadcast/token?platform=Android#upgrade-authentication-mechanism).
+- Uses only token-based authentication on all app clients to authenticate users. For details, see [Upgrade authentication mechanism](../../video-calling/develop/authentication-workflow).
 
 ## Implementation
 
@@ -37,7 +37,7 @@ Before proceeding, ensure that your app meets the following requirements:
 
 This section introduces how to set the role parameter when generating a token using C++ as an example. The principles and goals are the same if you are using another programming language.
 
-```C++
+```cpp
 // API
 static std::string buildTokenWithUid(
     const std::string& appId,
