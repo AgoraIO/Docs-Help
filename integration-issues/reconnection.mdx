@@ -5,13 +5,13 @@ platforms: []
 products: []
 ---
 
-The Agora SDK has reconnection mechanisms when a user drops offline or a process gets killed.This page shows the connection state mechanism of the Agora SDK under these circumstances.
+The Agora SDK has reconnection mechanisms when a user drops offline or a process gets killed. This page shows the connection state mechanism of the Agora SDK under these circumstances.
 
 <div class="alert note">This article does not apply to the Agora RTC Web SDK.</div>
 
 ## User drops offline
 
-The Agora SDK adds the [`onConnectionStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af409b2e721d345a65a2c600cea2f5eb4) or [`connectionStateChangedToState`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:connectionChangedToState:reason:) callback in v2.3.2. This callback reports the current network connection state and reasons to any state change.
+The Agora SDK adds the <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onconnectionstatechanged">`onConnectionStateChanged`</Link> or `connectionStateChangedToState` callback in v2.3.2. This callback reports the current network connection state and reasons to any state change.
 
 ### Before v2.3.2
 
