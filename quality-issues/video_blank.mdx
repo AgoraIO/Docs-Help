@@ -29,24 +29,24 @@ Typical reasons for black screens include:
 
 Before proceeding, ensure that your token is properly set.
 
-**Black screen on the local side**
+#### **Black screen on the local side**
 
 This is likely caused by a video capture failure on the local side. Do the following:
 
 1. Check the camera hardware. Start the built-in video camera to test the recording function.
-2. Check if the camera access permission is enabled. Both Android and iOS have a runtime access permission function under System Settings. See <a href="https://agoradocs.vercel.app/interactive-live-streaming/get-started/get-started-sdk#project-setup"> Add project permissions</a>.
+2. Check if the camera access permission is enabled. Both Android and iOS have a runtime access permission function under System Settings. See <a href="/en/interactive-live-streaming/get-started/get-started-sdk#project-setup"> Add project permissions</a>.
 
 3. Check if another app is using the camera. Close all apps, restart your phone, and re-check.
 4. If the app enabled the External Source Mode, check the data collected from the external video sources.
 
-**Black screen on the remote side**
+#### **Black screen on the remote side**
 
 This is likely caused by a video capture failure on the remote side or slow downlink network on the local side. Do the following:
 
 1. Check if the user disabled the remote video.
 2. Switch to another network to ensure that the problem is not caused by a poor Internet connection.
-3. Check whether the remote user uses the [channel encryption](voice-calling/develop/media-stream-encryption) function but the local user doesn't.
-4. Check whether the remote user can preview their video on their own device. If not, then the cause of the black video probably lies on the remote side. Perform the steps in <a href="#localblack">Black screen on the local side</a>.
+3. Check whether the remote user uses the [channel encryption](/en/video-calling/develop/media-stream-encryption) function but the local user doesn't.
+4. Check whether the remote user can preview their video on their own device. If not, then the cause of the black video probably lies on the remote side. Perform the steps in <a href="#black-screen-on-the-local-side">Black screen on the local side</a>.
 
 **Black screen on both sides**
 
