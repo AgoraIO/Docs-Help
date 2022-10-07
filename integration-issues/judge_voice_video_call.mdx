@@ -7,25 +7,25 @@ products: []
 
 export const toc = [{}];
 
-In real-time audio or video communication, you can use the Agora <Vg k="MESS_SDK" /> or the Agora <Vg k="VSDK" /> to determine whether an incoming or ongoing call is an audio call or a video call.
+In real-time audio or video communication, you can use the Agora Signaling SDK or the Agora Video SDK to determine whether an incoming or ongoing call is an audio call or a video call.
 
 ## Before a call
 
-If you need to determine and send the call type to the receiver before a call, ensure that you have integrated the <Vg k="MESS_SDK" /> and the <Vg k="VSDK" />. Refer to the following articles to learn more about integration:
+If you need to determine and send the call type to the receiver before a call, ensure that you have integrated the Signaling SDK and the Video SDK. Refer to the following articles to learn more about integration:
 
-- [<Vg k="MESS_SDK" /> Quickstart](../../signaling/get-started/get-started-sdk)
-- [<Vg k="VSDK" /> Quickstart](../../interactive-live-streaming/get-started/get-started-sdk)
+- [Signaling SDK Quickstart](../../signaling/get-started/get-started-sdk)
+- [Video SDK Quickstart](../../interactive-live-streaming/get-started/get-started-sdk)
 
 Complete the following steps to determine the call type:
 
-1. When the caller sends a call, use the [Call Invitation API](../../signaling/develop/call-invitation) of the <Vg k="MESS_SDK" /> to send a call invitation to the callee.
+1. When the caller sends a call, use the [Call Invitation API](../../signaling/develop/call-invitation) of the Signaling SDK to send a call invitation to the callee.
 2. Call <Link to="{{Global.SIG_SDK_API_ANDROID}}/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a729079805644b3307297fb2e902ab4c9">`sendMessageToPeer`</Link> to send the call type to the callee via peer-to-peer message. The callee gets the call type from the received peer-to-peer message.
 
 ## After a call
 
-If you need to determine and send the call type to the receiver during a call, ensure that you have integrated the <Vg k="VSDK" />. Refer to the following article:
+If you need to determine and send the call type to the receiver during a call, ensure that you have integrated the Video SDK. Refer to the following article:
 
-- [<Vg k="VSDK" /> Quickstart](../../interactive-live-streaming/get-started/get-started-sdk)
+- [Video SDK Quickstart](../../interactive-live-streaming/get-started/get-started-sdk)
 
 During a call, the receiver can determine the call type according to the following guideline:
 
