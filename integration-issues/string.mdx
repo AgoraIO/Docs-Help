@@ -25,12 +25,12 @@ Before proceeding, ensure that you understand the steps and code logic for implm
 
 Starting from v2.8.0, the Agora Native SDK supports using user accounts to identify the user:
 
-- registerLocalUserAccount: Registers a user account.
-- joinChannelWithUserAccount/joinChannelByUserAccount: Joins the channel with the registered user account.
+- `registerLocalUserAccount`: Registers a user account.
+- `joinChannelWithUserAccount/joinChannelByUserAccount`: Joins the channel with the registered user account.
 
 Follow the steps to join an Agora channel with a string user account:
 
-1. After initializing the RtcEngine instance, call the `registerLocalUserAccount` method to register a loca user account.
+1. After initializing the RtcEngine instance, call the `registerLocalUserAccount` method to register a local user account.
 2. Call the `joinChannelWithUserAccount` method to join a channel with the registered user account.
 3. Call the `leaveChannel` method when you want to leave the channel.
 
@@ -117,30 +117,30 @@ We provide an open-source [String-Account](https://github.com/AgoraIO/Advanced-V
 
 - Java
 
-  - [`registerLocalUserAccount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa37ea6307e4d1513c0031084c16c9acb)
-  - [`joinChannelWithUserAccount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a310dbe072dcaec3892c4817cafd0dd88)
-  - [`getUserInfoByUid`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9a787b8d0784e196b08f6d0ae26ea19c)
-  - [`getUserInfoByUserAccount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#afd4119e2d9cc360a2b99eef56f74ae22)
-  - [`onLocalUserRegistered`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aca1987909703d84c912e2f1e7f64fb0b)
-  - [`onUserInfoUpdated`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa3e9ead25f7999272d5700c427b2cb3d)
+  - <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_registerlocaluseraccount">`registerLocalUserAccount`</Link>
+  - <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_joinchannelwithuseraccount">`joinChannelWithUserAccount`</Link>
+  - <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_getuserinfobyuid">`getUserInfoByUid`</Link>
+  - <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_getuserinfobyuseraccount">`getUserInfoByUserAccount`</Link>
+  - <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onlocaluserregistered">`onLocalUserRegistered`</Link>
+  - <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onuserinfoupdated">`onUserInfoUpdated`</Link>
 
 - Objective-C
 
-  - [`registerLocalUserAccount`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/registerLocalUserAccount:appId:)
-  - [`joinChannelByUserAccount`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByUserAccount:token:channelId:joinSuccess:)
-  - [`getUserInfoByUid`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUid:withError:)
-  - [`getUserInfoByUserAccount`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUserAccount:withError:)
-  - [`didRegisteredLocalUser`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didRegisteredLocalUser:withUid:)
-  - [`didUpdatedUserInfo`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didUpdatedUserInfo:withUid:)
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengine.html#api_irtcengine_registerlocaluseraccount">`registerLocalUserAccount`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengine.html#class_irtcengine">`joinChannelByUserAccount`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengine.html#api_irtcengine_getuserinfobyuid">`getUserInfoByUid`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengineeventhandler.html#class_irtcengineeventhandler">`getUserInfoByUserAccount`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengineeventhandler.html#class_irtcengineeventhandler">`didRegisteredLocalUser`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengineeventhandler.html#class_irtcengineeventhandler">`didUpdatedUserInfo`</Link>
 
 - C++
 
-  - [`registerLocalUserAccount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0d44b74ced4005ee86353c13186f870d)
-  - [`joinChannelWithUserAccount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a14f8c308c6c57c55653552b939a8527a)
-  - [`getUserInfoByUid`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#abf4572004e6ceb99ce0ff76a75c69d0b)
-  - [`getUserInfoByUserAccount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4f75984d3c5de5f6e3e4d8bd81e3b409)
-  - [`onLocalUserRegistered`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a919404869f86412e1945c730e5219b20)
-  - [`onUserInfoUpdated`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad086cc4d8e5555cc75a0ab264c16d5ff)
+  - <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengine.html#api_irtcengine_registerlocaluseraccount">`registerLocalUserAccount`</Link>
+  - <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengine.html#api_irtcengine_joinchannelwithuseraccount">`joinChannelWithUserAccount`</Link>
+  - <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengine.html#api_irtcengine_getuserinfobyuid">`getUserInfoByUid`</Link>
+  - <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengine.html#api_irtcengine_getuserinfobyuseraccount">`getUserInfoByUserAccount`</Link>
+  - <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onlocaluserregistered">`onLocalUserRegistered`</Link>
+  - <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onuserinfoupdated">`onUserInfoUpdated`</Link>
 
 ### Web
 
@@ -177,7 +177,7 @@ client.join(
 
 **API Reference**
 
-- [`Client.join`](./API%20Reference/web/interfaces/agorartc.client.html#join)
+- <Link to="{{Global.API_REF_WEB_ROOT}}/interfaces/iagorartcclient.html#join">`Client.join`</Link>
 
 ## Considerations
 
