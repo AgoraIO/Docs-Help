@@ -1,0 +1,87 @@
+Most of the Agora Classroom SDK for iOS is written in Swift and supports Swift 5.0 and later. Swift supports ABI stability since version 5.0 and Module Stability since version 5.1. Because the Agora Classroom SDK for iOS enables Module Stability, errors can occur when you modify its source code.
+
+This page lists some common errors and corresponding solutions.
+
+## Module compiled with Swift 5.3.2 cannot be imported by the Swift 5.4 compiler
+
+### Error
+
+ The following error might occur when you run Flexible Classroom for iOS v1.1.0:
+
+![](https://web-cdn.agora.io/docs-files/1620822526000)
+
+### Reason
+
+The Agora Classroom SDK v1.1.0 supports Swift 5.3.2. Therefore, this error occurs if you use Swift 5.4.
+
+### Solution
+
+If you directly integrate the complete Agora Classroom SDK into your project, Agora recommends upgrading the Agora Classroom SDK to v1.1.2 or later. As of v1.1.2, Agora Classroom SDK supports Swift 5.0 and later.
+
+## '@objc' instance method in extension of subclass of 'XXX' requires iOS 13.0.0
+
+### Error
+
+When you modify the source code of the Agora Classroom SDK, if you enable BUILD_LIBRARY_FOR_DISTRIBUTION for A.framework, and B.framework inherits the class of A, the following error might occur when you use `@objc` in the `extension` of B:
+
+![](https://web-cdn.agora.io/docs-files/1624525158077)
+
+### Solution
+
+Add `@objc` to the main class.
+
+## Explicit '@objc' on subclass of 'XXX' requires iOS 13.0.0
+
+### Error
+
+When you modify the source code of the Agora Classroom SDK, if you enable BUILD_LIBRARY_FOR_DISTRIBUTION for A.framework, and B.framework inherits the class of A, the following error might occur when you use `@objc` in the class of B:
+
+![](https://web-cdn.agora.io/docs-files/1624525178299)
+
+### Solution
+
+Delete `@objc`, or modify it with `@objcMembers`.
+
+## Non-'@objc' method 'tableView(_:numberOfRowsInSection:)' does not satisfy requirement of '@objc' protocol 'UITableViewDataSource'
+
+### Error
+
+When you modify the source code of the Agora Classroom SDK, if you enable BUILD_LIBRARY_FOR_DISTRIBUTION for A.framework, and B.framework inherits the class of A, the following error might occur when you implement `UITableViewDataSource` or `UITableViewDelegate` in the `extension` of B:
+
+![](https://web-cdn.agora.io/docs-files/1624525202089)
+
+The same error might occur when you implement `AgoraApaasReportorEventTube`, which is the custom `@objc` protocol:
+
+![](https://web-cdn.agora.io/docs-files/1624525211463,)
+
+### Solution
+
+Add the Delegate code to the main class.
+
+## Undefined symbol: _OBJC_CLASS_$__TtC5OC_XXXXXXX
+
+### Error
+
+In an OC file of B.framework, if you call the Swift class `AgoraHandsUpVM`, which contains member variables of the `AgoraAcceptedInfo` structure in the A.framework,  the following error might occur:
+
+![](https://web-cdn.agora.io/docs-files/1624525235312)
+
+### Reason
+
+Because B.framework is a static library, it is unlikely to export non-OC libraries from a Swift file.
+
+### Solution
+
+Inherit `AgoraAcceptedInfo` from NSObject, and modify it with `@objc` or `@objcMembers`.
+
+## Unknown type name 'XXX'; did you mean 'ZZZ'?
+
+### Error
+
+In an OC file of B.framework, if you refer to the Swift class `AgoraApaasReportor`, which inherits from the Swift `AgoraReportor` class in the A.framework, the following error might occur:
+
+![](https://web-cdn.agora.io/docs-files/1624525251577)
+
+### Solution
+
+Create a Wrapper class to encapsulate `AgoraApaasReportor`, and refer to it in the OC file.
