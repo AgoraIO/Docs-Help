@@ -10,7 +10,7 @@ export const toc = [{}];
 <div class="alert note">
   This page applies to SDKs earlier than v3.6.2 only. As of v3.6.2, Agora offers additional methods
   for reducing app size. See{' '}
-  <a href="../../3.x/voice-calling/best-practices/reduce-app-size#reference">Reduce App Size</a>{' '}
+  <Link to="/3.x/voice-calling/best-practices/reduce-app-size#reference">Reduce App Size</Link>{' '}
   for the latest details.
 </div>
 
@@ -22,14 +22,14 @@ The Video SDK supports both audio and video functions, so the package size is la
 
 ## Solution 2: Remove unnecessary extension libraries
 
-The SDK provides extension libraries that can be optionally integrated into the project. The name of extension libraries is suffixed with `Extension`. For details, see [Extension libraries](#extension_libraries).
+The SDK provides extension libraries that can be optionally integrated into the project. The name of extension libraries is suffixed with `Extension`.
 
 If you do not need the extension functions, you can directly remove the corresponding extension libraries to reduce the app size.
 
 <a name="extension_libraries"></a>
 ### Deep-learning noise reduction library
 
-The SDK enables traditional noise reduction by default to reduce most of the stationary background noise. Deep-learning noise reduction adds non-stationary background noise reduction based on the traditional noise reduction. After integrating the deep-learning noise reduction library, you can call `enableDeepLearningDenoise` to enable the deep-learning noise reduction. See [v3.3.0 Release Notes](../../3.x/interactive-live-streaming/introduction/release-notes#v330).
+The SDK enables traditional noise reduction by default to reduce most of the stationary background noise. Deep-learning noise reduction adds non-stationary background noise reduction based on the traditional noise reduction. After integrating the deep-learning noise reduction library, you can call `enableDeepLearningDenoise` to enable the deep-learning noise reduction. See [v3.3.0 Release Notes](/3.x/interactive-live-streaming/introduction/release-notes#v330).
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 
@@ -79,7 +79,7 @@ The following table shows the extension library name for each platform and the i
 
 ### Virtual background library (beta feature)
 
-After integrating the virtual background library, you can call `enableVirtualBackground` to enable the virtual background. See [v3.5.0 Release Notes](../../3.x/interactive-live-streaming/introduction/release-notes#v350).
+After integrating the virtual background library, you can call `enableVirtualBackground` to enable the virtual background. See [v3.5.0 Release Notes](/3.x/interactive-live-streaming/introduction/release-notes#v350).
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 
@@ -113,7 +113,7 @@ The following table shows the extension library name for each platform and the i
 
 ### Super resolution library (beta feature)
 
-After integrating the super resolution library, you can call `enableRemoteSuperResolution` to enable super resolution. See [v3.5.1 Release Notes](../../3.x/interactive-live-streaming/introduction/release-notes#v351).
+After integrating the super resolution library, you can call `enableRemoteSuperResolution` to enable super resolution. See [v3.5.1 Release Notes](/3.x/interactive-live-streaming/introduction/release-notes#v351).
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 
@@ -126,7 +126,7 @@ The following table shows the extension library name for each platform and the i
 
 ### Image enhancement library
 
-As of v3.6.0, ensure that you have integrated the image enhancement library before you call `setBeautyEffectOptions` to enable the image enhancement function. See [v3.6.0 Release Notes](../../3.x/interactive-live-streaming/introduction/release-notes#v360).
+As of v3.6.0, ensure that you have integrated the image enhancement library before you call `setBeautyEffectOptions` to enable the image enhancement function. See [v3.6.0 Release Notes](/3.x/interactive-live-streaming/introduction/release-notes#v360).
 
 The following table shows the extension library name for each platform and the increase in the app size after integration.
 

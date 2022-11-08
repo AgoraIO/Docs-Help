@@ -14,6 +14,6 @@ To ensure a better audio experience in different scenarios, by default, the SDK 
 
 The media volume and call volume have separate volume control mechanisms.
 
-To avoid volume changes when the user switches user roles, ensure that the volume type used by the SDK remains the same before and after the switch. The volume type used by the SDK varies from case to case. See [Volume type introduction](../integration-issues/system_volume/#volume-type-introduction) for details.
+To avoid volume changes when the user switches user roles, ensure that the volume type used by the SDK remains the same before and after the switch. The volume type used by the SDK varies from case to case. See [Volume type introduction](/help/integration-issues/system_volume) for details.
 
 For example, if you use `AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT` on Android and `AUDIO_SCENARIO_GAME_STREAMING` on iOS, then even if the user role switches and the audio routing changes, the user's volume type does not change, and thus the volume is not affected.
