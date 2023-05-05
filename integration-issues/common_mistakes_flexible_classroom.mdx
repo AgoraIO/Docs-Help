@@ -1,0 +1,206 @@
+---
+title: 'What are some common mistakes in integrating and using Flexible Classroom?'
+sidebar_position: 701
+platforms: []
+products: []
+---
+
+export const toc = [{}];
+
+### Error reporting when running Smart Classroom Web project
+
+If you encounter the following error when running the Smart Classroom Web project:
+
+```javascript
+./node_modules/agora-electron-sdk/js/Api/index.js
+Module not found: Can't resolve '../../build/Release/agora_node_ext'
+in'/Users/magikarp/workspace/web/teacher-classroom/node_modules/agora-electron-sdk/js/Api'
+```
+or
+
+```
+Error running install script for optional dependency: "/root/flexible-classroom-desktop/node modules/agora-rdc-core: Command failed.
+```
+It can be solved by:
+
+- If your web project is created with Next.js, add the following code to `next.config.js` the file:
+
+```javascript
+module.exports = {
+    reactStrictMode: true,
+    webpack: (config, options) => {
+        // 添加下面这行代码
+        config.externals.push({"agora-electron-sdk": "commonjs2 agora-electron-sdk", "agora-rdc-core": "commonjs2 agora-rdc-core"});
+        return config;
+    },
+};
+```
+- If your web project is created with React, add the following code `webpack.base.js` in:
+
+```javascript
+module.exports = {
+// 添加下面这行代码
+externals: { 'agora-electron-sdk': 'commonjs2 agora-electron-sdk' , "agora-rdc-core": "commonjs2 agora-rdc-core"},
+resolve: {
+fallback: {
+    crypto: require.resolve('crypto-browserify'),
+    stream: require.resolve('stream-browserify'),
+    buffer: require.resolve('buffer/'),
+},
+```
+- If your web project is created with `Vue.js`, you can add the following code `vue.config.js` in:
+
+```
+const vueConfig = {
+    // publicPath: './',
+    configureWebpack: {
+    // webpack plugins
+    plugins: [
+        ..........................
+    ],
+
+    externals:{
+        // 添加下面这行代码
+        'agora-electron-sdk': 'commonjs2 agora-electron-sdk',
+         "agora-rdc-core": "commonjs2 agora-rdc-core"
+    }
+},
+```
+
+### Error reporting when running Smart Classroom under Linux environment
+
+If you encounter the `Error:unsupported platform!` error, you can add the attribute to the file `agora-classroom-sdk` in the folder `.package.json platform`
+
+Before fixing:
+
+```json
+"agora_electron": {
+    "electron_version": "12.0.0",
+    "prebuilt": true
+},
+```
+
+After fixing:
+
+```json
+"agora_electron": {
+    "electron_version": "12.0.0",
+    "prebuilt": true,
+    "platform":"win32" | "darwin", //"darwin"或者"win32"二选一
+},
+```
+
+### Error reporting when running Smart Classroom iOS project
+
+A large part of Agora Classroom SDK for iOS is written in Swift and supports Swift 5.0 and above. Swift supports ABI stability since 5.0, and Module Stability since 5.1. The Agora Classroom SDK for iOS has Module Stability turned on, which will cause you to encounter some errors when modifying the source code of the Agora Classroom SDK for iOS.
+
+This page lists some common errors and corresponding solutions.
+
+#### Module compiled with Swift 5.3.2 cannot be imported by the Swift 5.4 compiler
+
+**Error phenomenon**
+
+You may encounter the following error when running Smart Classroom iOS project version 1.1.0:
+
+image
+
+**Reason**
+
+Agora Classroom SDK v1.1.0 supports Swift 5.3.2. If you are using Swift 5.4, the above error will appear.
+
+**Solution**
+
+If you directly integrate the complete Acoustic Classroom SDK in your project, it is recommended that you upgrade the Acoustic Classroom SDK to v1.1.2 or above. Agora Classroom SDK supports Swift 5.0 and above since v1.1.2.
+
+### '@objc' instance method in extension of subclass of 'XXX' requires iOS 13.0.0
+
+**Error phenomenon**
+
+When modifying the Agora Classroom SDK source code, if A.framework enables BUILD_LIBRARY_FOR_DISTRIBUTION, and B inherits the classes in A, then when B uses extensionand inextension , the following error will appear:@objc
+
+image
+
+**Solution**
+
+Put @objcthe code in the main class.
+
+### Explicit '@objc' on subclass of 'XXX' requires iOS 13.0.0
+
+**Error phenomenon**
+
+When modifying the Agora Classroom SDK source code, if A.framework has BUILD_LIBRARY_FOR_DISTRIBUTION enabled, B inherits the class in A, and the following error @objcmay:
+
+image
+
+**Solution**
+
+Remove @objc, or `@objcMembersmodify`.
+
+### Non-'@objc' method 'tableView(_:numberOfRowsInSection:)' does not satisfy requirement of '@objc' protocol 'UITableViewDataSource'
+
+**Error phenomenon**
+
+When modifying the Agora Classroom SDK source code, if A.framework enables BUILD_LIBRARY_FOR_DISTRIBUTION, and B inherits the classes in A, then B uses extensionand extensionimplements in UITableViewDataSourceor UITableViewDelegate, the following error may occur:
+
+image
+
+The following error will also occur when implementing a custom `@objc` protocol `AgoraApaasReportorEventTube`:
+
+image
+
+**Solution**
+
+Put the Delegate related code in the main class.
+
+### Undefined symbol: OBJC_CLASS $__TtC5OC_XXXXXXX
+
+**error phenomenon**
+
+When you modify the source code of the Agora Classroom SDK, A.framework has `AgoraAcceptedInfo` this struct, and the Swift class in B.framework `AgoraHandsUpVM`
+contains member variables of the `AgoraAcceptedInfo` class, and an OC file in B.framework calls it `AgoraHandsUpVM`. In this case, the following error may appear:
+
+image
+
+**Reason**
+
+B.framework is compiled statically, and Swift files cannot generate non-OC types of other libraries.
+
+**Solution**
+
+`AgoraAcceptedInfo` Modify to inherit from NSObject, and use `@objc` or `@objcMembers` to modify.
+
+### Unknown type name 'XXX'; did you mean 'ZZZ'?
+
+**error phenomenon**
+
+When you modify the source code of Agora Classroom SDK, if A.framework has a Swift class `AgoraReportor`, B.framework’s Swift class `AgoraApaasReportor` inherits from it `AgoraReportor`, and B.framework has an OC file reference `AgoraApaasReportor`, you may encounter the following error:
+
+image
+
+**Solution**
+
+Create a Wrapper class package `AgoraApaasReportor`, and the OC file refers to the Wrapper class.
+
+### How to deal with errors related to joining the class?
+
+#### What should I do if the web terminal reports 600001-1an error , or the server reports a 401 error when logging into a classroom?
+
+image
+
+`600001-1401` The error with and is generally because `launch` the RTM Token passed in by the method is wrong, or the RTM Token does not match the App ID. Please check whether the RTM Token is correct, and ensure that the App ID and RTM Token match.
+
+Agora recommends that you generate the RTM Token on the backend, and call the generated token on the frontend. For details, refer to Authentication using AccessToken .
+
+If you need to temporarily generate token tests, you can use this tool.
+
+#### What should I do if the error "code 30409104 detailed information: roomType conflict" is reported?
+
+image
+
+The error is because the room number (`roomUuid`) has already created a small class class, and the same room number is configured as a different room type, resulting in a room type conflict. Acoustics recommends not to use the same room number to create multiple classrooms, and each room should be configured with a different room type.
+
+For other related server error codes, please refer to the response status code.
+
+#### What should I do if I get an error message "Error Domain=last launch not finished Code=-1 "(null)"" when I enter the classroom?
+
+This error is generally because the RTM Token passed in by `launch` the method is incorrect or expired, or the RTM Token does not match the App ID or User ID. Please check whether the RTM Token is correct and valid, and ensure that the RTM Token matches the App ID and User ID.

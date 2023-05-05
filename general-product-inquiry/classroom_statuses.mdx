@@ -1,0 +1,34 @@
+---
+title: 'What are the classroom statuses of Flexible Classroom??'
+sidebar_position: 432
+platforms: []
+products: []
+---
+
+Smart classroom has the following classroom states:
+
+| class status    | statevalue | illustrate                                                                                                                                                                                                                                                                                                                         |   |   |
+|-----------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|---|
+| has not started | 0          | It's not yet the start time for class. Both teachers and students can: Use real-time audio and video functions Use the instant message function see student list Using the interactive whiteboard function                                                                                                                         |   |   |
+| start           | 1          | After the class start time and within the duration. Both teachers and students can: Use real-time audio and video functions Use the instant message function see student list Using the interactive whiteboard function                                                                                                            |   |   |
+| Finish          | 2          | The class duration has been exceeded, but is within the drag time. At this time, teachers and students can still enter and leave the classroom, and can also use the functions normally.                                                                                                                                           |   |   |
+| closure         | 3          | The class duration and drag time have been exceeded. In closed state: Teachers and students are kicked out of the class and cannot rejoin. Audio and video, instant messaging, and whiteboard services are all disconnected. Once a class is closed it cannot be restarted. It will be destroyed 1 hour after the class is closed. |   |   |
+|                 |            |                                                                                                                                                                                                                                                                                                                                    |   |   |
+|                 |            |                                                                                                                                                                                                                                                                                                                                    |   |   |
+
+### Classroom status switch
+
+In the Smart Classroom client, when calling `launch` the method specify the class start time and duration through the following parameters, and set the switching of the class state:
+
+- `startTime`: Set the class start time (in milliseconds), which is subject to the parameter passed in by the first user who enters the class.
+- `duration`: Set the class duration (in seconds), which is subject to the parameter passed in by the first user who enters the class.
+- `closeDelay`: Delay time (seconds), subject to the parameter passed in when creating the room, the default is 10 minutes.
+The class will automatically start at the specified start time, and end automatically after the sum of the class duration and the procrastination time. Teachers can also start and end classes manually.
+
+In addition, you can also switch the class status by setting the class status RESTful API.
+
+### Reference API
+
+- launch(Web/Electron) link
+- launch(Android) link
+- launch(iOS) link

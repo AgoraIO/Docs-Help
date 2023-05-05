@@ -1,0 +1,64 @@
+---
+title: 'How does Flexible Classroom support multiple languages?'
+sidebar_position: 701
+platforms: []
+products: []
+---
+
+export const toc = [{}];
+
+Smart Class currently supports Chinese, English and Spanish. If you need to add more languages, you only need to find the language-related key value in the specified directory and modify it.
+
+### Web-side multilingual configuration
+
+In the web-side source code, the main SDK (Classroom SDK and Proctor SDK) and plug-ins (including clicker, countdown, voter, ring letter IM module) have their own separate multi-language files. The specific modification method is as follows:
+
+- Main SDK:
+
+  1. `packages/agora-classroom-sdk/src/infra/translate` Add the corresponding language file in TypeScript format under the directory (the file name only needs to be unique). The content of the file can refer to the English language file, as shown in the following figure:
+
+  image add-en-ts
+
+  1. Add a line of corresponding code in `packages/agora-classroom-sdk/src/infra/api/index.tsx` the file `addResourceBundle();`, the location is as shown in the figure below:
+
+  image add-index-tsx
+
+  For example: if you want to add Japanese, then you need packages/agora-classroom-sdk/src/infra/translateto add a jpn.tsfile in the directory, and add a line in the appropriate position in packages/agora-classroom-sdk/src/infra/api/index.tsxthe file addResourceBundle('jp', jp);
+
+  Note: `addResourceBundle()` The parameters filled in as long as they are unique and easy to correspond to the language.
+
+- Extensions:
+
+  1. `packages/agora-plugin-gallery/src/gallery/answer/i18n` Add a corresponding folder under the directory (the folder name only needs to be unique), and add a language file in TypeScript format in this folder `index.ts`. The content of the file can refer to English ( `en` folder) or Chinese ( `zh` folder) language files. Here is the content of the English language file:
+
+   image add-index-ts
+
+  1. Add a line of declaration and a line of corresponding code in `packages/agora-plugin-gallery/src/gallery/answer/i18n/config.ts` the file , as shown in the following figure:`import` `addResourceBundle();`
+
+  image add-declaration
+
+  For example: if you want to add Japanese, then you need `packages/agora-plugin-gallery/src/gallery/answer/i18n` to add a `jp` folder under the directory, which contains a `index.ts` file , and `packages/agora-plugin-gallery/src/gallery/answer/i18n/config.ts` add a line of `import jp from './jp';`statement `addResourceBundle(jp", jp);`.
+
+  Note: `addResourceBundle()` The parameters filled in as long as they are unique and easy to correspond to the language.
+
+### Android multi-language configuration
+
+You need to add a folder of the corresponding language in the following three directories (the folder name only needs to be unique), and add a `string.xml` file `value` Chinese (`value-zh` folder) language files.
+
+- `/AgoraClassSDK/src/main/res`
+
+  image src-main-res
+
+- `/AgoraEduUIKit/src/main/res`
+
+  image agoraeduuikit-src-main-res
+
+  For example: if you want to add Japanese, then you need to add a `value-jp` folder , which contains a `strings.xml` file.
+
+### iOS multi-language configuration
+
+1. Under `others` the folder , copy an existing language folder (for example `en.Iproj`), and rename it to the name corresponding to the new language (for example `jp.Iproj`).
+Note: The folder name only needs to be unique and easy to correspond to the language, but the suffix must be `.lproj`.
+1. `Localizable.strings` Replace all in the files in the folder `value` with the values ​​corresponding to the new language.
+1. Before entering the room, `AgoraUIBaseViews` set `agora_ui_language` the pointer of the global variable in to the folder name corresponding to the new language, and then enter the room to take effect.
+

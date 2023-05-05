@@ -1,0 +1,101 @@
+---
+title: 'How to set custom user and class attributes?'
+sidebar_position: 701
+platforms: []
+products: []
+---
+
+export const toc = [{}];
+
+Flexible Classroom supports custom user attributes, classroom attributes and widget attributes. You can set any classroom attribute according to your own business needs, and Flexible Classroom will synchronize the change of this attribute to all terminals to realize your own extended business.
+
+Attributes include attribute names and attribute values, and each attribute name has one and only one corresponding attribute value. You can modify the value of custom user attributes or classroom attributes in two ways: full modification and path modification.
+
+Suppose you currently define the following properties:
+
+```json
+{"key1":
+   {"subkey1":"a",
+    "subkey2":"b"
+   },
+ "key2":
+   {"subkey3":"c",
+    "subkey4":"d"
+   }
+}
+```
+
+If you want to modify all attributes, you can use the full modification method. For example, to change the value `subkey` of uppercase, the following JSON array can be passed in when calling the API:
+
+```json
+{"key1":
+    {"subkey1":"A",
+    "subkey2":"B"
+    },
+  "key2":
+    {"subkey3":"C",
+    "subkey4":"D"
+    }
+}
+```
+
+If you only want to modify some properties, you can use the path modification method:
+
+For example `subkey1`, `A` modify the value of from to `a`, which can be passed in when calling the API `{"key1.subkey1":"A"}`, and the modified attribute is:
+
+```json
+{"key1":
+    {"subkey1":"a",
+    "subkey2":"B"
+    },
+  "key2":
+    {"subkey3":"C",
+    "subkey4":"D"
+    }
+}
+```
+
+For example, if you add a new value `key1in`, you can pass in to . The modified attribute is: `E subkey5{"key1.subkey5":"E"}`
+
+```json
+{"key1":
+   {"subkey1":"A",
+    "subkey2":"B",
+    "subkey5":"E"
+   },
+ "key2":
+   {"subkey3":"C",
+    "subkey4":"D"
+   }
+}
+```
+
+If you pass in `{ "key1": { "subkey5": "E" } }`, all `key1` original , that is, the modified attributes are:
+
+```json
+{"key1":
+   {
+    "subkey5":"E"
+   },
+ "key2":
+   {"subkey3":"C",
+    "subkey4":"D"
+   }
+}
+```
+
+Add and in `key1and`, which can be passed in when calling the API . The modified properties are: `key2` `subkey5` `subkey6` `{"key1.subkey5":"E", "key2.subkey6":"F"}`.
+
+```json
+{"key1":
+   {"subkey1":"A",
+    "subkey2":"B",
+    "subkey5":"E"
+   },
+ "key2":
+   {"subkey3":"C",
+    "subkey4":"D",
+    "subkey6":"F"
+   }
+}
+```
