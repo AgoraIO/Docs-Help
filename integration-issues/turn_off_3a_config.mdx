@@ -1,13 +1,13 @@
 ---
-title: 'How to turn off the configuration of 3A (noise reduction, echo cancellation, gain)?'
+title: 'How to turn off noise reduction, echo cancellation, and automatic gain control?'
 sidebar_position: 701
 platforms: []
 products: []
 ---
 
-### How to disable 3A (noise reduction, echo cancellation, gain) configuration on the web?
+### How to turn off noise reduction, echo cancellation, and automatic gain control?
 
-If your classroom integrates or uses audio mixing or other tools, and you want to turn off the noise reduction, echo cancellation, and gain functions, you `packages/agora-classroom-sdk/src/infra/api/index.tsx` can add the following code to achieve it:
+If your classroom integrates or uses audio mixing or other tools, and you want to turn off noise reduction, echo cancellation, and gain control functions, add the following code to `packages/agora-classroom-sdk/src/infra/api/index.tsx`:
 
 ```typescript
  if (AgoraRteRuntimePlatform.Electron === AgoraRteEngineConfig.platform) {
@@ -31,4 +31,4 @@ If your classroom integrates or uses audio mixing or other tools, and you want t
     }
 ```
 
-image disable 3-a
+![1680084350900](https://web-cdn.agora.io/docs-files/1680084350900)

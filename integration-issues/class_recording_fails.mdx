@@ -7,22 +7,23 @@ products: []
 
 export const toc = [{}];
 
-1. Please refer to Configuring the recording function to check whether the recording-related configuration is correct, among which:
+1. Check whether the recording-related configurations are correct:
 
-   - Recording Configuration `recordingConfig` If not set, the default configuration will be used automatically.
-   - Storage configuration `storageConfig` must be configured correctly, in particular `vendor`, `region` and `endpoint` fields are correct and match. For example, if the third-party cloud storage service area you use is Shanghai, the application server you initiate the request must also be located in Shanghai. Refer to the following example:
+   - `recordingConfig`: If not set, the default configuration is used.
+   - `storageConfig`: `vendor`, `region`, and `endpoint` fields are correct and match. For example, if a third-party cloud storage area you use is Shanghai, the application server that initiates the request must also be located in Shanghai. Refer to the following example:
+
      ```json
      "vendor": 2,
      "region": 1, //CN_Shanghai
      endpoint:https://agora-recording.oss-cn-shanghai.aliyuncs.com
      ```
 
-1. If the above configurations are correct and the recording still fails, please check whether the public read permission of the third-party cloud storage account you are using is enabled, see Notes for details .
+1. If the above configurations are correct and the recording still fails, check whether the public read permission of the third-party cloud storage account you are using is enabled.
 
-1. If the recording configuration is correct and the public read permission is turned on, but the recording still fails to record, Shengwang recommends that you debug the specific cause of the error in the local browser by splicing the URL recorded on the page.
+1. If the recording configuration is correct and the public read permission is granted, but the recording still fails, debug the specific cause of the error in the local browser by splicing the URL:
 
-   1. Obtain the value URL1 of the URL of the recording page passed in by calling `LaunchOption` the parameter `recordUrl`.
-   1. Call the RESTful API to get the recording list , and get URL2 webRecordUrlQueryfrom`.
-   1. By splicing URL1 and URL2, you get the complete URL of the page recording, which can be accessed locally through a browser for debugging.
+   1. Obtain the URL1 value of the passed in recording page URL from the `recordUrl` parameter of `LaunchOption`.
+   1. Call the RESTful API to get the recording list and get URL2 from `webRecordUrlQuery`.
+   1. Splice URL1 and URL2 to get the complete URL of the recording page, which can be accessed locally through a browser for debugging.
 
-If it can be opened normally, the recording is enabled successfully; if it cannot be opened, you can find out the reason according to the error report.
+If the recording page opens, the recording is enabled successfully. If the page does not open, you can find the reason in the error report.

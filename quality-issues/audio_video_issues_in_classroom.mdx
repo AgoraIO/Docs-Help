@@ -7,28 +7,28 @@ products: []
 
 ---
 
-### Why can't I turn on the camera or microphone on the web?
+### Why can't I turn on the camera or microphone in the web client?
 
-Please confirm whether the permission of the browser camera or microphone is turned on.
-If the camera or microphone cannot be turned on after the permission is turned on, please follow the steps below to refresh:
+Check your browser's permission to use your camera and microphone. If the permissions are granted but the camera or microphone still
+don't work, take the following steps:
 
-1. clear browser cache
-1. restart browser
-1. Upgrade your browser version
+1. Clear your browser cache
+1. Restart the browser
+1. Update your browser
 
-### How to adjust video resolution?
+### How to adjust the video resolution?
 
-#### Video resolution in class
+#### Video resolution in a classroom
 
-The Web side `launch` can `launchOption.MediaOptions` adjust the resolution in the class by changing the parameter in the method:
+Use `launchOption.MediaOptions` configurations of the web client to adjust the resolution in a classroom:
 
-- `launchOption.MediaOptions.lowStreamCameraEncoderConfiguration` Used to adjust the resolution of small streams
-- `launchOption.mediaOptions.cameraEncoderConfiguration` Used to adjust the resolution of large streams
-- `launchOption.mediaOptions.screenShareEncoderConfiguration` Used to adjust the resolution of screen sharing
+- `launchOption.MediaOptions.lowStreamCameraEncoderConfiguration`: Adjust the small stream resolution.
+- `launchOption.mediaOptions.cameraEncoderConfiguration`: Adjust the large stream resolution.
+- `launchOption.mediaOptions.screenShareEncoderConfiguration`: Adjust the screen sharing resolution.
 
 The following sample code illustrates how to modify the resolution of small and large streams:
 
-```
+``` typescript
     AgoraEduSDK.launch(appRef.current, {
         ...launchOption,
         recordUrl,
@@ -55,11 +55,11 @@ The following sample code illustrates how to modify the resolution of small and 
     });
 ```
 
-### Recording video resolution
+#### Recording video resolution
 
-On the web side, you can adjust the resolution of class recording videos by changing the parameters in the recording status of the RESTful API settings, refer to the following sample code: `webRecordConfig`
+Adjust the resolution of class recordings in the web client by changing the recording state parameters in RESTful API, specifically `webRecordConfig`:
 
-```
+```typescript
 get recordArgs() {
 const { recordUrl, rteEngineConfig, recordRetryTimeout } = EduClassroomConfig.shared;
 const args = {
@@ -75,38 +75,47 @@ const args = {
 };
 ```
 
-### When using screen sharing, the error "Please enable screen recording permission first" is reported?
+### When using screen sharing, the error 'Please enable screen recording permission first' is reported.
 
-If you encounter the following error when you enable screen sharing, it means that you have not enabled the system screen recording permission.
+If you encounter this error when you enable screen sharing, it means that you have not granted the screen recording permission.
 
-Taking the macOS system as an example, you can enable the corresponding permission in System Settings > Privacy and Security > Screen Recording.
+Taking the macOS system as an example, you can enable the corresponding permission in **System Settings** > **Privacy and Security** > **Screen Recording**.
 
-### Is there any network bandwidth requirement for live streaming?
+### Are there any specific network bandwidth requirements for live streaming?
 
-- Bandwidth and speed of the teacher terminal: Exclusive broadband of 10 Mbps or more, and the uplink speed is greater than 4 Mbps.
-- Bandwidth and speed of student terminal: Exclusive broadband with a minimum of 4 Mbps or more.
+- Teacher's device: Exclusive broadband and uplink speed of at least 10 Mbps and 4 Mbps, respectively.
+- Student's device: Exclusive broadband of at least 4 Mbps.
 
-### What should I do if I get stuck frequently during class, can’t hear the audio clearly, have a white or black screen, or fail to load courseware?
+### What should a user do if they get stuck frequently during class, can’t hear the audio clearly, have a white or black screen,
+or fail to load courseware?
 
-If you have the above network problems, please refer to the following steps to check your network:
+If a user has the above network problems, they should take the following steps to check their network:
 
 - Restart the router and reconnect to the network.
-- The device is close to the router, not separated by a wall.
-- Disconnect other programs or devices that occupy the network speed, such as download programs, online playback programs, cloud disk software, TV network set-top boxes, etc.
-- Switch networks, such as switching from WiFi to 4G hotspot network and re-enter the classroom.
+- Move the device away from the router, make sure it is separated by a wall.
+- Turn off other programs and disconnect devices that occupy the network speed, such as download programs, online playback programs, cloud disk software, TV network set-top boxes, or others.
+- Switch networks, for example, switch from WiFi to a 4G hotspot and re-enter the classroom.
 - Reboot the device.
 - Turn off VPN or web proxy.
 
 ### What if the students can't hear the teacher's voice?
-- Check whether the teacher's microphone is turned on.
-- Check the student network status.
-- Check that the Student speakers (including volume mixers) and browser are muted.
-- Check whether the speaker device used in the class on the student side is selected correctly.
-- Students exit and re-enter the classroom or restart the device.
 
-### What should I do if the teacher cannot hear the students?
-- Check that the student is on stage and has the microphone turned on.
-- Check that the teacher's speakers (including volume mixer) and browser are muted.
-- Check whether the speaker equipment used in the teacher's class is selected correctly.
-- The teacher exits and re-enters the classroom or restarts the device.
+The teacher should:
+- Check whether their microphone is turned on.
+
+The students should:
+- Check their network status.
+- Check that their speakers, including the volume mixer, and browsers are muted.
+- Check whether their speaker devices have been selected correctly.
+- Exit and re-enter the classroom or restart the device.
+
+### What if the teacher cannot hear the students?
+
+The student should:
+- Check that they are on stage and have their microphone turned on.
+
+The teacher should:
+- Check that their speakers, including the volume mixer, and browser are muted.
+- Check whether their speaker device is selected correctly.
+- Exit and re-enters the classroom or restart the device.
 
