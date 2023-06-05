@@ -29,15 +29,15 @@ Check your code logic and ensure that you call `Client.publish` after the `Clien
 
 ## Connect choose server timeout
 
-Same reason and solution as [Failed to load resource](#resource).
+Same reason and solution as [Failed to load resource](#failed-to-load-resource).
 
-## DTLS failed<a name="DTLS"></a>
+## DTLS  <a name="DTLS"></a>
 
 The following table lists the possible reasons and corresponding solutions:
 
 | Reason                                                                                                        | Solution                                                                                                                                                                                               |
 | :------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The web browser does not fully support WebRTC.                                                                | Use a [Web browser](video-calling/reference/supported-platforms) supporting WebRTC.                                                                                                                   |
+| The web browser does not fully support WebRTC.                                                                | Use a [Web browser](/video-calling/reference/supported-platforms) supporting WebRTC.                                                                                                                   |
 | The web browser has plugins that prevent WebRTC from getting an ICE candidate on the local device.            | Disable the problematic browser plugins.                                                                                                                                                               |
 | The user's gateway firewall disables the UDP protocol or the UDP ports greater than 10000.                    | Disable the firewall or use the [Agora Cloud Proxy](/voice-calling/develop/cloud-proxy) service. |
 | You set the web browser to use the VP8 codec, but the user uses the Safari browser that does not support VP8. | The user can either upgrade the Safari browser to versions later than 12.1, or use the Chrome browser.                                                                                                 |
@@ -85,7 +85,7 @@ Possible reasons:
 
 ### Solution
 
-- Use a supported [Web browser](video-calling/reference/supported-platforms).
+- Use a supported [Web browser](/video-calling/reference/supported-platforms).
 - Deploy your web app through HTTPS or localhost.
 
 ## Invalid elementID

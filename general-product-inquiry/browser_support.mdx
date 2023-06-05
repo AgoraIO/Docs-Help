@@ -9,12 +9,13 @@ export const toc = [{}];
 
 <div class="alert note">
   This page only applies to the Agora Web SDK 3.x. If you use the Web SDK 4.x, see{' '}
-  <a href="./web_sdk_compatibility?platform=Web#mobile">Web SDK Compatibility</a>.
+  <Link to="/video-calling/reference/supported-platforms?platform=Web">Web SDK Compatibility</Link>.
+
 </div>
 
 ## Supported browsers
 
-The section lists the browsers that the Agora RTC Web SDK supports on different platforms.
+The section lists the browsers that the Agora Video SDK Web SDK supports on different platforms.
 
 <div class="alert info">
   To ensure better end user experience, Agora highly recommends using the{' '}
@@ -46,15 +47,15 @@ Other browser support on desktop:
 The browser support on mobile devices heavily depends on the capabilities of devices and the codec implementation of browsers.
 
 - On Android 4.1 or later, the Web SDK supports Chrome 58 or later. Agora recommends using VP8 on Android Chrome, because whether Google Chrome for Android supports H.264 is hardware dependent and some Android devices do not support H.264.
-- On iOS 11 or later, the Web SDK supports Safari or later. However, Agora does not recommend using the Web SDK on iOS Safari due to the large amount of known issues and limitations of [iOS Safari](#ios). For better user experience on iOS, try the [Agora RTC iOS SDK](../../sdks?platform=ios).
+- On iOS 11 or later, the Web SDK supports Safari or later. However, Agora does not recommend using the Web SDK on iOS Safari due to the large amount of known issues and limitations of [iOS Safari](#safari). For better user experience on iOS, try the <Link to= "/sdks?platform=ios">Agora Video SDK iOS SDK</Link>.
 
-The support for in-app browsers on mobile devices is complicated. For details, see [Supported Platforms](../../video-calling/reference/supported-platforms).
+The support for in-app browsers on mobile devices is complicated. For details, see [Supported Platforms](/video-calling/reference/supported-platforms).
 
 ## Limitation
 
 Due to the various browser engine implementations, support for some features may vary by browser and platform. The following are known issues and limitations.
 
-On Chrome 81 or later, Safari, and Firefox, device IDs are only available after the user has granted permissions to use the media device. See [Why can't I get device ID on Chrome 81?](../../help/integration-issues/empty_deviceId)
+On Chrome 81 or later, Safari, and Firefox, device IDs are only available after the user has granted permissions to use the media device. See [Why can't I get device ID on Chrome 81?](/help/integration-issues/empty_deviceId)
 
 ### Chrome
 
