@@ -7,11 +7,11 @@ products: []
 
 export const toc = [{}];
 
-Flexible Classroom supports custom user attributes, classroom attributes and widget attributes. You can set any classroom attribute according to your own business needs, and Flexible Classroom will synchronize the change of this attribute to all terminals to realize your own extended business.
+Flexible Classroom supports custom user attributes, classroom attributes, and widget attributes. You can set any classroom attribute according to your business needs, and Flexible Classroom will synchronize it to all terminals.
 
-Attributes include attribute names and attribute values, and each attribute name has one and only one corresponding attribute value. You can modify the value of custom user attributes or classroom attributes in two ways: full modification and path modification.
+Attributes include names and values, and each attribute name has only one corresponding attribute value. You can modify the value of custom user attributes or classroom attributes in two ways, by full modification or path modification.
 
-Suppose you currently define the following properties:
+Suppose you currently define the following attributes:
 
 ```json
 {"key1":
@@ -25,7 +25,7 @@ Suppose you currently define the following properties:
 }
 ```
 
-If you want to modify all attributes, you can use the full modification method. For example, to change the value `subkey` of uppercase, the following JSON array can be passed in when calling the API:
+If you want to modify all attributes, you can use the full modification method. For example, to change the value of all `subkey` to uppercase, pass the following JSON array when calling the API:
 
 ```json
 {"key1":
@@ -39,9 +39,7 @@ If you want to modify all attributes, you can use the full modification method. 
 }
 ```
 
-If you only want to modify some properties, you can use the path modification method:
-
-For example `subkey1`, `A` modify the value of from to `a`, which can be passed in when calling the API `{"key1.subkey1":"A"}`, and the modified attribute is:
+If you only want to modify some properties, you can use the path modification method. For example, pass in `{"key1.subkey1":"A"}` when calling the API to modify the `A` value to `a` for `subkey1`. The modified attributes are as follows:
 
 ```json
 {"key1":
@@ -55,11 +53,11 @@ For example `subkey1`, `A` modify the value of from to `a`, which can be passed 
 }
 ```
 
-For example, if you add a new value `key1in`, you can pass in to . The modified attribute is: `E subkey5{"key1.subkey5":"E"}`
+If you  pass in `{"key1.subkey5":"E"}`, the modified attributes are as follows:
 
 ```json
 {"key1":
-   {"subkey1":"A",
+   {"subkey1":"a",
     "subkey2":"B",
     "subkey5":"E"
    },
@@ -70,7 +68,7 @@ For example, if you add a new value `key1in`, you can pass in to . The modified 
 }
 ```
 
-If you pass in `{ "key1": { "subkey5": "E" } }`, all `key1` original , that is, the modified attributes are:
+If you pass in `{"key1":{ "subkey5":"E"}}` with all `key1` original, the modified attributes are as follows:
 
 ```json
 {"key1":
@@ -84,7 +82,7 @@ If you pass in `{ "key1": { "subkey5": "E" } }`, all `key1` original , that is, 
 }
 ```
 
-Add and in `key1and`, which can be passed in when calling the API . The modified properties are: `key2` `subkey5` `subkey6` `{"key1.subkey5":"E", "key2.subkey6":"F"}`.
+If you pass in `{"key1.subkey5":"E", "key2.subkey6":"F"}`, the modified attributes are as follows:
 
 ```json
 {"key1":

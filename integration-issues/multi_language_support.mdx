@@ -17,31 +17,31 @@ In the source code, the Classroom SDK and Proctor SDK, referred to as main SDKs,
 
   1. Add the corresponding language file in the TypeScript format under `packages/agora-classroom-sdk/src/infra/translate`. The file name must be unique. For example:
 
-  ![1680084679972](https://web-cdn.agora.io/docs-files/1680084679972)
+     ![1680084679972](https://web-cdn.agora.io/docs-files/1680084679972)
 
   1. Add the corresponding code in `packages/agora-classroom-sdk/src/infra/api/index.tsx`:
 
-  ![1680084689520](https://web-cdn.agora.io/docs-files/1680084689520)
+     ![1680084689520](https://web-cdn.agora.io/docs-files/1680084689520)
 
-  For example, if you want to add Japanese, add a `jpn.ts` file under `packages/agora-classroom-sdk/src/infra/translate` and `addResourceBundle('jp', jp);` to `packages/agora-classroom-sdk/src/infra/api/index.tsx` file.
+     For example, if you want to add Japanese, add a `jpn.ts` file under `packages/agora-classroom-sdk/src/infra/translate` and `addResourceBundle('jp', jp);` to `packages/agora-classroom-sdk/src/infra/api/index.tsx` file.
 
-  The parameters of `addResourceBundle()` should be unique and easy to match with a language.
+     The parameters of `addResourceBundle()` should be unique and easy to match with a language.
 
 - Plugins:
 
   1. Add a folder with an `index.ts` language file to `packages/agora-plugin-gallery/src/gallery/answer/i18n`. The folder name must be unique. For example:
 
-  ![1680084701486](https://web-cdn.agora.io/docs-files/1680084701486)
+     ![1680084701486](https://web-cdn.agora.io/docs-files/1680084701486)
 
   1. Add a line of declaration and a line of corresponding code in `packages/agora-plugin-gallery/src/gallery/answer/i18n/config.ts`:
 
-  ![1680084710288](https://web-cdn.agora.io/docs-files/1680084710288)
+     ![1680084710288](https://web-cdn.agora.io/docs-files/1680084710288)
 
-  For example, if you need to add Japanese, add a `jp` folder with the `index.ts` file under `packages/agora-plugin-gallery/src/gallery/answer/i18n` and then `import jp from './jp';` declaration and `addResourceBundle(jp", jp);` to `packages/agora-plugin-gallery/src/gallery/answer/i18n/config.ts`.
+     For example, if you need to add Japanese, add a `jp` folder with the `index.ts` file under `packages/agora-plugin-gallery/src/gallery/answer/i18n` and then `import jp from './jp';` declaration and `addResourceBundle(jp", jp);` to `packages/agora-plugin-gallery/src/gallery/answer/i18n/config.ts`.
 
-  The parameters of `addResourceBundle()` should be unique and easy to match with a language.
+     The parameters of `addResourceBundle()` should be unique and easy to match with a language.
 
-### Android multi-language configuration
+### Multilingual configuration on Android
 
 Add a directory for the corresponding language with a `string.xml` file inside to the following directories. The folder name must be unique.
 
@@ -50,7 +50,7 @@ Add a directory for the corresponding language with a `string.xml` file inside t
 
 For example, if you want to add Japanese, add a `value-jp` folder, which contains a `strings.xml` file.
 
-### iOS multi-language configuration
+### Multilingual configuration on iOS
 
 1. Under `others` directory, copy an existing language directory, for example, `en.Iproj`, and rename it to correspond to the new language, for example, `jp.Iproj`. The folder name must be unique and easy to match with a language, and the suffix must be `.lproj`.
 1. Replace all strings in the `Localizable.strings` file under `value` directory with values corresponding to the new language.

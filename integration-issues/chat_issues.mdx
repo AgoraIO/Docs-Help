@@ -1,5 +1,5 @@
 ---
-title: 'How to deal with chat-related issues in Flexible Classroom?'
+title: 'How to deal with Chat-related issues in Flexible Classroom?'
 sidebar_position: 701
 platforms: []
 products: []
@@ -7,10 +7,20 @@ products: []
 
 export const toc = [{}];
 
-### The chat is not displayed in the classroom. The classroom is integrated with Agora Chat, but users cannot log in.
+### The Chat is integrated but not displayed in the classroom
 
-If the user cannot use or log into instant chat in the classroom, check whether Chat configuration in the Console is correct.
+Check if your Chat permission has been activated. If not, [activate it in the Console](../../flexible-classroom/get-started/enable-flexible-classroom#configure-chat).
 
-### Failed to send a message in class
+### A user cannot log into the Chat
 
-If the user fails to send messages in the room, it may be because the user has not successfully registered. You can go to the instant messaging service overview page of Huanxin developer management background and set the user registration mode to open registration.
+1. Check if your Chat permission has been activated. If not, [activate it in the Console](../../flexible-classroom/get-started/enable-flexible-classroom#configure-chat).
+
+1. In case of a network issue, the user needs to switch to a better network and try exiting and re-entering the room.
+
+### A user cannot send a message in the Chat
+
+1. Check if your Chat permission has been activated. If not, [activate it in the Console](../../flexible-classroom/get-started/enable-flexible-classroom#configure-chat).
+
+1. Check if the user is currently banned by the teacher. The teacher can send messages by turning off the ban function.
+
+1. Check for error messages in your console. Refer to relevant [error codes](../../agora-chat/reference/error-codes).
