@@ -46,6 +46,16 @@ export const data = {
       ],
       popular: false,
     },
+    android_audio_routing_change: {
+      platforms: ['all-platforms', 'android'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
     ncs_vs_query: {
       platforms: ['all-platforms', 'restful-apis'],
       products: ['all-products', 'cloud-recording'],
