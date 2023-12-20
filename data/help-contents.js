@@ -56,6 +56,16 @@ export const data = {
       ],
       popular: false,
     },
+    ios_app_unity_reports_error: {
+      platforms: ['all-platforms', 'unity', 'ios'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
     ncs_vs_query: {
       platforms: ['all-platforms', 'restful-apis'],
       products: ['all-products', 'cloud-recording'],
