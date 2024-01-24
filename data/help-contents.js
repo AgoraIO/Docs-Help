@@ -46,6 +46,16 @@ export const data = {
       ],
       popular: false,
     },
+    android_audio_routing_change: {
+      platforms: ['all-platforms', 'android'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
     ios_app_unity_reports_error: {
       platforms: ['all-platforms', 'unity', 'ios'],
       products: [
