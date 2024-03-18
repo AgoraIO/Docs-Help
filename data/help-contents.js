@@ -672,6 +672,26 @@ export const data = {
       ],
       popular: false,
     },
+    unreal_permissions: {
+      platforms: ['all-platforms', 'unreal'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
+    music_pause: {
+      platforms: ['all-platforms', 'android'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
   },
   'quality-issues': {
     web_screen_share_issues: {
@@ -941,6 +961,26 @@ export const data = {
         'unity',
         'cocos-creator',
       ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
+    android_background: {
+      platforms: ['all-platforms', 'android'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
+    adjust_music_volume: {
+      platforms: ['all-platforms', 'android', 'ios'],
       products: [
         'all-products',
         'video-calling',
@@ -1408,17 +1448,6 @@ export const data = {
         'cocos-creator',
       ],
       products: ['all-products', 'interactive-live-streaming'],
-      popular: false,
-    },
-
-    android_background: {
-      platforms: ['all-platforms', 'android'],
-      products: [
-        'all-products',
-        'video-calling',
-        'voice-calling',
-        'interactive-live-streaming',
-      ],
       popular: false,
     },
 
