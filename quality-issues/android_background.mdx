@@ -11,18 +11,18 @@ export const toc = [{}];
 
 After locking the screen or switching to the background on some Android versions, you may encounter the following issues:
 
-- Audio is silent or video is not visible within 1 minute of locking the screen of ndroid device.
-- Audio is silent after cutting to the settings page to open the hover window permission while the Android App is running.
+- Audio is silent or video is not visible within 1 minute of locking the screen of an Android device.
+- Audio is silent after cutting to the settings page to open the hover window permission while the Android app is running.
 
 ## Reason
 
-Since version 9 of Android, the Android system has restricted access to user data by background apps. See [Android behavior changes](https://developer.android.com/about/versions/pie/android-9.0-changes-all) for details.
+Since Android 9, the Android system has restricted access to user data by background apps. See [Android behavior changes](https://developer.android.com/about/versions/pie/android-9.0-changes-all) for details.
 
 ## Solution
 
-At present, the official website of Android does not specify how the background capture of audio and video should be handled, but you can use the foreground service to notify the operating system that when the device is in the lock screen state or the app is switched to the background, you still need to use the microphone, camera, media playback and other functions. This is to ensure that the specific system functions can continue to operate to avoid interruptions in audio and video capture due to system limitations. The specific steps are as follows:
+At present, the official Android website does not specify how the background capture of audio and video should be handled, but you can use the foreground service to notify the operating system that, when the device is in the lock screen state or the app is switched to the background, you still need to use the microphone, camera, media playback, and other functions. This is to ensure that the specific system functions can continue to operate to avoid interruptions in audio and video capture due to system limitations. The specific steps are as follows:
 
-    1. In the `AndroidManifest.xml` file, declare the foreground service privilege (`FOREGROUND_SERVICE`) and specify the foreground service type (`foregroundServiceType`). For real-time audio/video interactive apps, you usually need to specify the microphone (`microphone`), camera (`camera`) and media playback (`mediaPlayback`) service types. The example code is as follows:
+    1. In the `AndroidManifest.xml` file, declare the foreground service privilege (`FOREGROUND_SERVICE`) and specify the foreground service type (`foregroundServiceType`). For real-time audio/video interactive apps, you usually need to specify the microphone (`microphone`), camera (`camera`), and media playback (`mediaPlayback`) service types. The example code is as follows:
 
         ``` xml
         <manifest ...>
