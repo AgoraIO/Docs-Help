@@ -692,6 +692,16 @@ export const data = {
       ],
       popular: false,
     },
+    set_enabled_set_muted: {
+          platforms: ['all-platforms', 'web'],
+          products: [
+            'all-products',
+            'video-calling',
+            'voice-calling',
+            'interactive-live-streaming',
+          ],
+          popular: false,
+        },
   },
   'quality-issues': {
     web_screen_share_issues: {
