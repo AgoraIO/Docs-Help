@@ -1,0 +1,53 @@
+---
+title: 'How can I solve common CocoaPods problems?'
+sidebar_position: 658
+platforms: []
+products: []
+---
+
+## pod: command not found
+
+**Issue description** 
+
+In Terminal, after running `pod init` under the root directory of your project, the Terminal prompts `pod: command not found`.
+
+**Reason** 
+
+CocoaPods is not installed.
+
+**Solution**
+
+See the following steps to solve the issue:
+
+1. Run `sudo gem install cocoapods` and input the admin password to install CocoaPods.
+2. After CocoaPods is successfully installed, go to the root directory of your project and run `pod init` again to generate a `Podfile` under your project folder.
+
+ <div class="alert note">If you run <code>sudo gem install cocoapods</code>  and encounter authority issues such as <code>You don't have write permissions for the /Library/Ruby/Gems/2.3.0 directory</code> , Agora recommends that you run <code>sudo gem install -n /usr/bin cocoapods</code>  to install CocoaPods.</div>
+
+## Cannot install the latest Agora SDK
+
+**Issue description**
+
+When you install the Agora SDK, you might encounter the following issues:
+
+- After entering `pod 'library_name'` in a Podfile and running `pod install` in Terminal, the Agora SDK that is installed is not the latest version.
+
+- After entering `pod 'library_name', 'latest_version'` in a Podfile and running `pod install` in Terminal, the Terminal prompts error messages such as the following:
+
+ ```shell
+ [!] CocoaPods could not find compatible versions for pod "AgoraRtcEngine_iOS":
+  In Podfile:
+    AgoraRtcEngine_iOS (= 3.5.0)
+None of your spec sources contain a spec satisfying the dependency: `AgoraRtcEngine_iOS (= 3.5.0)`.
+```
+
+**Reason** 
+
+The local CocoaPods repository is not updated.
+
+**Solution**
+
+See the following steps to solve the issue:
+
+1. Run `pod repo update` in Terminal to update the local CocoaPods repository.
+2. Run `pod install` again to install the latest version of the Agora SDK.
