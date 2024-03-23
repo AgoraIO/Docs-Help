@@ -158,7 +158,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -177,7 +176,6 @@ export const data = {
         'react-native',
         'electron',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -229,7 +227,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
         'linux',
       ],
       products: [
@@ -280,7 +277,6 @@ export const data = {
         'unity',
         'restful-apis',
         'linux',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -351,8 +347,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -394,7 +388,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -410,7 +403,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -441,7 +433,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -457,7 +448,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -473,7 +463,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -489,7 +478,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -505,7 +493,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -521,7 +508,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -537,7 +523,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -553,7 +538,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -569,7 +553,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -585,7 +568,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -623,7 +605,6 @@ export const data = {
     reconnection: {
       platforms: [
         'all-platforms',
-        'cocos-creator',
         'android',
         'ios',
         'macos',
@@ -660,8 +641,6 @@ export const data = {
         'linux',
         'linux-cpp',
         'linux-java',
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -720,7 +699,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -736,7 +714,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -769,7 +746,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -843,7 +819,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -875,7 +850,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -911,7 +885,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -943,7 +916,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -969,7 +941,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -1020,11 +991,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1063,7 +1030,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -1097,11 +1063,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1143,11 +1105,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1200,11 +1158,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -1222,7 +1176,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'interactive-live-streaming'],
       popular: false,
@@ -1253,11 +1206,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1283,11 +1232,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1323,11 +1268,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1353,11 +1294,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: ['all-products', 'signaling'],
       popular: false,
@@ -1376,11 +1313,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1416,11 +1349,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1455,7 +1384,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'interactive-live-streaming'],
       popular: false,
