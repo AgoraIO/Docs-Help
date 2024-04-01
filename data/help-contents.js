@@ -682,7 +682,19 @@ export const data = {
           popular: false,
         },
    token_related_issues: {
-      platforms: ['all-platforms', 'android', 'ios', 'macos', 'windows'],
+      platforms: [
+        'all-platforms', 
+        'android', 
+        'ios', 
+        'macos', 
+        'windows', 
+        'flutter', 
+        'electron', 
+        'react-native' ,
+        'web', 
+        'unity', 
+        'unreal'
+      ],
       products: [
         'all-products',
         'video-calling',
