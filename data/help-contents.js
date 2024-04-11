@@ -1442,5 +1442,21 @@ export const data = {
       ],
       popular: false,
     },
+
+    ios_privacy_manifest: {
+      platforms: [
+        'all-platforms',
+        'ios',
+      ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'agora-chat',
+        'signaling',
+      ],
+      popular: false,
+    },
   },
 };
