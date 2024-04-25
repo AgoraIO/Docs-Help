@@ -497,6 +497,21 @@ export const data = {
       products: ['all-products', 'flexible-classroom'],
       popular: false,
     },
+    electron_faq: {
+      platforms: [
+        'all-platforms',
+        'android',
+        'ios',
+        'macos',
+        'flutter',
+        'react-native',
+        'electron',
+        'windows',
+        'unity',
+      ],
+      products: ['all-products', 'flexible-classroom'],
+      popular: false,
+    },
     multi_language_support: {
       platforms: [
         'all-platforms',
