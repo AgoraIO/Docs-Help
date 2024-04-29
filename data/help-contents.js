@@ -71,6 +71,11 @@ export const data = {
       products: ['all-products', 'cloud-recording'],
       popular: false,
     },
+    mobile_video_profile: {
+      platforms: ['all-platforms', 'restful-apis'],
+      products: ['all-products', 'cloud-recording'],
+      popular: false,
+    },
     unity_crash: {
       platforms: ['all-platforms', 'unity'],
       products: [
