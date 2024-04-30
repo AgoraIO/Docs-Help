@@ -46,6 +46,16 @@ export const data = {
       ],
       popular: false,
     },
+    dynamic_or_static_library: {
+      platforms: ['all-platforms', 'android'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
     android_audio_routing_change: {
       platforms: ['all-platforms', 'android'],
       products: [
