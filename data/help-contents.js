@@ -500,16 +500,17 @@ export const data = {
     electron_faq: {
       platforms: [
         'all-platforms',
-        'android',
-        'ios',
         'macos',
-        'flutter',
-        'react-native',
         'electron',
         'windows',
-        'unity',
+        'linux',
       ],
-      products: ['all-products', 'flexible-classroom'],
+      products: [
+        'all-products', 
+        'flexible-classroom', 
+        'video-calling', 
+        'voice-calling', 
+        'interactive-live-streaming'],
       popular: false,
     },
     multi_language_support: {
