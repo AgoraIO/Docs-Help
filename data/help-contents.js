@@ -47,7 +47,7 @@ export const data = {
       popular: false,
     },
     dynamic_or_static_library: {
-      platforms: ['all-platforms', 'android'],
+      platforms: ['all-platforms', 'android', 'windows', 'ios', 'macos'],
       products: [
         'all-products',
         'video-calling',
