@@ -7,7 +7,7 @@ products: []
 
 export const toc = [{}];
 
-The Video SDK v4.0.0 Beta provides the Agora video enhancement extensions to allow you to take advantage of underexposed video enhancement, color enhancement, and video denoising.
+Video SDK v4.x provides video enhancement extensions for beautification, underexposed video enhancement, color enhancement, and video denoising.
 
 ## Functions
 
@@ -27,7 +27,7 @@ The major functions of the video enhancement extensions are as follows:
 
   At the same time, the algorithm specifically provides skin color protection to prevent people's skin color from being excessively affected.
 
-- Video denoising
+- Video nodenoising
 
   When the ambient light is dark or the capture equipment performance is poor, you can use the video denoising function to eliminate video noise.
 
@@ -48,13 +48,13 @@ Call the `setBeautyEffectOptions` method, and adjust various image enhancement e
 
 Call `setExtensionProperty,` and set the parameters as follows:
 
-- `provider_name` : `agora`
+- `provider_name` : `agora_video_filters_clear_vision`
 
-- `extension_name` : `beauty`
+- `extension_name` : `clear_vision`
 
 - `key` : `lowlight_enhance_option`
 
-- `enable`, `mode,` and `level` in the `value` field are shown in the following table:
+- `enable`, `mode,` and `level` parameters in the `value` field are described in the following table:
 
   | Parameter | Description                                                                                                                                                                                                                                                                                     |
   | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -66,13 +66,13 @@ Call `setExtensionProperty,` and set the parameters as follows:
 
 Call `setExtensionProperty,` and set the parameters as follows:
 
-- `provider_name` : `agora`
+- `provider_name` : `agora_video_filters_clear_vision`
 
-- `extension_name` : `beauty`
+- `extension_name` : `clear_vision`
 
 - `key` : `color_enhance_option`
 
-- `enable`, `Strength,` and `Skin Protection` in the `value` field are shown in the following table:
+- `enable`, `Strength,` and `Skin Protection` parameters in the `value` field are shown in the following table:
 
   | Parameter         | Description                                                                                                                                                                              |
   | :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -84,13 +84,13 @@ Call `setExtensionProperty,` and set the parameters as follows:
 
 Call `setExtensionProperty,` and set the parameters as follows:
 
-- `provider_name` : `agora`
+- `provider_name` : `agora_video_filters_clear_vision`
 
-- `extension_name` : `beauty`
+- `extension_name` : `clear_vision`
 
 - `key` : `video_denoiser_option`
 
-- `enable`, `mode,` and `level` in the `value` field are shown in the following table:
+- `enable`, `mode,` and `level` parameters in the `value` field are shown in the following table:
 
   | Parameter | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
   | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
