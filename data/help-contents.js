@@ -46,6 +46,16 @@ export const data = {
       ],
       popular: false,
     },
+    dynamic_or_static_library: {
+      platforms: ['all-platforms', 'android', 'windows', 'ios', 'macos'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
     android_audio_routing_change: {
       platforms: ['all-platforms', 'android'],
       products: [
@@ -67,6 +77,11 @@ export const data = {
       popular: false,
     },
     ncs_vs_query: {
+      platforms: ['all-platforms', 'restful-apis'],
+      products: ['all-products', 'cloud-recording'],
+      popular: false,
+    },
+    mobile_video_profile: {
       platforms: ['all-platforms', 'restful-apis'],
       products: ['all-products', 'cloud-recording'],
       popular: false,
@@ -158,7 +173,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -177,7 +191,6 @@ export const data = {
         'react-native',
         'electron',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -229,7 +242,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
         'linux',
       ],
       products: [
@@ -280,7 +292,6 @@ export const data = {
         'unity',
         'restful-apis',
         'linux',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -351,8 +362,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -394,7 +403,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -410,7 +418,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -441,7 +448,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -457,7 +463,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -473,7 +478,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -489,7 +493,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -505,7 +508,21 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
+      ],
+      products: ['all-products', 'flexible-classroom'],
+      popular: false,
+    },
+    electron_faq: {
+      platforms: [
+        'all-platforms',
+        'android',
+        'ios',
+        'macos',
+        'flutter',
+        'react-native',
+        'electron',
+        'windows',
+        'unity',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -521,7 +538,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -537,7 +553,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -553,7 +568,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -569,7 +583,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -585,7 +598,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -623,7 +635,6 @@ export const data = {
     reconnection: {
       platforms: [
         'all-platforms',
-        'cocos-creator',
         'android',
         'ios',
         'macos',
@@ -660,8 +671,6 @@ export const data = {
         'linux',
         'linux-cpp',
         'linux-java',
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -669,6 +678,59 @@ export const data = {
         'voice-calling',
         'interactive-live-streaming',
         'agora-analytics',
+      ],
+      popular: false,
+    },
+    unreal_permissions: {
+      platforms: ['all-platforms', 'unreal'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
+    music_pause: {
+      platforms: ['all-platforms', 'android'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
+    set_enabled_set_muted: {
+          platforms: ['all-platforms', 'web'],
+          products: [
+            'all-products',
+            'video-calling',
+            'voice-calling',
+            'interactive-live-streaming',
+          ],
+          popular: false,
+        },
+   token_related_issues: {
+      platforms: [
+        'all-platforms', 
+        'android', 
+        'ios', 
+        'macos', 
+        'windows', 
+        'flutter', 
+        'electron', 
+        'react-native' ,
+        'web', 
+        'unity', 
+        'unreal'
+      ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming'
       ],
       popular: false,
     },
@@ -690,7 +752,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -706,7 +767,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -739,7 +799,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -813,7 +872,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -845,7 +903,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -881,7 +938,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: [
         'all-products',
@@ -913,7 +969,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
       popular: false,
@@ -939,8 +994,27 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
+    android_background: {
+      platforms: ['all-platforms', 'android'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
+    adjust_music_volume: {
+      platforms: ['all-platforms', 'android', 'ios'],
       products: [
         'all-products',
         'video-calling',
@@ -970,11 +1044,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1013,7 +1083,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -1047,11 +1116,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1093,11 +1158,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1150,11 +1211,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: ['all-products', 'flexible-classroom'],
       popular: false,
@@ -1172,7 +1229,6 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'interactive-live-streaming'],
       popular: false,
@@ -1203,11 +1259,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1233,11 +1285,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1273,11 +1321,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1303,11 +1347,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: ['all-products', 'signaling'],
       popular: false,
@@ -1326,11 +1366,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1366,11 +1402,7 @@ export const data = {
         'windows',
         'unity',
         'restful-apis',
-
         'linux',
-
-        'cocos-creator',
-        'cocos-2d-x',
       ],
       products: [
         'all-products',
@@ -1405,20 +1437,8 @@ export const data = {
         'electron',
         'windows',
         'unity',
-        'cocos-creator',
       ],
       products: ['all-products', 'interactive-live-streaming'],
-      popular: false,
-    },
-
-    android_background: {
-      platforms: ['all-platforms', 'android'],
-      products: [
-        'all-products',
-        'video-calling',
-        'voice-calling',
-        'interactive-live-streaming',
-      ],
       popular: false,
     },
 
@@ -1449,6 +1469,22 @@ export const data = {
         'voice-calling',
         'interactive-live-streaming',
         'on-premise-recording',
+      ],
+      popular: false,
+    },
+
+    ios_privacy_manifest: {
+      platforms: [
+        'all-platforms',
+        'ios',
+      ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'agora-chat',
+        'signaling',
       ],
       popular: false,
     },
