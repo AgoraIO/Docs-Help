@@ -16,7 +16,9 @@ After screen locking or switching to the background on some Android versions, yo
 
 ## Reason
 
-Since Android 14, the Android system has restricted access to user data by background apps. See [Android behavior changes](https://developer.android.com/about/versions/pie/android-9.0-changes-all) for details.
+- Since Android 9, the Android system has restricted access to user data by background apps. See [Android behavior changes](https://developer.android.com/about/versions/pie/android-9.0-changes-all) for details.
+
+- Starting from Android 14, the Android system mandates that apps specify the required front-end service type. If the developer sets the `targetSdkVersion` of the app to `34` or higher, when running the app on a device with Android `14` or later, the system initiates a capacitance check to ensure that the app has accurately declared its foreground service type. Failure to properly integrate foreground services may lead to user issues such as invalid microphone collection and silent remote audio when transitioning the app to the background. For more information, refer to the [Android 14 Behavior Changes](https://developer.android.com/about/versions/14/behavior-changes-14) and [Required Front Service Types](https://developer.android.com//about/versions/14/changes/fgs-types-required) documentation.
 
 ## Solution
 
