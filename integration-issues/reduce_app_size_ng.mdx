@@ -1,0 +1,64 @@
+---
+title: 'How can I reduce the app size after integrating the v4.x SDK?'
+sidebar_position: 658
+platforms: []
+products: []
+---
+
+This article describes how to reduce the app size after integrating the v4.0.0 Beta SDK.
+
+The SDK provides extensions that can be optionally integrated into the project. If you do not need the extension functions, you can directly remove the corresponding extension libraries to reduce the app size.
+
+The name of extension libraries is suffixed with `Extension`. See the following for details.
+
+<a name="extension_libraries"></a>
+
+### Virtual background library (beta)
+
+Before calling `enableVirtualBackground` to enable the virtual background, you need to integrate the virtual background library. See [v4.0.0 Beta Release Notes](https://docs.agora.io/en/video-call-4.x-beta/release_android_ng?platform=Android).
+
+The following table shows the extension library name for each platform and the increase in the app size after integration.
+
+| Platform | Architecture | Library name                                  | App size increase after integration (KB) |
+| :------- | :----------- | :-------------------------------------------- | :--------------------------------------- |
+| Android  | arm64-v8a    | `libagora_segmentation_extension.so`          | 2529                                     |
+| Android  | armeabi-v7a  | `libagora_segmentation_extension.so`          | 1643                                     |
+| iOS      | arm64        | `AgoraVideoSegmentationExtension.xcframework` | 2343                                     |
+| iOS      | armv7        | `AgoraVideoSegmentationExtension.xcframework` | 1646                                     |
+| macOS    | arm64        | `AgoraVideoSegmentationExtension.framework`   | 2900                                     |
+| macOS    | x86_64       | `AgoraVideoSegmentationExtension.framework`   | 3297                                     |
+| Windows  | x86          | `libagora_segmentation_extension.dll`         | 2455                                     |
+| Windows  | x86_64       | `libagora_segmentation_extension.dll`         | 2766                                     |
+
+
+
+### Video enhancement library
+
+Before calling `setExtensionProperty` to enable the video enhancement functions, or call `setBeautyEffectOptions` to enable image enhancement options, you need to integrate the video enhancement library. See [v4.0.0 Beta Release Notes](https://docs.agora.io/en/video-call-4.x-beta/release_android_ng?platform=Android).
+
+The following table shows the extension library name for each platform and the increase in the app size after integration.
+
+| Platform | Architecture | Library name                           | App size increase after integration (KB) |
+| :------- | :----------- | :------------------------------------- | :--------------------------------------- |
+| Android  | arm64-v8a    | `libagora_video_process_extension.so`  | 1306                                     |
+| Android  | armeabi-v7a  | `libagora_video_process_extension.so`  | 944                                      |
+| iOS      | arm64        | `AgoraVideoProcessExtension.xcframework` | 7996                                     |
+| iOS      | armv7        | `AgoraVideoProcessExtension.xcframework` | 7996                                     |
+| macOS    | arm64        | `AgoraVideoProcessExtension.framework` | 2307                                     |
+| macOS    | x86_64       | `AgoraVideoProcessExtension.framework` | 2307                                     |
+| Windows  | x86          | `libagora_video_process_extension.dll` | 1403                                     |
+| Windows  | x86_64       | `libagora_video_process_extension.dll` | 1575                                     |
+
+### Super resolution library (beta)
+
+After integrating the super resolution library, you can call `enableRemoteSuperResolution` to enable super resolution. 
+
+The following table shows the extension library name for each platform and the increase in the app size after integration.
+
+| Platform | Architecture | Library name                           | App size increase after integration (KB) |
+| ------- | ----------- | ---------------------------------------- | ----------------- |
+| Android | arm64-v8a   | `libagora_super_resolution_extension.so` | 640              |
+| Android | armeabi-v7a | `libagora_super_resolution_extension.so` | 401              |
+| iOS     | arm64       | `AgoraSuperResolutionExtension.xcframework` | 399              |
+| iOS     | armv7       | `AgoraSuperResolutionExtension.xcframework` | 397              |
+
