@@ -10,6 +10,45 @@ export const data = {
       ],
       popular: false,
     },
+    rtm_token_expiration: {
+      platforms: ['all-platforms', 'web'],
+      products: [
+        'all-products',
+        'signaling',
+      ],
+      popular: false,
+    },
+    rtm2_rtc_integration_issue: {
+      platforms: ['all-platforms', 'ios', 'android'],
+      products: [
+        'all-products',
+        'video-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+        'signaling',
+      ],
+      popular: false,
+    },
+    flutter_pod: {
+      platforms: ['all-platforms', 'flutter'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
+    ios_sign: {
+      platforms: ['all-platforms', 'ios'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+      ],
+      popular: false,
+    },
     video_profile: {
       platforms: [
         'all-platforms',
@@ -736,6 +775,16 @@ export const data = {
     },
   },
   'quality-issues': {
+    ios_background: {
+      platforms: [ 'all-platforms', 'ios'],
+      products: ['all-products', 'video-calling', 'interactive-live-streaming'],
+      popular: false,
+    },
+    flutter_debug: {
+      platforms: [ 'all-platforms', 'flutter'],
+      products: ['all-products', 'video-calling', 'interactive-live-streaming'],
+      popular: false,
+    },
     web_screen_share_issues: {
       platforms: ['all-platforms', 'web'],
       products: ['all-products', 'video-calling', 'interactive-live-streaming'],
@@ -775,6 +824,7 @@ export const data = {
       platforms: [
         'all-platforms',
         'web',
+
         'android',
         'ios',
         'macos',
