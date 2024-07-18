@@ -7,13 +7,13 @@ products: []
 
 export const toc = [{}];
 
-After the token expires, you need to call the `logout` method to log out of the RTM system. Then, use the new token to create an RTM instance and call the `login` method to log in to the RTM system again.
+After the token expires, you need to call the `logout` method to log out of the Signaling system. Then use the new token to create a new instance and call the `login` method to log in to the system again.
 
-## How to Get the List of Users Who Joined and Left the Stream Channel During Disconnection and Reconnection?
+## How to get the list of users who joined and left the stream channel during disconnection and reconnection?
 
 After listening to the `topic` event notification, in a weak network environment, if you disconnect and reconnect, you will receive a `SNAPSHOT` event in `topic`.
 
-To obtain the list of users who joined or left the Stream Channel during disconnection and reconnection, refer to the following sample code to generate a local cache and compare it with the user list in the `SNAPSHOT` event:
+To obtain the list of users who joined or left the stream channel during disconnection and reconnection, refer to the following sample code to generate a local cache and compare it with the user list in the `SNAPSHOT` event:
 - Users with more `SNAPSHOT` events than in the local cache are those who joined the channel during the disconnection and reconnection period.
 - Users with fewer `SNAPSHOT` events than in the local cache are those who left the channel during the disconnection and reconnection period.
 

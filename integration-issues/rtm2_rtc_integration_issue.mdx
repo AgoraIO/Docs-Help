@@ -1,5 +1,5 @@
 ---
-title: 'How do I handle issues when integrating the Signaling SDK and RTC SDK simultaneously?'
+title: 'How do I handle issues when integrating the Signaling SDK and Video SDK simultaneously?'
 sidebar_position: 664
 platforms: []
 products: []
@@ -7,7 +7,7 @@ products: []
 
 export const toc = [{}];
 
-When integrating Signaling SDK version 2.2.0 and above with RTC SDK version 4.3.0 and above, the following errors may appear in the IDE:
+When integrating Signaling SDK version 2.2.0 and above with Video SDK version 4.3.0 and above, the following errors may appear in the IDE:
 
 - **Android:**
     ```java
@@ -23,11 +23,12 @@ When integrating Signaling SDK version 2.2.0 and above with RTC SDK version 4.3.
 
 ## Reason
 
-Both Signaling SDK versions 2.2.0 and above and RTC SDK versions 4.3.0 and above use the same library:
+Both Signaling SDK versions 2.2.0 and above and Video SDK versions 4.3.0 and above use the same library:
 
     - **Android SDK**: `lib/x86/libaosl.so`
     - **IOS SDK**: `libs/aosl.xcframework`
-    As a result, the IDE detects multiple files with the same path during the build process, leading to errors.
+
+As a result, the IDE detects multiple files with the same path during the build process, leading to errors.
 
 ## Solution
 
@@ -42,10 +43,13 @@ Depending on your integration method, follow the corresponding solution below:
         - `lib/x86_64/libaosl.so`
         - `lib/armeabi-v7a/libaosl.so`
         - `lib/arm64-v8a/libaosl.so`
-      2. Rebuild the project.
+
+      1. Rebuild the project.
 
   - **Using Maven**
+
       1. Add the `packagingOptions` node to the `android` node in the `build.gradle` file to specify that the first matching file is preferred during the build process:
+
         ```groovy
         android {
           // ...
@@ -57,7 +61,7 @@ Depending on your integration method, follow the corresponding solution below:
           }
         }
         ```
-      2. After the Gradle file synchronization is complete, rebuild the project.
+      1. After the Gradle file synchronization is complete, rebuild the project.
 
 
 ### IOS SDK
@@ -65,11 +69,14 @@ Depending on your integration method, follow the corresponding solution below:
 Depending on your integration method, follow the corresponding solution below:
 
   - **Using CDN**
+
       1. Manually delete the `libs/aosl.xcframework` file in the SDK package.
-      2. Rebuild the project.
+      1. Rebuild the project.
+
   - **Using CocoaPods**
+
       1. After successfully running the `pod install` command to install the SDK, manually delete the `aosl.xcframework` file in the project's `/Pods/AgoraRtm` path.
-      2. Rebuild the project.
+      1. Rebuild the project.
 
 
 
