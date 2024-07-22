@@ -7,20 +7,19 @@ products: []
 
 export const toc = [{}];
 
-## Issue description
-
 After screen locking or switching to the background on some Android versions, you may encounter the following issues:
 
-- Audio is silent or video is not visible within 1 minute of screen locking of an Android device.
-- Audio is silent after cutting to the settings page to open the hover window permission while the Android app is running.
+- On Android devices, remote audio is silent or video is not visible within 1 minute of the device being locked.
+- When the Android app switches to the background during operation, remote audio is silent.
 
 ## Reason
 
-Since Android 9, the Android system has restricted access to user data by background apps. See [Android behavior changes](https://developer.android.com/about/versions/pie/android-9.0-changes-all) for details.
+- Starting from Android 9, the Android system restricts background apps from accessing user data. For more details, see [Android 9 behavior changes](https://developer.android.com/about/versions/pie/android-9.0-changes-all).
+- Starting from Android 14, the Android system requires apps to specify the necessary foreground service types. If developers set the app's `targetSdkVersion` to `34` or higher, the system will trigger a capability check when the app runs on devices with Android 14 or higher to verify if the app has correctly declared its foreground service types. If the app fails to integrate foreground services properly, issues such as microphone capture being ineffective and remote audio being silent may occur when the user switches the app to the background. For more details, see [Android 14 behavior changes](https://developer.android.google.cn/about/versions/14/behavior-changes-14) and [Required foreground service types](https://developer.android.google.cn/about/versions/14/changes/fgs-types-required).
 
 ## Solution
 
-At present, the official Android website does not specify how the background capture of audio and video should be handled, but you can use the foreground service to notify the operating system that, when the device is in the lock screen state or the app is switched to the background, you still need to use the microphone, camera, media playback, and other functions. This is to ensure that the specific system functions can continue to operate to avoid interruptions in audio and video capture due to system limitations. The specific steps are as follows:
+To ensure uninterrupted access to microphone, camera, media playback, and other functionalities when your device is locked or your app is in the background, it's crucial to correctly integrate foreground services. This prevents interruptions in audio and video capture due to system restrictions. <Vg k="COMPANY"/> provides an [example project](https://github.com/AgoraIO/API-Examples/blob/main/Android/APIExample/app/src/main/java/io/agora/api/example/examples/basic/JoinChannelAudio.java#L324) demonstrating how to integrate foreground services. Here are the steps:
 
     1. In the `AndroidManifest.xml` file, declare the foreground service privilege (`FOREGROUND_SERVICE`) and specify the foreground service type (`foregroundServiceType`). For real-time audio/video interactive apps, you usually need to specify the microphone (`microphone`), camera (`camera`), and media playback (`mediaPlayback`) service types. The example code is as follows:
 

@@ -1,0 +1,85 @@
+---
+title: 'How do I handle issues when integrating the Signaling SDK and Video SDK simultaneously?'
+sidebar_position: 664
+platforms: []
+products: []
+---
+
+export const toc = [{}];
+
+When integrating Signaling SDK version 2.2.0 and above with Video SDK version 4.3.0 and above, the following errors may appear in the IDE:
+
+- **Android:**
+    ```java
+    com.android.builder.merge.DuplicateRelativeFileException: More than one file was found with OS independent path 'lib/x86/libaosl.so'
+    ```
+
+- **IOS:**
+
+    ```objc
+    Unexpected duplicate tasks
+    Multiple commands produce <your_app_build_path>/Contents/Frameworks/aosl.framework/Versions/A'
+    ```
+
+## Reason
+
+Both Signaling SDK versions 2.2.0 and above and Video SDK versions 4.3.0 and above use the same library:
+
+    - **Android SDK**: `lib/x86/libaosl.so`
+    - **IOS SDK**: `libs/aosl.xcframework`
+
+As a result, the IDE detects multiple files with the same path during the build process, leading to errors.
+
+## Solution
+
+### Android SDK
+
+Depending on your integration method, follow the corresponding solution below:
+
+  - **Using CDN**
+
+      1. Manually delete the following files in the SDK package:
+        - `lib/x86/libaosl.so`
+        - `lib/x86_64/libaosl.so`
+        - `lib/armeabi-v7a/libaosl.so`
+        - `lib/arm64-v8a/libaosl.so`
+
+      1. Rebuild the project.
+
+  - **Using Maven**
+
+      1. Add the `packagingOptions` node to the `android` node in the `build.gradle` file to specify that the first matching file is preferred during the build process:
+
+        ```groovy
+        android {
+          // ...
+          packagingOptions {
+            pickFirst 'lib/x86/libaosl.so'
+            pickFirst 'lib/x86_64/libaosl.so'
+            pickFirst 'lib/armeabi-v7a/libaosl.so'
+            pickFirst 'lib/arm64-v8a/libaosl.so'
+          }
+        }
+        ```
+      1. After the Gradle file synchronization is complete, rebuild the project.
+
+
+### IOS SDK
+
+Depending on your integration method, follow the corresponding solution below:
+
+  - **Using CDN**
+
+      1. Manually delete the `libs/aosl.xcframework` file in the SDK package.
+      1. Rebuild the project.
+
+  - **Using CocoaPods**
+
+      1. After successfully running the `pod install` command to install the SDK, manually delete the `aosl.xcframework` file in the project's `/Pods/AgoraRtm` path.
+      1. Rebuild the project.
+
+
+
+
+
+
