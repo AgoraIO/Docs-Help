@@ -38,6 +38,7 @@ The Agora Video SDK supports single-track audio files in the following formats:
 The Agora Video SDK supports multi-track audio files in the following formats:
 
 - On Android, the SDK supports local and online files in M4A, MP4, and MKV formats. The SDK does not support switching to a second audio track when playing a multi-track audio file in MP4 format.
+    <Admonition type="caution" title="Note"> If you are using Lite SDK, when playing multi-track files in the MP4 format, switching to the second track is **not supported**.</Admonition>
 - On iOS or macOS, the SDK supports local and online files in M4A and MP4 formats. For online MP4 and M4A files, the MOOV atom must be before the MDAT atom.
 - On Windows, the SDK supports local and online files in M4A format.
 
@@ -54,5 +55,7 @@ For the extension library name for each platform, see <Link to="/help/integratio
 
 ## Considerations
 
-- Due to system compatibility issues, errors can occur if you use `playEffect` or `preloadEffect` to read files in the 3GP format on some Android devices (such as Xiaomi).
+- For iOS, Lite SDK does not support playing audio files without suffixes.
+- For Android, Lite SDK does not support playing audio files that are not supported by the Android system.
+- Due to system compatibility issues, some Android devices, such as Xiaomi, may have problems when using `playEffect` or `preloadEffect` to read 3GP format files.
 - Because some Android devices do not support the WMA format, using Agora API to play WMA files on these devices can fail.
