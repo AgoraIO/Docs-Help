@@ -1579,6 +1579,26 @@ export const data = {
       popular: false,
     },
 
+    macos_15_beta: {
+      platforms: [
+        'all-platforms',
+        'unity',
+        'flutter',
+        'unreal',
+        'macos',
+        'electron',
+        'blueprint',
+      ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+      ],
+      popular: false,
+    },
+
     ios_privacy_manifest: {
       platforms: [
         'all-platforms',
