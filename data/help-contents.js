@@ -11,6 +11,17 @@ export const data = {
       ],
       popular: false,
     },
+    class_packaging: {
+      platforms: ['all-platforms', 'windows'],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+      ],
+      popular: false,
+    },
     rtm_token_expiration: {
       platforms: ['all-platforms', 'web'],
       products: [

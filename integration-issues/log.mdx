@@ -5,6 +5,10 @@ platforms: []
 products: []
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
 The Agora SDK provides API methods for you to generate an output log file that records all the log data of the SDK operation.
 
 ## Native
@@ -53,6 +57,8 @@ The Agora SDK has five log files, each with a default size of 1024 KB. Call the 
 
 **Sample code**
 
+<Tabs groupId="sample-code-set-log-file">
+<TabItem value="java" label="Java">
 ```java
 // Java
 // Set the log filter to debug
@@ -65,9 +71,10 @@ String filepath = "/sdcard/" + ts + ".log";
 File file = new File(filepath);
 engine.setLogFile(filepath);
 ```
-
-```objective-c
-// Objective-C
+</TabItem>
+<TabItem value="objective-c" label="Objective-C">
+<CodeBlock language="objc" showLineNumbers>
+{`// Objective-C
 // Set the log filter to debug
 [engine setLogFilter: AgoraLogFilterDebug];
 
@@ -82,10 +89,12 @@ NSString *dateString = [formatter stringFromDate:currentDate];
 NSString *logFilePath = [NSString stringWithFormat:@"%@/%@.log", [paths objectAtIndex:0], dateString];
 // Set the log file path
 [engine setLogFile:logFilePath]
-```
-
-```cpp
-// C++
+`}
+</CodeBlock>
+</TabItem>
+<TabItem value="C++" label="C++">
+<CodeBlock language="cpp" showLineNumbers>
+{`// C++
 TCHAR szAppFolder[MAX_PATH] = { 0 };
 SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, szAppFolder);
 _tcscat(szAppFolder, _T("\\AppName\\"));
@@ -111,7 +120,10 @@ if (PathFileExists(szAppFolder)){
         rep.setLogFile(logFullPath);
     }
 }
-```
+`}
+</CodeBlock>
+</TabItem>
+</Tabs>
 
 #### v3.3.0 and later
 
@@ -146,8 +158,10 @@ The Agora SDK has five log files, each with a default size of 1024 KB. Use the `
 
 **Sample code**
 
-```java
-// Java
+<Tabs groupId="sample-code">
+<TabItem value="java" label="Java">
+<CodeBlock language="java" showLineNumbers>
+{`// Java
 RtcEngineConfig.LogConfig logConfig = new RtcEngineConfig.LogConfig();
 // Set the log filter to ERROR
 logConfig.level = Constants.LogLevel.getValue(Constants.LogLevel.LOG_LEVEL_ERROR);
@@ -165,9 +179,12 @@ config.mAreaCode = getAreaCode();
 config.mLogConfig = logConfig;
 
 mRtcEngine = RtcEngine.create(config);
-```
-
-```objective-c
+`}
+</CodeBlock>
+</TabItem>
+<TabItem value="Swift" label="Swift">
+<CodeBlock language="swift" showLineNumbers>
+{`
 // Swift
 let logConfig = AgoraLogConfig()
 // Set the log filter to ERROR
@@ -185,10 +202,12 @@ config.appId = KeyCenter.AppId
 config.areaCode = GlobalSettings.shared.area.rawValue
 config.logConfig = logConfig
 agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
-```
-
-```cpp
-// C++
+`}
+</CodeBlock>
+</TabItem>
+<TabItem value="C++" label="C++">
+<CodeBlock language="cpp" showLineNumbers>
+{`// C++
 LogConfig logConfig;
 // Set the log filter to ERROR
 logConfig.level = LOG_LEVEL::LOG_LEVEL_ERROR;
@@ -210,7 +229,37 @@ context.appId = strAppID.c_str();
 context.eventHandler = &m_eventHandler;
 // Initialize the Agora Video SDK engine context.
 int ret = m_rtcEngine->initialize(context);
-```
+`}
+</CodeBlock>
+</TabItem>
+<TabItem value="Objective-C" label="Objective-C">
+<CodeBlock language="objc" showLineNumbers>
+{`// Create AgoraLogConfig object
+AgoraLogConfig *logConfig = [[AgoraLogConfig alloc] init];
+// Set the log filter level to ERROR
+logConfig.level = AgoraLogLevelError;
+
+// Set the log file path
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setDateFormat:@"ddMMyyyyHHmm"];
+NSString *folder = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES )[0];
+logConfig.filePath = [NSString stringWithFormat:@"%@/logs/%@.log", folder, [formatter stringFromDate:[NSDate date]]];
+
+// Set the log file size to 2MB
+logConfig.fileSizeInKB = 2 * 1024;
+
+// Create AgoraRtcEngineConfig object
+AgoraRtcEngineConfig *config = [[AgoraRtcEngineConfig alloc] init];
+config.appId = KeyCenter.AppId;
+config.areaCode = [GlobalSettings sharedSettings].areaCode;
+config.logConfig = logConfig;
+
+// Initialize AgoraRtcEngineKit
+self.agoraKit = [AgoraRtcEngineKit sharedEngineWithConfig:config delegate:self];
+`}
+</CodeBlock>
+</TabItem>
+</Tabs>
 
 **API reference**
 

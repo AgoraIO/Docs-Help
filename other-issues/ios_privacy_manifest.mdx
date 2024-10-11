@@ -36,3 +36,42 @@ If your app uses <Vg k="VSDK" /> v4.3.0 or earlier, Chat SDK 1.2 or earlier, or 
 * If you already have a privacy manifest file in your Xcode project, select the file in the Xcode project navigator and click the `+` button to add a new line. Manually add the content to the privacy manifest file as follows:
 
     ![](https://doc.shengwang.cn/assets/images/addprivacylist-79835f2aca588bb82d23c969d743be58.png)
+
+<details>
+<summary>Sample code for configuring privacy-related API access in plist</summary>
+```xml
+<dict>
+    <key>NSPrivacyTracking</key>
+    <false/>
+    <key>NSPrivacyCollectedDataTypes</key>
+    <array/>
+    <key>NSPrivacyAccessedAPITypes</key>
+    <array>
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategorySystemBootTime</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>35F9.1</string>
+            </array>
+        </dict>
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>DDA9.1</string>
+            </array>
+        </dict>
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryDiskSpace</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>E174.1</string>
+            </array>
+        </dict>
+    </array>
+</dict>
+```
+</details>
