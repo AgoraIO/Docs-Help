@@ -66,8 +66,7 @@ Depending on your integration method, follow the corresponding solution below:
             pickFirst 'lib/armeabi-v7a/libaosl.so'
             pickFirst 'lib/arm64-v8a/libaosl.so'
           }
-        }
-        `}
+        }`}
         </CodeBlock>
     1. After the Gradle file synchronization is complete, rebuild the project.
   </TabItem>
@@ -99,8 +98,7 @@ Depending on your integration method, follow the corresponding solution below:
             else
               puts "aosl.xcframework not found, skipping deletion."
             end
-          end
-          `}
+          end`}
           </CodeBlock>
       1. Run `pod install` to reintegrate the RTM and RTC SDK.
       1. Rebuild the project.
@@ -143,8 +141,7 @@ Depending on your target platform, select the corresponding solution below:
           else
             puts "aosl.xcframework not found, skipping deletion."
           end
-        end
-        `}
+        end`}
         </CodeBlock>
     1. Run `pod install` to reintegrate the RTM and RTC SDKs.
     1. Rebuild the project.
