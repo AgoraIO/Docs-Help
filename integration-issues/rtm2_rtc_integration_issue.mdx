@@ -5,6 +5,10 @@ platforms: []
 products: []
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 export const toc = [{}];
 
 When integrating Signaling SDK version 2.2.0 and above with Video SDK version 4.3.0 and above, the following errors may appear in the IDE:
@@ -19,6 +23,10 @@ When integrating Signaling SDK version 2.2.0 and above with Video SDK version 4.
     ```objc
     Unexpected duplicate tasks
     Multiple commands produce <your_app_build_path>/Contents/Frameworks/aosl.framework/Versions/A'
+    ```
+
+    ```bash
+    The 'XXX' target has frameworks with conflicting names: aosl.xcframework.
     ```
 
 ## Reason
@@ -36,20 +44,75 @@ As a result, the IDE detects multiple files with the same path during the build 
 
 Depending on your integration method, follow the corresponding solution below:
 
-  - **Using CDN**
+<Tabs>
+  <TabItem value="Android-cdn" label="Using CDN">
+   
+    1. Manually delete the following files in the SDK package:
 
-      1. Manually delete the following files in the SDK package:
         - `lib/x86/libaosl.so`
         - `lib/x86_64/libaosl.so`
         - `lib/armeabi-v7a/libaosl.so`
         - `lib/arm64-v8a/libaosl.so`
+    1. Rebuild the project.
+  </TabItem>
+  <TabItem value="Android-maven" label="Using Maven">
+    1. Add the `packagingOptions` node to the `android` node in the `build.gradle` file to specify that the first matching file is preferred during the build process:
+        <CodeBlock language="groovy" showLineNumbers>
+        {`android {
+          // ...
+          packagingOptions {
+            pickFirst 'lib/x86/libaosl.so'
+            pickFirst 'lib/x86_64/libaosl.so'
+            pickFirst 'lib/armeabi-v7a/libaosl.so'
+            pickFirst 'lib/arm64-v8a/libaosl.so'
+          }
+        }
+        `}
+        </CodeBlock>
+    1. After the Gradle file synchronization is complete, rebuild the project.
+  </TabItem>
+</Tabs>
 
+### IOS SDK
+
+Depending on your integration method, follow the corresponding solution below:
+<Tabs>
+  <TabItem value="ios-cdn" label="Using CDN">
+    1. Manually delete the `libs/aosl.xcframework` file in the SDK package.
+    1. Rebuild the project.
+  </TabItem>
+  <TabItem value="ios-CocoaPods" label="Using CocoaPods">
+      1. Add this script to the end of your project's `Podfile`:
+
+          <CodeBlock language="ruby" showLineNumbers>
+          {`pre_install do |installer|
+            # Define the path for the AgoraRtm framework
+            rtm_pod_path = File.join(installer.sandbox.root, 'AgoraRtm')
+
+            # Full path to aosl.xcframework
+            aosl_xcframework_path = File.join(rtm_pod_path, 'aosl.xcframework')
+
+            # Check if the file exists, and if it does, delete it
+            if File.exist?(aosl_xcframework_path)
+              puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
+              FileUtils.rm_rf(aosl_xcframework_path)
+            else
+              puts "aosl.xcframework not found, skipping deletion."
+            end
+          end
+          `}
+          </CodeBlock>
+      1. Run `pod install` to reintegrate the RTM and RTC SDK.
       1. Rebuild the project.
+  </TabItem>
+</Tabs>
 
-  - **Using Maven**
+### Flutter SDK
 
-      1. Add the `packagingOptions` node to the `android` node in the `build.gradle` file to specify that the first matching file is preferred during the build process:
-
+Depending on your target platform, select the corresponding solution below:
+<Tabs>
+  <TabItem value="android" label="Android">
+    1. When integrating with Maven, add a node to the `build.gradle` file to ensure the build process prioritizes the first matching file. Use the `android.packagingOptions` node for this:
         ```groovy
         android {
           // ...
@@ -61,22 +124,50 @@ Depending on your integration method, follow the corresponding solution below:
           }
         }
         ```
-      1. After the Gradle file synchronization is complete, rebuild the project.
+    1. After the Gradle file sync completes, rebuild your project.
+  </TabItem>
+  <TabItem value="iOS" label="iOS">
+    1. When integrating with CocoaPods, add the following script at the end of your project's `Podfile`:
+        <CodeBlock language="ruby" showLineNumbers>
+        {`pre_install do |installer|
+        # Define the path for the AgoraRtm framework
+          rtm_pod_path = File.join(installer.sandbox.root, 'AgoraRtm')
+
+          # Full path of aosl.xcframework
+          aosl_xcframework_path = File.join(rtm_pod_path, 'aosl.xcframework')
+
+          # Check if the file exists, and if so, delete it
+          if File.exist?(aosl_xcframework_path)
+            puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
+            FileUtils.rm_rf(aosl_xcframework_path)
+          else
+            puts "aosl.xcframework not found, skipping deletion."
+          end
+        end
+        `}
+        </CodeBlock>
+    1. Run `pod install` to reintegrate the RTM and RTC SDKs.
+    1. Rebuild the project.
+  </TabItem>
+</Tabs>
 
 
-### IOS SDK
 
-Depending on your integration method, follow the corresponding solution below:
 
-  - **Using CDN**
 
-      1. Manually delete the `libs/aosl.xcframework` file in the SDK package.
-      1. Rebuild the project.
 
-  - **Using CocoaPods**
 
-      1. After successfully running the `pod install` command to install the SDK, manually delete the `aosl.xcframework` file in the project's `/Pods/AgoraRtm` path.
-      1. Rebuild the project.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
