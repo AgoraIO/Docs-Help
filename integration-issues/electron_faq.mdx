@@ -118,7 +118,7 @@ Error message: `agora_node_ext.node is not a valid Win32 application`
 
 ![Run Prompts For Non-32bit Apps](../data/images/electron_faq_run_prompts_for_non32bit_app.png)
 
-By default, **npm** downloads the native module for the current computer architecture when installing dependencies.
+By default, **npm** downloads the native5 module for the current computer architecture when installing dependencies.
 
 This error means that the wrong architecture module was retrieved during the dependency download, resulting in the application being unable to start. It suggests that a 32-bit `agora_node_ext.node` is required.
 
@@ -129,7 +129,7 @@ Try one of the following methods to fix the issue:
     Create a new `.npmrc` file directly in the root directory of your project and write the following to configure the **npm environment variables**:
 
     ```shell
-    agora_electron_sdk_arch = ia32
+    agora_electron_sdk_arch=ia32
     arch=ia32
     ```
 

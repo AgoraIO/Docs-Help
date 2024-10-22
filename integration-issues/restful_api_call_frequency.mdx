@@ -18,17 +18,9 @@ When the request of an Agora Server RESTful API exceeds its call frequency limit
 
 If the default frequency limit still cannot meet your project needs after considering the preceding suggestions, contact [support@agora.io](mailto:support@agora.io) to apply to adjust the call frequency limit. See <a href="#raiselimit">Apply to raise API call frequency limit</a>.
 
-{/* <div class="alert note">
-  Each Agora Server RESTful API has an upper call frequency limit and cannot
-  guarantee high real-time performance. In the case of high concurrency, you can
-  contact
-  <a href="mailto:support@agora.io">support@agora.io</a> to
-  configure your server to receive
-  <a href="https://docs-preprod.agora.io/en/Agora%20Platform/rtc_eventtype?platform=Android">
-    Real-Time Communication events
-  </a>
-  .
-</div> */}
+<Admonition type="info">
+The frequency of calling Agora server-side RESTful API is capped and high real-time performance is not guaranteed. In case of a large number of concurrent businesses, enable Agora Notifications and configure your business server to [Receive notifications about channel events](/video-calling/core-functionality/receive-notifications).
+</Admonition>
 
 <a name="raiselimit"></a>
 ## Apply to raise API call frequency limit

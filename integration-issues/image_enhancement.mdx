@@ -4,6 +4,9 @@ sidebar_position: 952
 platforms: []
 products: []
 ---
+import Tabs  from  '@theme/Tabs';
+import TabItem  from  '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
 
 export const toc = [{}];
 
@@ -24,17 +27,19 @@ As of v3.6.0, the Agora Video SDK for Native platforms and third-party framework
 
 ## Sample code
 
-### Java
-
-```java
-// Java
+<Tabs groupId = "sample-code">
+<TabItem value = "java"  label = "Java">
+<CodeBlock language="java" showLineNumbers>
+{`// Java
 mRtcEngine.setBeautyEffectOptions(true, new BeautyOptions(LIGHTENING_CONTRAST_NORMAL, 0.5F, 0.5F, 0.5F));
-```
+`}
+</CodeBlock>
+</TabItem>
 
-### Swift
+<TabItem value = "swift"  label = "Swift">
 
-```swift
-// Swift
+<CodeBlock language="swift" showLineNumbers>
+{`// Swift
 let options = AgoraBeautyOptions()
 options.lighteningContrastLevel = .normal
 options.rednessLevel = 0
@@ -42,12 +47,13 @@ options.smoothnessLevel = 0
 options.lighteningLevel = 0
 
 agoraKit.setBeautyEffectOptions(true, options: options)
-```
+`}
+</CodeBlock>
+</TabItem>
+<TabItem value = "Objective-C"  label = "Objective-C">
 
-### Objective-C
-
-```objective-c
-// Objective-C
+<CodeBlock language="objc" showLineNumbers>
+{`// Objective-C
 AgoraBeautyOptions *options = [[AgoraBeautyOptions alloc] init];
 options.lighteningContrastLevel = AgoraLighteningContrastNormal;
 options.rednessLevel = 0;
@@ -55,12 +61,13 @@ options.smoothnessLevel = 0;
 options.lighteningContrastLevel = 0;
 
 [self.agoraKit setBeautyEffectOptions:YES options:options];
-```
+`}
+</CodeBlock>
+</TabItem>
 
-### C++
-
-```cpp
-// C++
+<TabItem value = "C++"  label = "C++">
+<CodeBlock language="cpp" showLineNumbers>
+{`// C++
 bool enabled = true;
 agora::rtc::BeautyOptions options;
 options.lighteningContrastLevel = BeautyOptions::LIGHTENING_CONTRAST_NORMAL;
@@ -69,12 +76,14 @@ options.smoothnessLevel = 0.5;
 options.rednessLevel = 0.1;
 
 m_lpAgoraEngine->setBeautyEffectOptions(enabled, options);
-```
+`}
+</CodeBlock>
+</TabItem>
 
-### Web 3.x
+<TabItem value = "javascript"  label = "Web 3.x">
 
-```js
-// Web 3.x
+<CodeBlock language="javascript" showLineNumbers>
+{`// Web 3.x
 // setBeautyEffectOptions is an asynchronous method and must be called with Promise or async/await keywords.
 // To enable image enhancement immediately after creating a video stream, you can call setBeautyEffectOptions in the Client.on("stream-published") callback.
 var streamPublishedHandler = async function () {
@@ -87,12 +96,12 @@ var streamPublishedHandler = async function () {
   client.off('stream-published', streamPublishedHandler);
 };
 client.on('stream-published', streamPublishedHandler);
-```
-
-### Web 4.x
-
-```js
-// Web 4.x
+`}
+</CodeBlock>  
+</TabItem>
+<TabItem value = "Web4.x"  label = "Web 4.x">
+<CodeBlock language="javascript" showLineNumbers>
+{`// Web 4.x
 // Call setBeautyEffect in LocalVideoTrack to set the basic image enhancement function.
 // The localVideoTrack in the following example is a local camera video track object created with AgoraRTC.createCameraVideoTrack.
 localVideoTrack
@@ -105,7 +114,10 @@ localVideoTrack
   .then(() => {
     console.log('set Beauty Effect Options success!');
   });
-```
+`}
+</CodeBlock>
+</TabItem>
+</Tabs>
 
 Agora also provides an [Online Demo](https://webdemo.agora.io/videoBeautyEffect/index.html) for you to experience the basic image enhancement function.
 
