@@ -835,6 +835,21 @@ export const data = {
     },
   },
   'quality-issues': {
+    sei: {
+      platforms: [
+        'all-platforms',
+        'android',
+        'ios',
+        'macos',
+        'flutter',
+        'react-native',
+        'electron',
+        'windows',
+        'unity',
+      ],
+      products: ['all-products', 'interactive-live-streaming', 'broadcast-streaming'],
+      popular: false,
+    },
     ios_background: {
       platforms: [ 'all-platforms', 'ios'],
       products: ['all-products', 'video-calling', 'interactive-live-streaming', 'broadcast-streaming'],
@@ -1521,22 +1536,6 @@ export const data = {
     },
   },
   'other-issues': {
-    sei: {
-      platforms: [
-        'all-platforms',
-        'android',
-        'ios',
-        'macos',
-        'flutter',
-        'react-native',
-        'electron',
-        'windows',
-        'unity',
-      ],
-      products: ['all-products', 'interactive-live-streaming', 'broadcast-streaming'],
-      popular: false,
-    },
-
     android_noaudio: {
       platforms: ['all-platforms', 'android'],
       products: [
