@@ -1,0 +1,33 @@
+---
+title: 'What are the classroom states of Flexible Classroom?'
+sidebar_position: 801
+platforms: []
+products: []
+---
+
+export const toc = [{}];
+
+Flexible Classroom has the following classroom states:
+
+| State       | `state` value | Example |
+|---|-----|:---------|
+| Not started | `0`   | Before the start time of the class. Both teachers and students can do the following: <ul><li>Use real-time audio and video functions.</li><li>Use instant messaging.</li><li>See the student list.</li><li>Use the interactive whiteboard.</li></ul> |
+| Started     | `1`   | After the start time of the class and within its duration. Both teachers and students can do the following: <ul><li>Use real-time audio and video.</li><li>Use instant messaging.</li><li>See the student list. </li><li>Use the interactive whiteboard.</li></ul>|
+| Ended       | `2`   | The class duration has been exceeded, but it's still within its end delay time. Teachers and students can still enter and leave the classroom, as well as using the other functions normally.    |
+| Closed      | `3`   | The class duration and end delay time have been exceeded. <li>Teachers and students are kicked out of the classroom and cannot rejoin.</li> <li>Audio, video, instant messaging, and whiteboard services are disconnected.</li> <li>Once a classroom is closed, it cannot be restarted and is destroyed 1 hour later.</li> |
+
+### Classroom state change
+
+Classroom states change according to the following parameters set when calling the `launch` method in the Flexible Classroom client:
+
+- `startTime`: The class start time in milliseconds, subject to the parameter passed in by the first user who enters the class.
+- `duration`: The class duration in seconds, subject to the parameter passed in by the first user who enters the class.
+- `closeDelay`: Delay time in seconds, subject to the parameter passed in when creating the classroom, defaults to 10 minutes.
+
+The class automatically starts at the specified start time and ends after its duration and end delay times are exceeded. Teachers can also start and end classes manually.
+
+You can also switch the class state with [RESTful API](/flexible-classroom/restful-api/classroom-api?platform=web#set-the-classroom-state).
+
+### Reference API
+
+- [`launch`](/flexible-classroom/client-api/classroom-sdk#launch)

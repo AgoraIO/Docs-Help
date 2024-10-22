@@ -1,5 +1,20 @@
 export const data = {
   'integration-issues': {
+    classroom_statuses: {
+      platforms: [
+        'all-platforms',
+        'android',
+        'ios',
+        'macos',
+        'flutter',
+        'react-native',
+        'electron',
+        'windows',
+        'unity',
+      ],
+      products: ['all-products', 'flexible-classroom'],
+      popular: false,
+    },
     empty_deviceId: {
       platforms: ['all-platforms', 'web'],
       products: [
@@ -272,7 +287,7 @@ export const data = {
       products: ['all-products', 'video-calling', 'interactive-live-streaming', 'broadcast-streaming'],
       popular: false,
     },
-    string: {
+    string_uid: {
       platforms: ['all-platforms', 'web', 'android', 'ios', 'macos', 'windows'],
       products: [
         'all-products',
@@ -1178,22 +1193,6 @@ export const data = {
       popular: false,
     },
 
-    classroom_statuses: {
-      platforms: [
-        'all-platforms',
-        'android',
-        'ios',
-        'macos',
-        'flutter',
-        'react-native',
-        'electron',
-        'windows',
-        'unity',
-      ],
-      products: ['all-products', 'flexible-classroom'],
-      popular: false,
-    },
-
     rtm_emoji: {
       platforms: [
         'all-platforms',
@@ -1304,25 +1303,6 @@ export const data = {
     vr_headset: {
       platforms: ['all-platforms', 'android', 'ios', 'windows', 'unity'],
       products: ['all-products', 'video-calling', 'interactive-live-streaming', 'broadcast-streaming'],
-      popular: false,
-    },
-
-    agora_class_state: {
-      platforms: [
-        'all-platforms',
-        'web',
-        'android',
-        'ios',
-        'macos',
-        'flutter',
-        'react-native',
-        'electron',
-        'windows',
-        'unity',
-        'restful-apis',
-        'linux',
-      ],
-      products: ['all-products', 'flexible-classroom'],
       popular: false,
     },
 
