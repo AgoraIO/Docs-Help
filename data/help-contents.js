@@ -821,6 +821,20 @@ export const data = {
        ],
        popular: false,
      },
+    stop_class: {
+       platforms: [
+         'all-platforms',
+         'android',
+         'ios',
+         'electron',
+         'web',
+       ],
+       products: [
+         'all-products',
+         'flexible-classroom',
+       ],
+       popular: false,
+     },
   },
   'quality-issues': {
     ios_background: {
