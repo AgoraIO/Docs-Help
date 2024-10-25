@@ -4,6 +4,9 @@ sidebar_position: 652
 platforms: []
 products: []
 ---
+import Tabs from '@theme/Tabs'; 
+import TabItem from '@theme/TabItem'; 
+import CodeBlock from '@theme/CodeBlock';
 
 ## Introduction
 
@@ -21,14 +24,20 @@ This feature is in BETA. We recommend contacting [support@agora.io](mailto:suppo
 
 ## Implementation
 
-Before proceeding, ensure that you understand the steps and code logic for implementing the basic real-time communication functions.
+Before proceeding, ensure that you understand the steps and code logic for implementing the basic real-time communication functions. The Agora Real-Time Interaction SDK supports string user IDs across Native platforms using different methods.
 
 ### Native
 
 Starting from v2.8.0, the Agora Native SDK supports using user accounts to identify the user:
 
-- `registerLocalUserAccount`: Registers a user account.
-- `joinChannelWithUserAccount/joinChannelByUserAccount`: Joins the channel with the registered user account.
+**Android/Windows**: 
+  - `registerLocalUserAccount`: Registers a user account.
+  - `joinChannelWithUserAccount/joinChannelByUserAccount`: Joins the channel with the registered user account.
+
+**iOS/macOS**: 
+
+  - `registerLocalUserAccountWithAppID`: Registers a user account.
+  - `joinChannelByToken`: Joins the channel with the registered user account. 
 
 Follow the steps to join an Agora channel with a string user account:
 
@@ -60,58 +69,82 @@ For other APIs, Agora uses the integer user ID for identification. Agora maintai
 
 You can also refer to the following code snippets and implement string user accounts in your peoject:
 
-```java
-// Java
-private void initializeAgoraEngine() {
+<Tabs groupId="sample-code"> 
+<TabItem value="java" label="Java"> 
+
+<CodeBlock language="java" showLineNumbers>
+{`private void initializeAgoraEngine() { 
   try {
-    String appId = getString(R.string.agora_app_id);
-    mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
-    // Registers the local user account after initializing the Agora engine and before joining the channel.
-    mRtcEngine.registerLocalUserAccount(appId, mLocal.userAccount);
-  } catch (Exception e) {
-    Log.e(LOG_TAG, Log.getStackTraceString(e));
+    String appId = getString(R.string.agora_app_id); 
+    mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler); 
+    // Registering a user name after initialization and before joining a channel can shorten the time to join a 
+    channelmRtcEngine.registerLocalUserAccount(appId, mLocal.userAccount); 
+  } catch (Exception e) { 
+    Log.e(LOG_TAG, Log.getStackTraceString(e)); 
 
-    throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
-  }
-}
+    throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e)); 
+  } 
+} 
 
-private void joinChannel() {
-  String token = getString(R.string.agora_access_token);
-  if (token.isEmpty()) {
-    token = null;
-  }
-  // Joins the channel with the registered user account.
-  mRtcEngine.joinChannelWithUserAccount(token, "stringifiedChannel1", mLocal.userAccount);
-}
-```
+private void joinChannel() { 
+  String token = getString(R.string.agora_access_token); 
+  if (token.isEmpty()) { 
+    token = null; 
+  } 
+  // Join a channel using the registered user 
+  IDmRtcEngine.joinChannelWithUserAccount(token, "stringifiedChannel1", mLocal.userAccount); 
+} 
+`}
+</CodeBlock>
+</TabItem> 
 
-```swift
-// Swift
-func joinChannel() {
-  // Registers the local user account before joining the channel.
-  let myStringId = "someStringId"
-  agoraKit.registerLocalUserAccount(userAccount: myStringId, appId: myAppId)
-  // Joins the channel with the registered user account.
-  agoraKit.joinChannel(byUserAccount: myStringId, token: Token, channelId: "demoChannel1") {
-    sid, uid, elapsed) in
-  }
-}
-```
+<TabItem value="cpp" label="C++"> 
 
-```cpp
-// C++
-LRESULT COpenLiveDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
-{
-	IRtcEngine		*lpRtcEngine = CAgoraObject::GetEngine();
-	CAgoraObject	*lpAgoraObject = CAgoraObject::GetAgoraObject();
+<CodeBlock language="cpp" showLineNumbers>
+{`LRESULT COpenLiveDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam) 
+{ 
+	IRtcEngine *lpRtcEngine = CAgoraObject::GetEngine(); 
+	CAgoraObject *lpAgoraObject = CAgoraObject: :GetAgoraObject(); 
 
-	// Registers the local user account before joining the channel.
-	lpAgoraObject->RegisterLocalUserAccount(APP_ID, m_dlgEnterChannel.GetStringUid());
-	// Joins the channel with the registered user account.
-	lpAgoraObject->JoinChannelWithUserAccount(TOKEN, strChannelName, m_dlgEnterChannel.GetStringUid());
+	// Register the local user name 
+	lpAgoraObject->RegisterLocalUserAccount(APP_ID, m_dlgEnterChannel.GetStringUid()); 
+	// Use the user name to join the channel 
+	lpAgoraObject->JoinChannelWithUserAccount(strChannelName, m_dlgEnterChannel.GetStringUid()); 
 
-}
-```
+} 
+`}
+</CodeBlock>
+</TabItem> 
+
+<TabItem value="swift " label="Swift"> 
+<CodeBlock language="swift" showLineNumbers>
+{`func joinChannel() { 
+  // Register user ID before joining the channel 
+  let myStringId = "someStringId" 
+  agoraKit.registerLocalUserAccount(userAccount: myStringId, appId: myAppId) 
+  // Join channel with registered user ID 
+  agoraKit.joinChannel(byUserAccount: myStringId, token: Token, channelId: "demoChannel1") { 
+    sid, uid, elapsed) in 
+  } 
+} 
+`}
+</CodeBlock>
+</TabItem> 
+
+<TabItem value="objective-c" label="Objective-C"> 
+
+<CodeBlock language="objc" showLineNumbers>
+{`-(void)joinChannel { 
+// Register user ID before joining the channel 
+NSString *userAccount = @"someStringId"; 
+ [self.agoraKit registerLocalUserAccount: userAccount appId: KeyCenter.AppId]; 
+// Join channel with registered user ID 
+[self.agoraKit joinChannelByToken:token channelId:channelName userAccount:userAccount mediaOptions:options joinSuccess:nil]; 
+} 
+`}
+</CodeBlock>
+</TabItem> 
+</Tabs> 
 
 We provide an open-source [String-Account](https://github.com/AgoraIO/Advanced-Video/tree/dev/backup/String-Account) demo project that implements string user accounts on Github. You can try the demo and view the source code.
 
@@ -128,12 +161,19 @@ We provide an open-source [String-Account](https://github.com/AgoraIO/Advanced-V
 
 - Objective-C
 
-  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengine.html#api_irtcengine_registerlocaluseraccount">`registerLocalUserAccount`</Link>
-  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengine.html#class_irtcengine">`joinChannelByUserAccount`</Link>
-  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengine.html#api_irtcengine_getuserinfobyuid">`getUserInfoByUid`</Link>
-  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengineeventhandler.html#class_irtcengineeventhandler">`getUserInfoByUserAccount`</Link>
-  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengineeventhandler.html#class_irtcengineeventhandler">`didRegisteredLocalUser`</Link>
-  - <Link to="{{Global.API_REF_IOS_ROOT}}/class_irtcengineeventhandler.html#class_irtcengineeventhandler">`didUpdatedUserInfo`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/agorartckit/agorartcenginekit/registerlocaluseraccount(_:appid:)">`registerLocalUserAccount`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/agorartckit/agorartcenginekit/joinchannel(bytoken:channelid:info:uid:joinsuccess:)">`joinChannel`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/agorartckit/agorartcenginekit/getuserinfo(byuid:witherror:)">`getUserInfo(byUid:withError:)`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/agorartckit/agorartcenginekit/getuserinfo(byuseraccount:witherror:)">`getUserInfo(byUserAccount:withError:)`</Link>
+  - <Link to="{{Global.API_REF_IOS_ROOT}}/agorartckit/agorartcenginedelegate/rtcengine(_:diduserinfoupdatedwithuserid:userinfo:)">`didUserInfoUpdatedWithUserId`</Link>
+
+- Swift
+
+  - <Link to="{{Global.API_REF_MACOS_ROOT}}/agorartckit/agorartcenginekit/registerlocaluseraccount(_:appid:)">`registerLocalUserAccount`</Link>
+  - <Link to="{{Global.API_REF_MACOS_ROOT}}/agorartckit/agorartcenginekit/joinchannel(bytoken:channelid:info:uid:joinsuccess:)">`joinChannel`</Link>
+  - <Link to="{{Global.API_REF_MACOS_ROOT}}/agorartckit/agorartcenginekit/getuserinfo(byuid:witherror:)">`getUserInfo(byUid:withError:)`</Link>
+  - <Link to="{{Global.API_REF_MACOS_ROOT}}/agorartckit/agorartcenginekit/getuserinfo(byuseraccount:witherror:)">`getUserInfo(byUserAccount:withError:)`</Link>
+  - <Link to="{{Global.API_REF_MACOS_ROOT}}/agorartckit/agorartcenginedelegate/rtcengine(_:diduserinfoupdatedwithuserid:userinfo:)">`didUserInfoUpdatedWithUserId`</Link>
 
 - C++
 
@@ -148,33 +188,14 @@ We provide an open-source [String-Account](https://github.com/AgoraIO/Advanced-V
 
 Starting from v2.5, the `uid` parameter in the `Client.join` method can be set as either a number or a string. You can join a channel by calling the `Client.join` method and passing in a string `uid`.
 
-**API call sequence**
-
-The following diagram shows how to join a channel with a string user account:
-
-![](https://web-cdn.agora.io/docs-files/1568875442230)
-
 **Sample code**
 
 You can also refer to the following code snippets and implement string user accounts in your peoject:
 
 ```javascript
 // Javascript
-// Set uid as agora and join channel 1024
-client.join(
-  '<token>',
-  '1024',
-  'agora',
-  function (uid) {
-    console.log('client' + uid + 'joined channel');
-    // Create a local stream
-    // ...
-  },
-  function (err) {
-    console.error('client join failed', err);
-    // Error handling
-  }
-);
+// Set UID to agora and join channel 1024 
+client.join("<appid>", "1024", "<token>", "agora"); 
 ```
 
 **API Reference**

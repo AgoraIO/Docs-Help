@@ -15,6 +15,95 @@ export const data = {
       products: ['all-products', 'flexible-classroom'],
       popular: false,
     },
+    mirror_mode: {
+      platforms: [
+        'all-platforms',
+        'android',
+        'ios',
+        'macos',
+        'windows',
+      ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+      ],
+      popular: false,
+    },
+    camera_exposure_focus: {
+      platforms: [
+        'all-platforms',
+        'android',
+        'ios',
+        'macos',
+        'windows',
+      ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+      ],
+      popular: false,
+    },
+    bucket_region: {
+      platforms: ['all-platforms', 'restful-apis'],
+      products: ['all-products', 'cloud-recording'],
+      popular: false,
+    },
+    class_stop: {
+      platforms: [
+        'all-platforms',
+        'web',
+        'electron',
+      ],
+      products: ['all-products', 'flexible-classroom'],
+      popular: false,
+    },
+    kick_user: {
+      platforms: [
+      'all-platforms',
+      'web',
+      'android',
+      'ios',
+      'macos',
+      'flutter',
+      'react-native',
+      'electron',
+      'windows',
+      'unity',
+      ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+      ],
+      popular: false,
+    },
+    get_channel_info: {
+      platforms: [
+        'all-platforms',
+        'android',
+      ],
+      products: [
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+      ],
+      popular: false,
+    },
+    return_404: {
+      platforms: ['all-platforms', 'restful-apis'],
+      products: ['all-products', 'cloud-recording'],
+      popular: false,
+    },
     empty_deviceId: {
       platforms: ['all-platforms', 'web'],
       products: [

@@ -1,0 +1,18 @@
+---
+title: 'Why does the query method return a 404 after successfully starting cloud recording?'
+sidebar_position: 656
+platforms: []
+products: []
+---
+
+If the `query` method returns a 404 status code after successfully starting cloud recording with the `start` method, the following issues may be the cause:
+
+- **Parameter Issues**: After starting cloud recording, the recording service checks the parameters. If any are incorrect, the recording may stop. Ensure that parameters like `transcodingConfig` are set correctly. For details, see [Set video profile](/cloud-recording/develop/recording-video-profile).
+  
+- **Incorrect Cloud Storage Info**: Errors in third-party cloud storage details, such as an incorrect `accessKey` or `secretKey`, can prevent file uploads. If you’ve enabled the [message notification service](/signaling/get-started/manage-agora-account?#configure--features), you'll receive a [`cloud_recording_error`](/cloud-recording/reference/common-errors) event when storage configuration fails.
+
+- **Token Issues**: If the `token` in `clientRequest` is invalid, cloud recording may fail to join the channel. If your project has an enabled App certificate, make sure to pass the correct token; otherwise, you don’t need this parameter.
+
+- **Idle Timeout**: If no users are streaming in the channel after cloud recording starts, the recording will automatically stop after reaching the `maxIdleTime` (maximum idle channel time).
+
+- **Network or Process Failures**: The cloud recording server might be disconnected or the process may be killed. In these cases, calling `query`, `updateLayout`, or `stop` will return a 404. The fault handling center will investigate and respond within 90 seconds. You can retry the `query` method later to check if the service has recovered.

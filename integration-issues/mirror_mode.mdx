@@ -1,0 +1,56 @@
+---
+title: 'How can I set the mirror mode?'
+sidebar_position: 656
+platforms: []
+products: []
+---
+The SDK provides several interfaces to customize video display effects at different stages of a real-time audio and video call.
+
+## 1. Displaying the local view
+
+On the local device, the local user's video stream is linked to the local view, allowing the user to see themselves. You can enable the mirror effect for the local view using the `mirrorMode` parameter in either `setupLocalVideo` or `setLocalRenderMode`. This setting only affects what the local user sees and does not impact the remote user’s view.
+
+<Admonition type="info" title="info">
+  If you're using the front camera, the mirror mode is enabled by default. If you're using the rear camera, it is disabled by default.
+</Admonition>
+
+## 2. Displaying the remote user's view
+
+The remote user’s video stream is linked to a corresponding view on the local device, allowing the local user to see the remote video. You can enable the mirror effect for the remote view using the `mirrorMode` parameter in `setupRemoteVideo` or `setRemoteRenderMode`. Like the local view, this setting only affects what the local user sees and does not change the video display for the remote user.
+
+## 3. Sending the local video stream
+
+Once the local video stream is encoded, it is sent to the remote user. You can apply the mirror effect to the video stream using the `config` parameter in `setVideoEncoderConfiguration`. This setting affects only the remote user’s view and does not alter the local user’s display.
+
+## API Reference
+
+For more details, see the following API documentation:
+
+<PlatformWrapper platform="[android, all-platforms]">
+- <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_setuplocalvideo">`setupLocalVideo`</Link>
+- <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_setlocalrendermode">`setLocalRenderMode`</Link>
+- <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_setupremotevideo">`setupRemoteVideo`</Link>
+- <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_setremoterendermode2">`setRemoteRenderMode`</Link>
+- <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_setvideoencoderconfiguration">`setVideoEncoderConfiguration`</Link>
+</PlatformWrapper>
+<PlatformWrapper platform="ios">
+- <Link to="{{Global.API_REF_IOS_ROOT_RTC_ENGINE_KIT}}/setuplocalvideo(_:)">`setupLocalVideo`</Link>
+- <Link to="{{Global.API_REF_IOS_ROOT_RTC_ENGINE_KIT}}/setlocalrendermode(_:mirror:)">`setLocalRenderMode`</Link>
+- <Link to="{{Global.API_REF_IOS_ROOT_RTC_ENGINE_KIT}}/setupremotevideo(_:)">`setupRemoteVideo`</Link>
+- <Link to="{{Global.API_REF_IOS_ROOT_RTC_ENGINE_KIT}}/setremoterendermode(_:mode:mirror:)">`setRemoteRenderMode`</Link>
+- <Link to="{{Global.API_REF_IOS_ROOT_RTC_ENGINE_KIT}}/setvideoencoderconfiguration(_:)">`setVideoEncoderConfiguration`</Link>
+</PlatformWrapper>
+<PlatformWrapper platform="windows">
+- <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengine.html#api_irtcengine_setuplocalvideo">`setupLocalVideo`</Link>
+- <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengine.html#api_irtcengine_setlocalrendermode">`setLocalRenderMode`</Link>
+- <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengine.html#api_irtcengine_setupremotevideo">`setupRemoteVideo`</Link>
+- <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengine.html#api_irtcengine_setremoterendermode2">`setRemoteRenderMode`</Link>
+- <Link to="{{Global.API_REF_CPP_ROOT}}/class_irtcengine.html#api_irtcengine_setvideoencoderconfiguration">`setVideoEncoderConfiguration`</Link>
+</PlatformWrapper>
+<PlatformWrapper platform="macos">
+- <Link to="{{Global.API_REF_MACOS_ROOT_RTC_ENGINE_KIT}}/setuplocalvideo(_:)">`setupLocalVideo`</Link>
+- <Link to="{{Global.API_REF_MACOS_ROOT_RTC_ENGINE_KIT}}/setlocalrendermode(_:mirror:)">`setLocalRenderMode`</Link>
+- <Link to="{{Global.API_REF_MACOS_ROOT_RTC_ENGINE_KIT}}/setupremotevideo(_:)">`setupRemoteVideo`</Link>
+- <Link to="{{Global.API_REF_MACOS_ROOT_RTC_ENGINE_KIT}}/setremoterendermode(_:mode:mirror:)">`setRemoteRenderMode`</Link>
+- <Link to="{{Global.API_REF_MACOS_ROOT_RTC_ENGINE_KIT}}/setvideoencoderconfiguration(_:)">`setVideoEncoderConfiguration`</Link>
+</PlatformWrapper>
