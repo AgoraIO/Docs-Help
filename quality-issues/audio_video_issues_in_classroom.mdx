@@ -7,12 +7,39 @@ products: []
 
 ### Why can't I turn on the camera or microphone in the web client?
 
-Check your browser's permission to use your camera and microphone. If the permissions are granted but the camera or microphone still
-don't work, take the following steps:
+Check your browser's permission to use your camera and microphone.Please refer to the following screenshots for steps:
+
+1. Go to the browser settings page, select **Privacy and security** > **Site settings**:
+
+    ![Browser-setting](../data/images/browser-privacy-settings.png)
+
+1. Click **Microphone** and select **Sites can ask to use your microphone**:
+
+    ![microphone-grant.png](../data/images/browser-microphone-grant.png)
+
+1. Click **Camera** and select **Sites can ask to use your camera**:
+
+    ![browser-camera-grant.png](../data/images/browser-camera-grant.png)
+
+
+If the permissions are granted but the camera or microphone still don't work, take the following steps:
 
 1. Clear your browser cache
 1. Restart the browser
 1. Update your browser
+
+### What if my deployed domain lacks audio and video permissions, and the microphone and camera are disabled?
+
+<Vg k="VSDK"/> requires an HTTPS environment for security. If your domain uses HTTP, the browser will block access to audio and video devices.
+
+If audio and video devices are disabled, adjust site-specific settings in your browser to see if permissions are set to "Blocked":
+
+- In **Chrome**:
+    - Click the padlock icon next to the address bar.
+    - Select **Site settings** and check that **Camera** and **Microphone** permissions are set to `Allow`.
+- In **Firefox**:
+    - Click the padlock icon and select **Permissions**.
+- In **Edge** or **Safari**, follow similar steps to access site permissions.
 
 ### How to adjust the video resolution?
 
@@ -77,7 +104,38 @@ const args = {
 
 If you encounter this error when you enable screen sharing, it means that you have not granted the screen recording permission.
 
-Taking the macOS system as an example, you can enable the corresponding permission in **System Settings** > **Privacy and Security** > **Screen Recording**.
+Taking the macOS system as an example, you can enable the corresponding permission in **System Settings** > **Privacy and Security** > **Screen & System Audio Recording**.
+
+![screen recording setting](../data/images/screen-recording-setting.png)
+
+### How do I enable screen sharing when the smart classroom is embedded using an iframe?
+
+If screen sharing is disabled after embedding the smart classroom in a page with an iframe, add the `display-capture` parameter to the iframe’s `allow` attribute, as shown below:
+
+```html
+<iframe
+  src="“xxxxxxx”"
+  width="100%"
+  height="100%"
+  frameborder="0"
+  scrolling="no"
+  allowfullscreen="allowfullscreen"
+  allow="display-capture; geolocation; microphone; camera; midi; encrypted-media;"
+  referrerpolicy="no-referrer"
+></iframe>
+```
+
+## How do I troubleshoot frequent freezing, unclear audio, blank or black screens, or failed courseware loading?
+
+If you experience these network issues, try the following steps to improve your connection:
+
+- Restart your router and reconnect to the network.
+- Move your device closer to the router, ensuring there are no walls or obstructions in between.
+- Disconnect other devices or applications that may be using bandwidth, such as download programs, streaming services, cloud storage applications, or networked TV boxes.
+- Switch to a different network, such as a 4G hotspot, and re-enter the classroom.
+- Restart your device.
+- Disable any VPNs or network proxies.
+
 
 ### Are there any specific network bandwidth requirements for live streaming?
 
@@ -116,3 +174,42 @@ The teacher should:
 - Check whether their speaker device is selected correctly.
 - Exit and re-enter the classroom or restart the device.
 
+
+### How to Enable Screen Sharing with Sound
+
+#### Web
+
+Screen sharing with sound is supported on Chrome version 74 and later on Windows and macOS, with the following limitations:
+
+- **Windows**: Audio sharing is supported when sharing the entire screen or a Chrome tab. However, it is not supported when sharing an application window.
+- **macOS**: Audio sharing is only supported when sharing a selected Chrome tab.
+
+To enable sound, set `withAudio` to `true` in Smart Classroom, and select the **Share audio** checkbox in the screen-sharing pop-up dialog.
+
+#### Electron
+
+The Electron client supports sharing system sound on Windows platforms.
+
+- **macOS**: To share system sound, a virtual sound card is required. If a user is using a virtual sound card, such as Soundflower, specify the virtual sound card name (e.g., `"soundflower"`) as a parameter. The SDK will then locate the corresponding virtual sound card device and start capturing.
+
+<Admonition type="caution" title="Note">
+The default macOS sound card does not support sound capture. To enable sound sharing, the application must use a virtual sound card and pass the virtual sound card name as `deviceName` to the SDK. Agora has tested and recommends Soundflower as a virtual sound card.
+</Admonition>
+
+In macOS, the **screen sharing with sound** feature is disabled by default in the Smart Classroom source code. To enable this feature for versions 2.8.21 and above, modify the source code as follows:
+
+1. **Display screen sharing with sound option in the UI**
+
+   Code path: `packages/agora-classroom-sdk/src/infra/capabilities/containers/dialog/screen-picker/index.tsx`
+
+   Example:
+
+   ![screensharewithaudio001](../data/images/screensharewithaudio001.png)
+
+2. **Specify the virtual sound card name on macOS**
+
+   Code path: `packages/agora-classroom-sdk/src/infra/stores/common/toolbar/index.ts`
+
+   Example:
+
+   ![screensharewithaudio002](../data/images/screensharewithaudio002.png)
