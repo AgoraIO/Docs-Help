@@ -4,27 +4,28 @@ sidebar_position: 656
 platforms: []
 products: []
 ---
-The SDK provides several interfaces to customize video display effects at different stages of a real-time audio and video call.
 
-## 1. Displaying the local view
+<Vg k="VSDK" /> provides various interfaces to customize video display effects on local and remote devices during a real-time audio and video call, including the option to enable or disable mirror mode.
 
-On the local device, the local user's video stream is linked to the local view, allowing the user to see themselves. You can enable the mirror effect for the local view using the `mirrorMode` parameter in either `setupLocalVideo` or `setLocalRenderMode`. This setting only affects what the local user sees and does not impact the remote user’s view.
+## Configure the local view
+
+On the local device, the local user's video stream is linked to the local view. To enable the mirror effect for the local view, use the `mirrorMode` parameter in either `setupLocalVideo` or `setLocalRenderMode`. This setting only affects what the local user sees and does not impact the remote user’s view.
 
 <Admonition type="info" title="info">
-  If you're using the front camera, the mirror mode is enabled by default. If you're using the rear camera, it is disabled by default.
+Mirror mode is enabled by default for the front camera. the . It is disabled by default for the rear camera.
 </Admonition>
 
-## 2. Displaying the remote user's view
+## Configure the remote user's view
 
-The remote user’s video stream is linked to a corresponding view on the local device, allowing the local user to see the remote video. You can enable the mirror effect for the remote view using the `mirrorMode` parameter in `setupRemoteVideo` or `setRemoteRenderMode`. Like the local view, this setting only affects what the local user sees and does not change the video display for the remote user.
+The remote user’s video stream is linked to a corresponding view on the local device that displays the remote video. To enable the mirror effect for the remote view use the `mirrorMode` parameter in `setupRemoteVideo` or `setRemoteRenderMode`. Like the local view, this setting only affects what the local user sees and does not change the video display for the remote user.
 
-## 3. Sending the local video stream
+## Configuring the sent local video stream
 
-Once the local video stream is encoded, it is sent to the remote user. You can apply the mirror effect to the video stream using the `config` parameter in `setVideoEncoderConfiguration`. This setting affects only the remote user’s view and does not alter the local user’s display.
+Once the local video stream is encoded, it is sent to the remote user. To apply the mirror effect to the video stream use the `config` parameter in `setVideoEncoderConfiguration`. This setting affects only the remote user’s view and does not alter the local user’s display.
 
 ## API Reference
 
-For more details, see the following API documentation:
+For further details, refer to the following API documentation:
 
 <PlatformWrapper platform="[android, all-platforms]">
 - <Link to="{{Global.API_REF_ANDROID_ROOT}}/class_irtcengine.html#api_irtcengine_setuplocalvideo">`setupLocalVideo`</Link>
