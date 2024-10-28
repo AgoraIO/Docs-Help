@@ -1,5 +1,5 @@
 ---
-title: 'How to adjust camera exposure and focus?'
+title: 'How can I adjust camera exposure and focus?'
 sidebar_position: 656
 platforms: []
 products: []
@@ -8,26 +8,26 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
-In video applications, adjusting camera exposure and focus is essential for capturing subjects with the correct brightness and sharpness. The Agora RTC SDK provides a set of camera management methods for mobile platforms, allowing users to switch between the front and rear cameras, as well as set zoom, focus, and exposure.
+In video applications, adjusting camera exposure and focus is essential for capturing subjects with accurate brightness and sharpness. The Agora RTC SDK offers camera management methods for mobile platforms, enabling users to switch between front and rear cameras, as well as control zoom, focus, and exposure settings. This page shows you how to manage the following:
 
 - **Exposure:** Supports both manual exposure area selection and automatic camera exposure.
-- **Focus:** Supports automatic face detection for focus and manual focus.
+- **Focus:** Supports face detection for automatic focus and manual focus.
+
+## Prerequisites
+
+Before implementing camera exposure and focus features, ensure that you have implemented basic real-time audio and video functions in your project.
 
 ## Implementation
-
-<Admonition type="caution" title="Caution">
-Before implementing camera exposure and focus features, ensure that basic real-time audio and video functions are already working in your project.
-</Admonition>
 
 Follow these steps to implement camera exposure and focus in your project:
 
 ### Exposure
 
-1. Call `isCameraExposurePositionSupported` to check if the device supports exposure.
+1. Call `isCameraExposurePositionSupported` to check if the device supports exposure management.
 2. If supported, call `setCameraExposurePosition` to manually set the exposure position.
 3. To retrieve the camera's current exposure area, use the `onCameraExposureAreaChanged` callback.
 
-### Face Auto Focus
+### Face autofocus
 
 1. Call `isCameraAutoFocusFaceModeSupported` to check if the device supports face autofocus.
 2. If supported, call `setCameraAutoFocusModeEnabled` to enable face autofocus.
@@ -38,7 +38,7 @@ Follow these steps to implement camera exposure and focus in your project:
 2. If supported, call `setCameraFocusPositionInPreview` to manually set the focus position.
 3. To retrieve the camera's current focus area, use the `onCameraFocusAreaChanged` callback.
 
-### Example Code
+Refer to the following sample code:
 
 <Tabs groupId="sample-code">
 <TabItem value="java" label="Java">
