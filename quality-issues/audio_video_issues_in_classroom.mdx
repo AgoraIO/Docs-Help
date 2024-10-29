@@ -7,31 +7,36 @@ products: []
 
 ### Why can't I turn on the camera or microphone in the web client?
 
-Check your browser's permission to use your camera and microphone. 
+Check your browser's permission to use your camera and microphone.
 
-1. Go to the browser settings page, select **Privacy and security** > **Site settings**:
+1. Go to the browser settings page and select **Privacy and Security** > **Site Settings**:
 
-    ![Browser-setting](../data/images/browser-privacy-settings.png)
+    ![site settings](../data/images/site_settings.png)
 
-1. Click **Microphone** and select **Sites can ask to use your microphone**:
+1. Click on the camera and mike permissions:
 
-    ![microphone-grant.png](../data/images/browser-microphone-grant.png)
+    ![camera and mike permissions](../data/images/camera_mike_permissions.png)
 
-1. Click **Camera** and select **Sites can ask to use your camera**:
+1. Choose **Allow** in the dropdown:
 
-    ![browser-camera-grant.png](../data/images/browser-camera-grant.png)
+    ![camera and mike allow access](../data/images/camera_mike_allow.png)
 
-
-If the permissions are granted but the camera or microphone still does not work, take the following steps:
+If the permissions are granted but the camera or microphone still
+don't work, take the following steps:
 
 1. Clear your browser cache
 1. Restart the browser
 1. Update your browser
 
-### What if my deployed domain lacks audio and video permissions, and the microphone and camera are disabled?
+### What if the domain I deployed does not have audio and video permissions, is displayed as disabled, or cannot use the microphone and camera?
 
-<Vg k="VSDK"/>, based on WebRTC, requires an HTTPS environment for security. If your domain uses HTTP, the browser blocks access to audio and video devices. Configure your domain name to HTTPS.
+Audio and video devices can be disabled, as shown below:
 
+    ![video disabled](../data/images/video_settings.png)
+
+    ![audio disabled](../data/images/audio_settings.png)
+
+For security reasons, WebRTC is only allowed to be used in an HTTPS environment; otherwise, the browser will not allow the page to access audio or video devices. Configure your domain name to use HTTPS.
 
 ### How to adjust the video resolution?
 
@@ -99,13 +104,17 @@ get recordArgs() {
 
 If you encounter this error when you enable screen sharing, it means that you have not granted the screen recording permission.
 
-Taking the macOS platform as an example, you can enable the corresponding permission in **System Settings** > **Privacy and Security** > **Screen & System Audio Recording**.
+Taking the macOS system as an example, you can enable the corresponding permission in **System Settings** > **Privacy and Security** > **Screen & System Audio Recording**.
 
-![screen recording setting](../data/images/screen-recording-setting.png)
+    ![video disabled](../data/images/screen_system_audio_recording.png)
 
-### How do I enable screen sharing when the Flexible classroom is embedded using an iframe?
+Enable screen recording permission for AgoraFlexibleClassroom:
 
-If screen sharing is disabled after embedding the Flexible classroom in a page with an iframe, add the `display-capture` parameter to the iframe’s `allow` attribute, as follows:
+    ![enable fcr](../data/images/enable_fcr.png)
+
+### What if the screen sharing feature is invalid after embedding Flexible Classroom with iframe?
+
+You can use the iframe `allow` attribute to add `display-capture` parameters for screen sharing. The code example is as follows:
 
 ```html
 <iframe
@@ -151,41 +160,32 @@ If you experience these network issues, try the following steps to improve your 
 - Check whether the teacher's speaker device is selected correctly.
 - Exit and re-enter the classroom or restart the device.
 
-## How to Enable Screen Sharing with Sound
+## How to enable screen sharing with audio?
 
 ### Web
 
-Screen sharing with sound is supported on Chrome version 74 and later on Windows and macOS, with the following limitations:
+Web screen sharing is only supported in Chrome version 74 and above on Windows and macOS, including the following:
 
-- **Windows**: Audio sharing is supported when sharing the entire screen or a Chrome tab. However, it is not supported when sharing an application window.
-- **macOS**: Audio sharing is only supported when sharing a selected Chrome tab.
-
-To enable sound, set `withAudio` to `true` in Flexible Classroom, and select the **Share audio** checkbox in the screen-sharing pop-up dialog.
+- Windows supports audio sharing when sharing the entire screen or a Chrome tab, but not when sharing an app window.
+- macOS supports sharing audio when sharing a Chrome tab. After setting `withAudio` to `true`, check the share audio box in the screen sharing pop-up.
 
 ### Electron
 
-The Electron client supports sharing system sound on Windows platforms.
+The Electron terminal supports sharing system audio on Windows.
 
-- **macOS**: To share system sound, a virtual sound card is required. If a user is using a virtual sound card, such as Soundflower, specify the virtual sound card name "soundflower" as a parameter. The SDK locates the corresponding virtual sound card device and starts capturing.
+On macOS, use a virtual sound card to capture and share system sounds. If the user uses a virtual sound card, such as Soundflower, you can pass its name (`"soundflower"`) as a parameter. The SDK will find the corresponding virtual sound card device and start capturing.
 
-<Admonition type="caution" title="Note">
-The default macOS sound card does not support sound capture. To enable sound sharing, the application must use a virtual sound card and pass the virtual sound card name as `deviceName` to the SDK. Agora has tested and recommends Soundflower as a virtual sound card.
-</Admonition>
+<Admonition type="info" title="Note">The default sound card on macOS does not support capture. To enable this feature, the app needs to enable a virtual sound card and pass its name (`deviceName`) to the SDK. Agora has tested and recommends Soundflower as the virtual sound card.</Admonition>
 
-On macOS, the **screen sharing with sound** feature is disabled by default in the Flexible Classroom source code. To enable this feature for versions 2.8.21 and above, modify the source code as follows:
+On macOS, screen sharing with audio is turned off by default. For Flexible Classroom versions 2.8.21 and above, if you need to enable it, modify the source code. The specific modification steps are as follows:
 
-1. **Display screen sharing with sound option in the UI**
+1. Display screen sharing with audio at the UI level.
 
-   Code path: `packages/agora-classroom-sdk/src/infra/capabilities/containers/dialog/screen-picker/index.tsx`
+    Code path: `packages/agora-classroom-sdk/src/infra/capabilities/containers/dialog/screen-picker/index.tsx`
 
-   Example:
+1. Pass the name of the virtual sound card on macOS.
 
-   ![screensharewithaudio001](../data/images/screensharewithaudio001.png)
+    Code path: `packages/agora-classroom-sdk/src/infra/stores/common/toolbar/index.ts`. The code is as follows:
 
-2. **Specify the virtual sound card name on macOS**
+    ![screen share capture](../data/images/screen_share_capture.png)
 
-   Code path: `packages/agora-classroom-sdk/src/infra/stores/common/toolbar/index.ts`
-
-   Example:
-
-   ![screensharewithaudio002](../data/images/screensharewithaudio002.png)
