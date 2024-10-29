@@ -833,6 +833,34 @@ export const data = {
       ],
       popular: false,
     },
+    recording_fails: {
+       platforms: [
+         'all-platforms',
+         'android',
+         'ios',
+         'electron',
+         'web',
+       ],
+       products: [
+         'all-products',
+         'flexible-classroom',
+       ],
+       popular: false,
+     },
+    stop_class: {
+       platforms: [
+         'all-platforms',
+         'android',
+         'ios',
+         'electron',
+         'web',
+       ],
+       products: [
+         'all-products',
+         'flexible-classroom',
+       ],
+       popular: false,
+     },
   },
   'quality-issues': {
     sei: {

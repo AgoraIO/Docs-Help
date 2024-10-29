@@ -1,5 +1,5 @@
 ---
-title: "Why can't I upload coursework after configuring my Alibaba Cloud OSS account information in Agora Console?"
+title: "Why can't I upload courseware?"
 sidebar_position: 600
 platforms: []
 products: []
@@ -9,9 +9,9 @@ export const toc = [{}];
 
 ### What should I do if there is an error in uploading courseware?
 
-If you receive the `403 Forbidden` error when uploading courseware, please check whether the whiteboard function has been configured correctly and make sure that Agora can access your cloud storage space.
+If you receive the `403 Forbidden` error when uploading courseware, please check whether the [whiteboard function has been configured](../../flexible-classroom/get-started/enable-flexible-classroom#configure-the-whiteboard-feature) correctly and make sure that Agora can access your cloud storage space.
 
-Similarly, if you receive a `600005` or `100004 "service not enable", "messages": "region":"sg"` error codes, it means that you have not enabled the corresponding whiteboard supporting service in the service area. If you need to use PPT, DOC, PDF, or other courseware in the classroom, enable the interactive whiteboard supporting service.
+Similarly, if you receive a `600005` or `100004 "service not enable", "messages": "region":"sg"` error codes, it means that you have not enabled the corresponding whiteboard supporting service in the service area. If you need to use PPT, DOC, PDF, or other courseware in the classroom, [enable the interactive whiteboard supporting service](../../interactive-whiteboard/develop/enable-whiteboard).
 
 ### If the above configurations are correct, what should I do if I still get the `403` error when uploading courseware to Alibaba Cloud?
 
@@ -21,10 +21,14 @@ This error is because you have not activated the corresponding permissions in yo
 
 ### What is the limit on the upload size of courseware?
 
+The size limits for courseware uploads are as follows:
+
 - The courseware size cannot exceed 100M.
-- The actual transcoding time is affected by the size of the courseware, the number of animations included in the courseware, the resolution of the visible pictures included, the number of pages of the courseware, and the transcoding queue. The higher the resolution of the included image, the slower the conversion. The number of pages is preferably within 50 pages; conversion timeout may occur if there are more than 100 pages.
+- The actual transcoding time is affected by the size and dimensions of the courseware, the number of animations included in the courseware, the resolution of the visible pictures included, the number of pages of the courseware, the transcoding queue, and others. The higher the resolution of the included image, the slower the conversion. The number of pages should preferably be within 50; conversion timeout may occur if there are more than 100 pages.
 
 ### What are the reasons for courseware upload failure?
+
+The following reasons may cause the courseware upload to fail:
 
 - Supported file formats include: `PPT`, `PPTX`, `DOC`, `DOCX`, `PDF`, `MP3`, `MP4`, `PNG`, `JPG`, and `GIF`.
 - There should be no special symbols in the courseware name, it can only contain Chinese, English, and numbers.
