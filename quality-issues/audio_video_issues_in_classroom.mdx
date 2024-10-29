@@ -44,37 +44,38 @@ For security reasons, WebRTC is only allowed to be used in an HTTPS environment;
 
 Use `launchOption.MediaOptions` configurations of the web client to adjust the resolution in a classroom:
 
-- `launchOption.MediaOptions.lowStreamCameraEncoderConfiguration`: Adjust the small stream resolution.
-- `launchOption.mediaOptions.cameraEncoderConfiguration`: Adjust the large stream resolution.
-- `launchOption.mediaOptions.screenShareEncoderConfiguration`: Adjust the screen sharing resolution.
+- To adjust the small stream resolution use: `launchOption.MediaOptions.lowStreamCameraEncoderConfiguration`.
+- To adjust the large stream resolution use: `launchOption.mediaOptions.cameraEncoderConfiguration`.
+- To adjust the screen sharing resolution use: `launchOption.mediaOptions.screenShareEncoderConfiguration`.
 
 The following sample code illustrates how to modify the resolution of small and large streams:
 
 ``` typescript
-    AgoraEduSDK.launch(appRef.current, {
-        ...launchOption,
-        recordUrl,
-        courseWareList,
-        uiMode: homeStore.theme,
-        virtualBackgroundImages,
-        virtualBackgroundVideos,
-        mediaOptions: {
+AgoraEduSDK.launch(appRef.current, {
+    ...launchOption,
+    recordUrl,
+    courseWareList,
+    uiMode: homeStore.theme,
+    virtualBackgroundImages,
+    virtualBackgroundVideos,
+    mediaOptions: {
         cameraEncoderConfiguration: {
             width: 1280,
             height: 720,
             frameRate: 30,
             bitrate: 1710,
         },
-        lowStreamCameraEncoderConfiguration:{
+        lowStreamCameraEncoderConfiguration: {
             width: 1280,
             height: 720,
             frameRate: 30,
             bitrate: 1710,
         }
-        },
-        listener: (evt: AgoraEduClassroomEvent, type) => {
-        ,
-    });
+    },
+    listener: (evt: AgoraEduClassroomEvent, type) => {
+        // Add logic for handling events here
+    }
+});
 ```
 
 #### Recording video resolution
@@ -83,18 +84,20 @@ Adjust the resolution of class recordings in the web client by changing the `web
 
 ```typescript
 get recordArgs() {
-const { recordUrl, rteEngineConfig, recordRetryTimeout } = EduClassroomConfig.shared;
-const args = {
-    webRecordConfig: {
-    rootUrl: `${recordUrl}?language=${rteEngineConfig.language}`,
-        videoBitrate: 3000,
-        videoWidth：1280,
-        videoHeight:720,
-        videoFps:15
-    },
-    mode: RecordMode.Web,
-    retryTimeout: recordRetryTimeout,
-};
+    const { recordUrl, rteEngineConfig, recordRetryTimeout } = EduClassroomConfig.shared;
+    const args = {
+        webRecordConfig: {
+            rootUrl: `${recordUrl}?language=${rteEngineConfig.language}`,
+            videoBitrate: 3000,
+            videoWidth: 1280,
+            videoHeight: 720,
+            videoFps: 15
+        },
+        mode: RecordMode.Web,
+        retryTimeout: recordRetryTimeout,
+    };
+    return args;
+}
 ```
 
 ### When using screen sharing, the error 'Please enable screen recording permission first' is reported.
@@ -131,48 +134,42 @@ You can use the iframe `allow` attribute to add `display-capture` parameters for
 - Teacher's device: Exclusive broadband and uplink speed of at least 10 Mbps and 4 Mbps, respectively.
 - Student's device: Exclusive broadband of at least 4 Mbps.
 
-### What should a user do if they get stuck frequently during class, can’t hear the audio clearly, have a white or black screen, or fail to load courseware?
+## How do I troubleshoot frequent freezing, unclear audio, blank or black screens, or failed courseware loading?
 
-If a user has the above network problems, they should take the following steps to check their network:
+If you experience these network issues, try the following steps to improve your connection:
 
-- Restart the router and reconnect to the network.
-- Move the device away from the router, make sure it is separated by a wall.
-- Turn off other programs and disconnect devices that occupy the network speed, such as download programs, online playback programs, cloud disk software, TV network set-top boxes, or others.
-- Switch networks, for example, switch from WiFi to a 4G hotspot and re-enter the classroom.
-- Reboot the device.
-- Turn off VPN or web proxy.
+- Restart your router and reconnect to the network.
+- Move your device closer to the router, ensuring there are no walls or obstructions in between.
+- Disconnect other devices or applications that may be using bandwidth, such as download programs, streaming services, cloud storage applications, or networked TV boxes.
+- Switch to a different network, such as a 4G hotspot, and re-enter the classroom.
+- Restart your device.
+- Disable any VPNs or network proxies.
 
-### What if the students can't hear the teacher's voice?
+## What if the students can't hear the teacher's voice?
 
-The teacher should:
-- Check whether their microphone is turned on.
-
-The students should:
-- Check their network status.
-- Check that their speakers, including the volume mixer, and browsers are muted.
-- Check whether their speaker devices have been selected correctly.
+- Check whether the teacher's microphone is turned on.
+- Check the student network status.
+- Check that the student speakers, including volume mixer and browser, are muted.
+- Check whether the speaker device used in the student class is selected correctly.
 - Exit and re-enter the classroom or restart the device.
 
-### What if the teacher cannot hear the students?
+## What if the teacher cannot hear the students?
 
-The student should:
-- Check that they are on stage and have their microphone turned on.
-
-The teacher should:
-- Check that their speakers, including the volume mixer, and browser are muted.
-- Check whether their speaker device is selected correctly.
+- Check that the students are on stage and have their microphone turned on.
+- Check that the teacher's speakers, including the volume mixer and browser, are muted.
+- Check whether the teacher's speaker device is selected correctly.
 - Exit and re-enter the classroom or restart the device.
 
-### How to enable screen sharing with audio?
+## How to enable screen sharing with audio?
 
-#### Web
+### Web
 
 Web screen sharing is only supported in Chrome version 74 and above on Windows and macOS, including the following:
 
 - Windows supports audio sharing when sharing the entire screen or a Chrome tab, but not when sharing an app window.
 - macOS supports sharing audio when sharing a Chrome tab. After setting `withAudio` to `true`, check the share audio box in the screen sharing pop-up.
 
-#### Electron
+### Electron
 
 The Electron terminal supports sharing system audio on Windows.
 
