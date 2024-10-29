@@ -35,14 +35,14 @@ Same reason and solution as [Failed to load resource](#failed-to-load-resource).
 
 The following table lists the possible reasons and corresponding solutions:
 
-| Reason                                                                                                        | Solution                                                                                                                                                                                               |
-| :------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The web browser does not fully support WebRTC.                                                                | Use a [Web browser](/video-calling/reference/supported-platforms) supporting WebRTC.                                                                                                                   |
-| The web browser has plugins that prevent WebRTC from getting an ICE candidate on the local device.            | Disable the problematic browser plugins.                                                                                                                                                               |
-| The user's gateway firewall disables the UDP protocol or the UDP ports greater than 10000.                    | Disable the firewall or use the [Agora Cloud Proxy](/voice-calling/core-functionality/cloud-proxy) service. |
-| You set the web browser to use the VP8 codec, but the user uses the Safari browser that does not support VP8. | The user can either upgrade the Safari browser to versions later than 12.1, or use the Chrome browser.                                                                                                 |
-| You set the web browser to use the H.264 codec, but the user's device hardware does not support H.264.        | Set the web browser to use VP8.                                                                                                                                                                        |
-| Connection issues of a network provider.                                                                      | The user can try switching to a different network, for example, using a cellular data connection.                                                                                                      |
+| Reason | Solution    |
+| :------------ | :----- |
+| The web browser does not fully support WebRTC.  | Use a [Web browser](/video-calling/overview/supported-platforms?platform=web) supporting WebRTC. |
+| The web browser has plugins that prevent WebRTC from getting an ICE candidate on the local device.  | Disable the problematic browser plugins.   |
+| The user's gateway firewall disables the UDP protocol or the UDP ports greater than 10000.  | Disable the firewall or use the [Agora Cloud Proxy](/voice-calling/core-functionality/cloud-proxy) service. |
+| You set the web browser to use the VP8 codec, but the user uses the Safari browser that does not support VP8. | The user can either upgrade the Safari browser to versions later than 12.1, or use the Chrome browser. |
+| You set the web browser to use the H.264 codec, but the user's device hardware does not support H.264.   | Set the web browser to use VP8.  |
+| Connection issues of a network provider.| The user can try switching to a different network, for example, using a cellular data connection. |
 
 If the error persists after troubleshooting, contact support@agora.io.
 

@@ -1,15 +1,9 @@
 ---
-title: 'How can I use string user names?'
+title: 'How can I use string user ID?'
 sidebar_position: 652
 platforms: []
 products: []
 ---
-
-This feature is in BETA. We recommend contacting [support@agora.io](mailto:support@agora.io) before implementing this function. The following products or features do not support string user accounts:
-- [Cloud Recording](/cloud-recording/overview/product-overview)
-- <a href="/en/3.x/interactive-live-streaming/advanced-features/media-push#api-reference?platform=android">RTMP Converter</a >
-- <a href="/en/3.x/video-calling/reference/channel-management-rest-api">Channel Management RESTful API</a >
-- <a href="/en/3.x/video-calling/reference/agora-console-rest-api">Console RESTful API</a >
 
 ## Introduction
 
@@ -17,9 +11,17 @@ Many apps use string usernames. To reduce development costs, Agora adds support 
 
 To ensure smooth communication, all the users in a channel should use the same type of user account, that is, either the integer user ID, or the string user account.
 
+<Admonition type="caution">
+This feature is in BETA. We recommend contacting [support@agora.io](mailto:support@agora.io) before implementing this function. The following products or features do not support string user accounts:
+
+- [Cloud Recording](/cloud-recording/overview/product-overview)
+- [Channel Management RESTful API](/video-calling/channel-management-api/overview)
+- Console RESTful API
+</Admonition>
+
 ## Implementation
 
-Before proceeding, ensure that you understand the steps and code logic for implmenting the basic real-time communication functions.
+Before proceeding, ensure that you understand the steps and code logic for implementing the basic real-time communication functions.
 
 ### Native
 

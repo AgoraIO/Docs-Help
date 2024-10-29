@@ -1,5 +1,5 @@
 ---
-title: 'How can I fix black, green, or pixelated video when a Web client and a Native client communicate with each other?'
+title: "Why can't a Flutter App installed on iOS 14 and above devices be reopened in debug mode?"
 sidebar_position: 504
 platforms: []
 products: []
@@ -7,18 +7,12 @@ products: []
 
 export const toc = [{}];
 
-When deploying the Xcode project to an iOS device for debugging, the following error occurs:
+On devices running iOS 14 and above, Flutter apps installed in debug mode cannot be reopened using the home screen icon, deep linking, or other methods. Additionally, if an iOS app integrates a Flutter module in debug mode, reopening the app through the home screen icon or similar actions may cause the app to crash due to the integrated Flutter module.
 
-```
-Error: Signing for "Runner" requires a development team. Select a development team in the Signing & Capabilities editor (in target 'Runner' from project 'Runner').
-```
+## Reason
 
-## Issue cause
-
-On the iOS platform, all apps require a developer signature certified by Apple to verify the source and security of the app. If Xcode fails to detect a valid development team or certificate, it will not be able to complete the compilation and deployment of the app.
+Since iOS 14, Apple has adjusted the execution mechanism for apps in debug mode, specifically adding restrictions on the execution of just-in-time (JIT) code. Flutter apps running in debug mode rely on JIT to execute code, and these new restrictions prevent the apps from being launched from the device in the usual manner.
 
 ## Solution
 
-Refer to [Apple's official instructions](https://help.apple.com/xcode/mac/current/#/dev60b6fbbc7) to configure a valid development team and certificate.
-
-
+Refer to the [official Flutter documentation](https://docs.flutter.dev/platform-integration/ios/ios-debugging).

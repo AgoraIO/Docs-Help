@@ -53,21 +53,23 @@ solve this in one of the following ways:
 
 - If your Web project is created with Vue.js, add the following code to the `vue.config.js` file:
 
-  ```
+  ```js
   const vueConfig = {
-      // publicPath: './',
-      configureWebpack: {
-      // webpack plugins
+    // publicPath: './',
+    configureWebpack: {
+      // Webpack plugins
       plugins: [
-          ..........................
+        // Add your plugins here
+        // ..........................
       ],
 
-      externals:{
-          // 添加下面这行代码
-          'agora-electron-sdk': 'commonjs2 agora-electron-sdk',
-           "agora-rdc-core": "commonjs2 agora-rdc-core"
+      externals: {
+        // Add the following line of code
+        'agora-electron-sdk': 'commonjs2 agora-electron-sdk',
+        'agora-rdc-core': 'commonjs2 agora-rdc-core'
       }
-  },
+    }
+  };
   ```
 
 ### Error when running Flexible Classroom on Linux
@@ -120,6 +122,8 @@ After:
   ![1680084854943](https://web-cdn.agora.io/docs-files/1680084854943)
 
    The error is produced when the room number (`roomUuid`) has already been used to create a small classroom and is now being configured as a different room type. Agora does not recommend using the same room number to create multiple classrooms, and each room should be configured with a different room type.
+
+  For other related server error codes, refer to [Response Status Codes](/flexible-classroom/restful-api/classroom-api#status-code).
 
 - `Error Domain=last launch not finished Code=-1 "(null)` when entering the classroom
 
