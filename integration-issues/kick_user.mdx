@@ -5,24 +5,26 @@ platforms: []
 products: []
 ---
 
-In real-time audio and video interactions, there are often cases where you need to remove a specific user from the channel. <Vg k="COMPANY"/> offers three solutions based on different scenarios:
+In real-time audio and video interactions, there are often cases where you need to remove a specific user from the channel. <Vg k="COMPANY"/> offers several solutions tailored to different scenarios:
 
-**Option 1:**
+### Remove inactive users
 
 **Scenario:** After a call, a user (typically on the web) forgets to leave the channel. Even without an active call, usage is still generated.
 
-**Solution:** To avoid this, you can use the volume indication callback (`onAudioVolumeIndication`) or monitor at the app level to check if the user is publishing an audio stream over time. If not, call `leaveChannel` in the app logic to log off the user.
+**Solution:** To avoid this, check if the user is publishing an audio stream over time, using the volume indication callback (`onAudioVolumeIndication`) or monitor at the app level. If the user is inactive, call `leaveChannel` in the app logic to log off the user.
 
-**Option 2:**
+### Remove all users
 
-**Scenario:** Scheduling apps may need to end calls or meetings at a set time. For example, a meeting starting at 10:00 a.m. and lasting for one hour needs to end at 11:00 a.m.
+**Scenario:** Scheduling apps may need to end calls or meetings at a set time. For example, a one hour meeting starts at 10:00 a.m. and needs to end at 11:00 a.m.
 
-**Solution:** You can use one of the following approaches:
-- Set the valid timestamp of the Token (`privilegeExpiredTs` parameter) to the meeting's end time. After this time, the user will be automatically removed from the channel. For details, see [Secure authentication with tokens](/video-calling/get-started/authentication-workflow).
-- Use the server-side RESTful API to remove users. Track the user ID and channel name in the app, then call the Create Kick Rule API to remove the user from the channel. Set the ban time (`time` parameter) to 0 to allow the user to join other channels afterward. For details, see [Create a rule](/video-calling/channel-management-api/endpoint/ban-user-privileges/create-rules).
+**Solution:** Use one of the following approaches:
 
-**Option 3:**
+- Set the valid timestamp of the Token (`privilegeExpiredTs` parameter) to the meeting's end time. After this time, the user is automatically removed from the channel. For details, see [Secure authentication with tokens](/video-calling/get-started/authentication-workflow).
+
+- Use the server-side RESTful API to remove users. Track the user ID and channel name in the app, then call the [Create Rule API](/video-calling/channel-management-api/endpoint/ban-user-privileges/create-rules) to remove the user from the channel. Set the ban time (`time` parameter) to 0 to allow the user to join other channels afterwards. 
+
+### Remove a user who violates your policies
 
 **Scenario:** In a live broadcast room, if a connected user makes inappropriate remarks, the host may want to remove the user.
 
-**Solution:** Use the peer-to-peer messaging function of <Vg k="SIG"/>. Send an offline notification with `sendMessageToPeer`. The user can receive this message through the `onMessageReceived` callback, and then call the `leaveChannel` method in the <Vg k="VSDK"/> to leave the channel.
+**Solution:** Use the peer-to-peer messaging function of <Vg k="SIG"/>. Send an offline notification with `sendMessageToPeer`. The user receives this message through the `onMessageReceived` callback, and the client calls the `leaveChannel` method in the <Vg k="VSDK"/> to leave the channel.

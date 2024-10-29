@@ -805,7 +805,7 @@ export const data = {
       products: ['all-products', 'cloud-recording'],
       popular: false,
     },
-    log: {
+    set_log_file: {
       platforms: ['all-platforms', 'web'],
       products: [
         'all-products',
