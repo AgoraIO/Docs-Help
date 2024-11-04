@@ -106,6 +106,7 @@ The following lists other known issues and limitations of Safari on iOS and macO
   - Windows 10 (MI)
 - On Firefox, when calling APIs to get quality statistics, the values of some properties are 0. For example, when calling `getLocalAudioStats` to get the audio statistics of the local stream, the values of `RecordingLevel` and `SendLevel` are 0.
 - On Macs with the Apple M1 chip, Firefox does not support H.264. For details, see the [Firefox documentation](https://bugzilla.mozilla.org/show_bug.cgi?id=1686470).
+- Firefox on macOS does not support the `480p_8` (848x480) video resolution. However, it is supported on Firefox for Windows. On Windows, the video initially starts at 640x480 resolution and typically adjusts to 848x480 after a brief delay, as observed in Agora’s testing.
 
 ## Reference
 
