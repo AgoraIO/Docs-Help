@@ -21,7 +21,7 @@ After screen locking or switching to the background on some Android versions, yo
 
 To ensure uninterrupted access to microphone, camera, media playback, and other functionalities when your device is locked or your app is in the background, it's crucial to correctly integrate foreground services. This prevents interruptions in audio and video capture due to system restrictions. <Vg k="COMPANY"/> provides an [example project](https://github.com/AgoraIO/API-Examples/blob/main/Android/APIExample/app/src/main/java/io/agora/api/example/examples/basic/JoinChannelAudio.java#L324) demonstrating how to integrate foreground services. Here are the steps:
 
-    1. In the `AndroidManifest.xml` file, declare the foreground service privilege (`FOREGROUND_SERVICE`) and specify the foreground service type (`foregroundServiceType`). For real-time audio/video interactive apps, you usually need to specify the microphone (`microphone`), camera (`camera`), and media playback (`mediaPlayback`) service types. The example code is as follows:
+    1. In the `AndroidManifest.xml` file, declare the `FOREGROUND_SERVICE` privilege and specify the `foregroundServiceType`. For real-time audio/video interactive apps, you usually need to specify the `microphone`, `camera`, and `mediaPlayback` service types. Refer to the following example:
 
         ``` xml
         <manifest ...>
