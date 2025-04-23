@@ -1466,6 +1466,17 @@ export const data = {
       products: ['all-products', 'web'],
       popular: false,
     },
+
+    streaming_difference: {
+      platforms: ['all-platforms'],
+      products: [
+        'all-products',
+        'video-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+      ],
+      popular: false,
+    },
   },
   'account-and-billing': {
     billing_free: {
