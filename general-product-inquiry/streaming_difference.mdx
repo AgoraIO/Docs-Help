@@ -1,5 +1,5 @@
 ---
-title: "What's the difference between on-premise recording and cloud recording?"
+title: "What are the differences between various live broadcasting solutions?"
 sidebar_position: 1120
 platforms: []
 products: []
@@ -7,12 +7,11 @@ products: []
 
 export const toc = [{}];
 
-You can quickly understand the differences between different live broadcast scenarios through the table below.
-
-| Project                | Sound Network interactive live broadcast | Agora Live Broadcast | Traditional CDN Live Broadcast |
-|------------------------|------------------------------------------|----------------------|---------------------------------|
-| Typical scenarios      | Live broadcast scenarios where the host and the audience need to frequently interact with each other through audio and video, requiring ultra-low latency on the audience side. | Live broadcast scenarios where the host needs to respond to audience text, barrage and reward information in a timely manner, or have low-frequency audio and video interactions with the audience. | Live broadcast scenarios that do not require audio or video interaction |
-| Latency Indicators     | The delay between the host and the audience is 400 ms to 800 ms. | Delay between streamer and audience 1,500 ms to 2,000 ms. | Delay between streamer and audience > 3,000 ms |
-| Synchronicity          | Good synchronization between the host and the audience Good synchronization between the audience. | Good synchronization between the host and the audience Good synchronization between the audience. | Poor synchronization between the host and the audience Poor synchronization between the audience. |
-| Interactive Experience | Excellent | Good | Difference |
-| Cost                   | Higher | Moderate | Lower |
+The following table compares the different live broadcasting solutions.
+| Project  | Agora Interactive Live Streaming| Agora Broadcast Streaming | Traditional CDN Live Broadcast       |
+|--------------------------|-----------|------------------------|--------|
+| Typical scenarios| Hosts and audiences frequently interact through audio and video, requiring ultra-low audience latency. | Hosts respond to text, chat, or rewards in real time, with occasional audio or video interaction.       | One-way streaming with no audio or video interaction.   |
+| Latency      | 400 ms to 800 ms between host and audience.| 1,500 ms to 2,000 ms between host and audience.      | Greater than 3,000 ms between host and audience.|
+| Synchronization  | Good synchronization between host and audience, and among audience members.   | Good synchronization between host and audience, and among audience members.| Poor synchronization between host and audience, and among viewers. |
+| Interactive experience   | Excellent    | Good   | Limited  |
+| Cost  | High | Moderate       | Low   |
