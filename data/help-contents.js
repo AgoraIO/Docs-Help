@@ -12,7 +12,14 @@ export const data = {
         'windows',
         'unity',
       ],
-      products: ['all-products'],
+      products: [        
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+        'signaling',
+      ],
       popular: false,
     },
     classroom_statuses: {
