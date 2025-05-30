@@ -1,5 +1,27 @@
 export const data = {
   'integration-issues': {
+      rtc_rtm_token: {
+      platforms: [
+        'all-platforms',
+        'android',
+        'ios',
+        'macos',
+        'flutter',
+        'react-native',
+        'electron',
+        'windows',
+        'unity',
+      ],
+      products: [        
+        'all-products',
+        'video-calling',
+        'voice-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+        'signaling',
+      ],
+      popular: false,
+    },
     classroom_statuses: {
       platforms: [
         'all-platforms',
