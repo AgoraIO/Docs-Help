@@ -1,0 +1,69 @@
+---
+title: 'How can I troubleshoot a slow first frame display in remote video when using the Agora SDK?'
+sidebar_position: 144
+platforms: []
+products: []
+---
+
+export const toc = [{}];
+
+When using the  <Vg k="COMPANY"/> <Vg k="VSDK"/> for real-time Video Calling, Interactive Live Streaming, or Broadcast Streaming, some developers observe that the remote video takes too long to display after joining a channel. This delay can negatively impact user experience, especially in scenarios like live broadcasts where quick video display is critical.
+
+## Reason
+
+The delay in the first frame rendering is usually due to delays across multiple stages, including:
+
+* Setting the remote rendering view too late
+* Not subscribing to the remote video stream in time after joining the channel
+
+## Solution
+
+The <Vg k="COMPANY"/> SDK provides a mechanism to help developers identify which stage of the video rendering pipeline is time-consuming. The `onVideoRenderingTracingResult` callback returns the duration of each stage. By default, durations are calculated from the time `joinChannel` is called. To customize the start time, call `startMediaRenderingTracing`.
+
+### Step 1: Use `startMediaRenderingTracing` before joining
+
+To align rendering metrics with actual user experience, call `startMediaRenderingTracing` immediately when the user triggers a join action (such as tapping "Join" or switching channels). This ensures the collected data reflects real-world latency.
+
+The following table explains the fields returned in `tracingInfo` from the `onVideoRenderingTracingResult` callback:
+
+| Field                           | Description                                                                                                                                                                                 | Reference Range   | Recommendations                                                                                                                                                                                                           |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `elapsedTime`                 | - **Decoding event**: Time from `startMediaRenderingTracing` to `onFirstRemoteVideoDecoded`.<br/>- **Rendering event**: Time from `startMediaRenderingTracing` to `onFirstRemoteVideoFrame`. | `<`1000 ms for both | If the difference between decoding and rendering is >200 ms, ensure the remote view is set promptly. If only decoding events are reported, check whether:<br/>- The remote view is unset<br/>- An external renderer is used |
+| `start2JoinChannel`           | Time from `startMediaRenderingTracing` to `joinChannel`.                                                                                                                                    | `<`10 ms            | If too large, ensure `joinChannel` is called promptly after user action.                                                                                                                                                  |
+| `join2JoinSuccess`            | Time from `joinChannel` to `onJoinChannelSuccess`.                                                                                                                                          | 50–500 ms         | If high, check network conditions. Consider calling `preloadChannel` to speed up joining.                                                                                                                                 |
+| `joinSuccess2RemoteJoined`    | Time from `onJoinChannelSuccess` to `onUserJoined`.                                                                                                                                         | ≤50 ms            | High values may occur if:<br/>- Host joins after the viewer<br/>- Streams are not subscribed by default                                                                                                                     |
+| `remoteJoined2SetView`        | Time from `onUserJoined` to `setupRemoteVideo`.                                                                                                                                             | 0–20 ms           | Set the remote view immediately in `onUserJoined`. For optimal performance, pre-set the view before joining.                                                                                                              |
+| `remoteJoined2UnmuteVideo`    | Time from `onUserJoined` to subscribing to the video stream.                                                                                                                                | 0 ms              | If high, check if subscription is delayed. Subscribing during join keeps this value at 0.                                                                                                                                 |
+| `remoteJoined2PacketReceived` | Time from `onUserJoined` to receiving the first video packet.                                                                                                                               | 0–50 ms           | If high, check:<br/>- Whether video stream subscription is delayed<br/>- Whether the host publishes the stream promptly                                                                                                     |
+
+
+### Step 2: Use default behavior (without `startMediaRenderingTracing`)
+
+If you don't call `startMediaRenderingTracing`, the SDK uses the time `joinChannel` is called as the starting point for measuring rendering performance.
+
+With this approach, most fields in the `onVideoRenderingTracingResult` callback have the same meaning as when tracing is started before joining. However, two fields have different interpretations, as shown below:
+
+| Field                 | Description                                                                                                                                                   | Reference Range   | Recommendations                                                                                                                                                                                                                     |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `elapsedTime`       | - **Decoding event**: Time from `joinChannel` to `onFirstRemoteVideoDecoded`.<br/>- **Rendering event**: Time from `joinChannel` to `onFirstRemoteVideoFrame`. | `<`1000 ms for both | If the difference between decoding and rendering is >200 ms, check whether the remote view is set on time. If only decoding events are received, possible causes include:<br/>- Remote view not set<br/>- Use of an external renderer |
+| `start2JoinChannel` | Time from `startMediaRenderingTracing` to `joinChannel`.                                                                                                      | 0 ms              | This value is always 0 because no tracing was started before calling `joinChannel`.                                                                                                                                                 |
+
+### Step 3: Delay media subscription
+
+If your app requires extremely low latency for the first frame, you can pre-join the channel without subscribing to the stream. Then, when the user triggers the join action, call `startMediaRenderingTracing` and subscribe to the remote stream.
+
+For implementation details, see [optimize video rendering](/video-calling/best-practices/optimize-frame-rendering).
+
+The following table explains the field meanings in this scenario:
+
+| Field                           | Description                                                                                                                                                                                 | Reference Range  | Recommendations                                                                                                                                        |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `elapsedTime`                 | - **Decoding event**: Time from `startMediaRenderingTracing` to `onFirstRemoteVideoDecoded`.<br/>- **Rendering event**: Time from `startMediaRenderingTracing` to `onFirstRemoteVideoFrame`. | `<`500 ms for both | If the rendering time greatly exceeds decoding time, check whether the remote view was set in time.                                                    |
+| `start2JoinChannel`           | Time from `joinChannel` to `startMediaRenderingTracing`.                                                                                                                                    | Negative         | Since the channel was joined before tracing started, this value is negative and can be ignored.                                                        |
+| `join2JoinSuccess`            | Time from `joinChannel` to `onJoinChannelSuccess`.                                                                                                                                          | 50–500 ms        | This value is irrelevant because the user has already joined the channel.                                                                              |
+| `joinSuccess2RemoteJoined`    | Time from `startMediaRenderingTracing` to `onUserJoined`.                                                                                                                                   | 0 ms             | If greater than 0, it may indicate frequent channel switching. This value is not meaningful if `onUserJoined` is triggered after tracing starts.       |
+| `remoteJoined2SetView`        | Time from `startMediaRenderingTracing` to `setupRemoteVideo`.                                                                                                                               | 0 ms             | If greater than 0, check whether the view was set promptly. This value may be invalid if the view was set before calling `startMediaRenderingTracing`. |
+| `remoteJoined2UnmuteVideo`    | Time from `startMediaRenderingTracing` to subscribing to the stream.                                                                                                                        | 0 ms             | If this value is large, check for delays between calling `startMediaRenderingTracing` and subscribing to the remote stream.                            |
+| `remoteJoined2PacketReceived` | Time from `startMediaRenderingTracing` to receiving the first video packet.                                                                                                                 | \~100 ms         | If high, verify that the remote host is publishing video promptly after joining.                                                                       |
+
+
