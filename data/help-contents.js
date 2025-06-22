@@ -1108,6 +1108,9 @@ export const data = {
     optimize_video_rendering: {
       platforms: [
         'all-platforms',
+        'android',
+        'ios',
+        'macos', 
         'windows',
       ],
       products: ['all-products', 'video-calling', 'interactive-live-streaming', 'broadcast-streaming'],
