@@ -1105,6 +1105,17 @@ export const data = {
       products: ['all-products', 'video-calling', 'interactive-live-streaming', 'broadcast-streaming'],
       popular: false,
     },
+    optimize_video_rendering: {
+      platforms: [
+        'all-platforms',
+        'android',
+        'ios',
+        'macos', 
+        'windows',
+      ],
+      products: ['all-products', 'video-calling', 'interactive-live-streaming', 'broadcast-streaming'],
+      popular: false,
+    },
     ios_bluetooth: {
       platforms: ['all-platforms', 'android', 'ios'],
       products: [
