@@ -1,5 +1,9 @@
 export const data = [
   {
+    question: "What's the difference between query methods and message notification service?",
+    link: '/help/general-product-inquiry/query_vs_notifications',
+  },
+  {
     question: 'How to implement basic HTTP authentication?',
     link: '/video-calling/channel-management-api/restful-authentication',
   },

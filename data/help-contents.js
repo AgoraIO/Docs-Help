@@ -1358,6 +1358,12 @@ export const data = {
       popular: false,
     },
 
+    query_vs_notifications: {
+      platforms: ['all-platforms', 'restful-apis'],
+      products: ['all-products', 'cloud-recording', 'cloud-transcoding'],
+      popular: false,
+    },
+
     rtm_emoji: {
       platforms: [
         'all-platforms',

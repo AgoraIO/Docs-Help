@@ -1,0 +1,64 @@
+---
+title: "What's the difference between query methods and message notification service?"
+sidebar_position: 432
+platforms: []
+products: []
+---
+
+export const toc = [{}];
+
+You can monitor the status of cloud recording and cloud transcoding services using two methods:
+
+- **Query method:** Actively request service status
+- **Message notification service:** Receive automatic status updates
+
+Each method has different advantages and use cases.
+
+## Query method
+
+Call the `query` method regularly to check service status. See the documentation for [querying cloud recording status](/cloud-recording/reference/restful-api#query) or [querying cloud transcoding status](/cloud-transcoding/rest-api/query).
+
+### Advantages
+- **High reliability:** You actively request status information
+- **Guaranteed response:** Direct API calls provide immediate feedback
+
+### Disadvantages
+- **Limited information:** Provides basic status details only
+- **Rate limits:** Subject to queries per second (QPS) restrictions
+- **Less real-time:** Manual polling introduces delays
+
+**When to use:** Choose this method when you need reliable, on-demand status information.
+
+## Message notification service
+
+Configure an HTTPS server to receive automatic event notifications. See the documentation for [cloud recording notifications](/cloud-recording/reference/rest-api-overview) or [cloud transcoding notifications](/cloud-transcoding/reference/webhooks/receive-ncs-events).
+
+### Advantages
+- **Real-time updates:** Receive notifications as events occur
+- **Comprehensive information:** Detailed event data included
+
+### Disadvantages
+- **Potential message loss:** Passive reception may miss notifications
+- **Duplicate messages:** Retry logic may send duplicate notifications
+- **No ordering guarantee:** Messages may arrive out of sequence
+
+### Requirements
+- HTTPS server to receive notifications
+- Message deduplication logic
+- Error handling for missed messages
+
+**When to use:** Choose this method when you need immediate notifications of service events.
+
+## Important considerations
+
+The message notification service should supplement, not replace, your core monitoring logic. 
+
+- **Don't rely solely on notifications** for critical business processes
+- **Implement both methods** for comprehensive monitoring
+- [**Contact support**](mailto:support@agora.io) to enable redundant messaging if your application requires high reliability
+
+Even with redundant messaging enabled, Agora cannot guarantee 100% message delivery.
+
+## Best practice
+
+For most applications, use the query method as your primary monitoring solution, with message notifications providing additional real-time awareness.
