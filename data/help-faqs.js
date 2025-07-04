@@ -1,6 +1,6 @@
 export const data = [
   {
-    question: "What's the difference between query methods and message notification service?",
+    question: "What's the difference between the query method and message notification service?",
     link: '/help/general-product-inquiry/query_vs_notifications',
   },
   {
