@@ -31,67 +31,205 @@ When integrating Signaling SDK version 2.2.0 and above with Video SDK version 4.
 
 ## Reason
 
-Both Signaling SDK versions 2.2.0 and above and Video SDK versions 4.3.0 and above use the same library:
+Both Signaling SDK versions 2.2.0 and above and Video SDK versions 4.5.0 and above use the same library:
 
-    - **Android SDK**: `lib/x86/libaosl.so`
-    - **IOS SDK**: `libs/aosl.xcframework`
+  - **Android**: `libaosl.so`
+
+  - **iOS/macOS**: `aosl.xcframework`
+
+  - **Windows**: `libaosl.dll`
 
 As a result, the IDE detects multiple files with the same path during the build process, leading to errors.
 
 ## Solution
 
-### Android SDK
+
+### Manually specify the `aosl` library version
+
+Compare the `aosl` library versions included in both the Signaling and Video SDKs, and keep the version with the higher number.
+
+You can find version information in the following release notes:
+
+* [<Vg k="VSDK"/> Release Notes](#)
+* [<Vg k="SIG"/> Release Notes](#)
+
+
+
+### Remove old version files
+
+After identifying the latest version:
+
+1. Delete the older version of the `aosl` library from your SDK package.
+2. Ensure the newer version is correctly linked in your build configuration.
+3. Rebuild the project.
 
 Depending on your integration method, follow the corresponding solution below:
 
 <Tabs>
-  <TabItem value="Android-cdn" label="Using CDN">
-   
-    1. Manually delete the following files in the SDK package:
+  <TabItem value="video-sdk" label="Video SDK">
 
-        - `lib/x86/libaosl.so`
-        - `lib/x86_64/libaosl.so`
-        - `lib/armeabi-v7a/libaosl.so`
-        - `lib/arm64-v8a/libaosl.so`
-    1. Rebuild the project.
+  If the version of the `aosl` library included in the <Vg k="VSDK"/> package is lower than the version required by your project, delete the outdated library file based on the target platform:
+
+  * **Android**: Delete the lower-version `libaosl.so` file from the SDK package.
+  * **iOS/macOS**: Delete the lower-version `aosl.xcframework` file from the SDK package.
+  * **Windows**: Delete the earlier-version `libaosl.dll` file from the SDK package.
   </TabItem>
-  <TabItem value="Android-maven" label="Using Maven">
-    1. Add the `packagingOptions` node to the `android` node in the `build.gradle` file to specify that the first matching file is preferred during the build process:
-        <CodeBlock language="groovy" showLineNumbers>
-        {`android {
-          // ...
-          packagingOptions {
-            pickFirst 'lib/x86/libaosl.so'
-            pickFirst 'lib/x86_64/libaosl.so'
-            pickFirst 'lib/armeabi-v7a/libaosl.so'
-            pickFirst 'lib/arm64-v8a/libaosl.so'
-          }
-        }`}
+  <TabItem value="sig-sdk" label="Signaling SDK">
+  
+  If the version of the `aosl` library in the Signaling SDK package is lower than the version required by your project, you can resolve the conflict using one of the following methods:
+
+  ### **Solution 1: Upgrade to Signaling SDK v2.2.2 or higher**
+
+    If you're using an Signaling SDK version earlier than **2.2.2**, we recommend upgrading to **v2.2.2 or later**. Starting from this version, the Signaling SDK supports:
+
+    * **Subspecs** for CocoaPods (iOS)
+    * **Lightweight Maven repositories** (Android)
+
+    These improvements allow better compatibility with <Vg k="VSDK"/> v4.5.0 and above, and help prevent library conflicts.
+
+    * **iOS** (Objective-C)
+
+        Use the subspec-enabled CocoaPods configuration:
+        <CodeBlock language="ruby" showLineNumbers>
+        {`target 'YourApp' do
+      # If you're using Signaling SDK v2.2.2 or later with RTC SDK v4.5.0 or later,
+      # replace x.y.z with the specific version number (e.g., 2.2.2).
+      pod 'AgoraRtm', 'x.y.z', :subspecs => ['RtmKit']
+      end`}
         </CodeBlock>
-    1. After the Gradle file synchronization is complete, rebuild the project.
-  </TabItem>
-</Tabs>
 
-### IOS SDK
+    * **Android** (Java)
 
-Depending on your integration method, follow the corresponding solution below:
-<Tabs>
-  <TabItem value="ios-cdn" label="Using CDN">
-    1. Manually delete the `libs/aosl.xcframework` file in the SDK package.
-    1. Rebuild the project.
-  </TabItem>
-  <TabItem value="ios-CocoaPods" label="Using CocoaPods">
-      1. Add this script to the end of your project's `Podfile`:
+      Use the lightweight Signaling SDK through Maven:
 
-          <CodeBlock language="ruby" showLineNumbers>
+      <CodeBlock language="Groovy" showLineNumbers>
+      {`dependencies {
+        // If you're using Signaling SDK v2.2.2 or later with RTC SDK v4.5.0 or later,
+        // replace x.y.z with the specific version number (e.g., 2.2.2).
+        implementation 'io.agora:agora-rtm-lite:x.y.z'
+      }`}
+      </CodeBlock>
+
+    After upgrading, **clean and rebuild your project** to apply the changes.
+
+### **Solution 2: Manually delete duplicate libraries**
+
+If you cannot upgrade to version 2.2.2 or higher, you can manually remove duplicate library files from the Signaling SDK package.
+
+  * **Android** (Java)
+
+    Depending on your integration method (CDN or Maven), manually delete the following files from the Signaling SDK package:
+
+    <Tabs>
+      <TabItem value="Android-cdn" label="Using CDN">
+        1. Manually delete the following files:
+            <CodeBlock language="Groovy" showLineNumbers>
+            {`lib/x86/libaosl.so  
+           lib/x86_64/libaosl.so  
+           lib/armeabi-v7a/libaosl.so  
+           lib/arm64-v8a/libaosl.so`}
+            </CodeBlock>
+        1. After deleting the files, rebuild the project.
+      </TabItem>
+      <TabItem value="Android-maven" label="Using Maven">
+        1. Add the `packagingOptions` block to your `build.gradle` file as shown below:
+            <CodeBlock language="Groovy" showLineNumbers>
+            {`packagingOptions {
+             pickFirst 'lib/x86/libaosl.so'
+             pickFirst 'lib/x86_64/libaosl.so'
+             pickFirst 'lib/armeabi-v7a/libaosl.so'
+             pickFirst 'lib/arm64-v8a/libaosl.so'
+           }`}
+            </CodeBlock>
+        1. After syncing the Gradle files, rebuild the project to apply the changes.
+      </TabItem>
+    </Tabs>
+
+  * **iOS SDK** (Objective-C)
+
+    Depending on your integration method, choose one of the following approaches:
+
+    <Tabs>
+      <TabItem value="ios-cdn" label="Using CDN">
+        1. Manually delete the `aosl.xcframework` file from the Signaling SDK package:
+            <CodeBlock language="groovy" showLineNumbers>
+            {`libs/aosl.xcframework`}
+            </CodeBlock>
+        1. After deleting the file, **rebuild the project**.
+      </TabItem>
+      <TabItem value="ios-cocoapods" label="Using CocoaPods">
+        1. Add the following pre_install script to the end of your `Podfile`. This script automatically deletes the `aosl.xcframework` from the Agora Signaling Pod during installation.
+            <CodeBlock language="ruby" showLineNumbers>
+            {`pre_install do |installer|
+             # Define the path to the AgoraRtm Pod
+             rtm_pod_path = File.join(installer.sandbox.root, 'AgoraRtm')
+             # Define the full path to aosl.xcframework
+             aosl_xcframework_path = File.join(rtm_pod_path, 'aosl.xcframework')
+             # Delete the framework if it exists
+             if File.exist?(aosl_xcframework_path)
+               puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
+               FileUtils.rm_rf(aosl_xcframework_path)
+             else
+               puts "aosl.xcframework not found, skipping deletion."
+             end
+           end`}
+            </CodeBlock>
+          2. Then run the following commands:
+          <CodeBlock language="bash" showLineNumbers>
+          {`pod install`}
+          </CodeBlock>
+          3. After installation, **reintegrate the Signaling and <Vg k="VSDK"/>s** and **rebuild the project**.
+      </TabItem>
+    </Tabs>
+
+  * **Flutter SDK**
+    
+    Depending on your target platform, follow the appropriate steps below:
+
+    <Tabs>
+     <TabItem value="android" label="Android">
+    
+      1. Add the `aosl` dependency
+
+          In your project’s root `build.gradle` file, add the following dependency:
+
+            <CodeBlock language="bash" showLineNumbers>
+            {`dependencies {
+            api 'io.agora.infra:aosl:1.2.13'
+            // Other dependencies...
+          }`}
+            </CodeBlock>
+
+      2. Resolve duplicate `.so` files
+
+          If you're integrating via **Maven**, configure the build to prioritize the first matching native library by adding the `packagingOptions` block to your module-level `build.gradle` file:
+
+            <CodeBlock language="bash" showLineNumbers>
+            {`packagingOptions {
+              pickFirst 'lib/x86/libaosl.so'
+              pickFirst 'lib/x86_64/libaosl.so'
+              pickFirst 'lib/armeabi-v7a/libaosl.so'
+              pickFirst 'lib/arm64-v8a/libaosl.so'
+            }`}
+            </CodeBlock>
+
+      3. Rebuild the project
+
+          After syncing your Gradle files, **clean and rebuild** the project to apply the changes.
+     </TabItem>
+     <TabItem value="ios" label="iOS">
+
+      1. To resolve conflict due to duplicate versions of `aosl.xcframework`, add the following `pre_install` script at the **end** of your `Podfile`:
+
+          <CodeBlock language="bash" showLineNumbers>
           {`pre_install do |installer|
-            # Define the path for the AgoraRtm framework
+            # Define the path to the AgoraRtm framework
             rtm_pod_path = File.join(installer.sandbox.root, 'AgoraRtm')
 
             # Full path to aosl.xcframework
             aosl_xcframework_path = File.join(rtm_pod_path, 'aosl.xcframework')
 
-            # Check if the file exists, and if it does, delete it
+            # Delete the framework if it exists
             if File.exist?(aosl_xcframework_path)
               puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
               FileUtils.rm_rf(aosl_xcframework_path)
@@ -100,53 +238,22 @@ Depending on your integration method, follow the corresponding solution below:
             end
           end`}
           </CodeBlock>
-      1. Run `pod install` to reintegrate the RTM and RTC SDK.
-      1. Rebuild the project.
+
+      2. Run the following command:
+
+          <CodeBlock language="bash" showLineNumbers>
+          {`pod install`}
+          </CodeBlock>
+
+      3. Reintegrate both the Signaling and <Vg k="VSDK"/>s as needed.
+
+      4. **Rebuild the project**.
+     </TabItem>
+    </Tabs>
+
   </TabItem>
 </Tabs>
 
-### Flutter SDK
-
-Depending on your target platform, select the corresponding solution below:
-<Tabs>
-  <TabItem value="android" label="Android">
-    1. When integrating with Maven, add a node to the `build.gradle` file to ensure the build process prioritizes the first matching file. Use the `android.packagingOptions` node for this:
-        ```groovy
-        android {
-          // ...
-          packagingOptions {
-            pickFirst 'lib/x86/libaosl.so'
-            pickFirst 'lib/x86_64/libaosl.so'
-            pickFirst 'lib/armeabi-v7a/libaosl.so'
-            pickFirst 'lib/arm64-v8a/libaosl.so'
-          }
-        }
-        ```
-    1. After the Gradle file sync completes, rebuild your project.
-  </TabItem>
-  <TabItem value="iOS" label="iOS">
-    1. When integrating with CocoaPods, add the following script at the end of your project's `Podfile`:
-        <CodeBlock language="ruby" showLineNumbers>
-        {`pre_install do |installer|
-        # Define the path for the AgoraRtm framework
-          rtm_pod_path = File.join(installer.sandbox.root, 'AgoraRtm')
-
-          # Full path of aosl.xcframework
-          aosl_xcframework_path = File.join(rtm_pod_path, 'aosl.xcframework')
-
-          # Check if the file exists, and if so, delete it
-          if File.exist?(aosl_xcframework_path)
-            puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
-            FileUtils.rm_rf(aosl_xcframework_path)
-          else
-            puts "aosl.xcframework not found, skipping deletion."
-          end
-        end`}
-        </CodeBlock>
-    1. Run `pod install` to reintegrate the RTM and RTC SDKs.
-    1. Rebuild the project.
-  </TabItem>
-</Tabs>
 
 
 
