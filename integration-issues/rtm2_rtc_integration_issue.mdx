@@ -61,7 +61,7 @@ After identifying the latest version:
 2. Ensure the newer version is correctly linked in your build configuration.
 3. Rebuild the project.
 
-Depending on your integration method, follow the corresponding solution below:
+Depending on your integration method, choose from the following solutions:
 
 <Tabs>
   <TabItem value="video-sdk" label="Video SDK">
@@ -74,11 +74,11 @@ Depending on your integration method, follow the corresponding solution below:
   </TabItem>
   <TabItem value="sig-sdk" label="Signaling SDK">
   
-  If the version of the `aosl` library in the Signaling SDK package is lower than the version required by your project, you can resolve the conflict using one of the following methods:
+  If the version of the `aosl` library in the Signaling SDK package is lower, resolve the conflict using one of the following methods:
 
-  ### **Solution 1: Upgrade to Signaling SDK v2.2.2 or higher**
+  ### Upgrade to Signaling SDK v2.2.2 or higher
 
-    If you're using an Signaling SDK version earlier than **2.2.2**, we recommend upgrading to **v2.2.2 or later**. Starting from this version, the Signaling SDK supports:
+    If you're using an Signaling SDK version earlier than 2.2.2, Agora recommends upgrading to v2.2.2 or later. Starting from this version, the Signaling SDK supports:
 
     * **Subspecs** for CocoaPods (iOS)
     * **Lightweight Maven repositories** (Android)
@@ -87,7 +87,6 @@ Depending on your integration method, follow the corresponding solution below:
 
     * **iOS** (Objective-C)
 
-        Use the subspec-enabled CocoaPods configuration:
         <CodeBlock language="ruby" showLineNumbers>
         {`target 'YourApp' do
       # If you're using Signaling SDK v2.2.2 or later with RTC SDK v4.5.0 or later,
@@ -97,8 +96,6 @@ Depending on your integration method, follow the corresponding solution below:
         </CodeBlock>
 
     * **Android** (Java)
-
-      Use the lightweight Signaling SDK through Maven:
 
       <CodeBlock language="Groovy" showLineNumbers>
       {`dependencies {
@@ -110,7 +107,7 @@ Depending on your integration method, follow the corresponding solution below:
 
     After upgrading, **clean and rebuild your project** to apply the changes.
 
-### **Solution 2: Manually delete duplicate libraries**
+### Manually delete duplicate libraries
 
 If you cannot upgrade to version 2.2.2 or higher, you can manually remove duplicate library files from the Signaling SDK package.
 
