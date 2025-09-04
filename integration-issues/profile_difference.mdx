@@ -7,7 +7,9 @@ products: []
 
 export const toc = [{}];
 
-<div class="alert note">This article applies to the Agora Video SDK Native SDK only.</div>
+<Admonition type="note">
+This article applies to the Agora Video SDK Native SDK only.
+</Admonition>
 
 To apply optimization algorithms for different real-time engagement scenarios, Agora provides a `setChannelProfile` method for the Video SDK channel. You can use this method to set the channel profile as either `CHANNEL_PROFILE_COMMUNICATION` or `CHANNEL_PROFILE_LIVE_BROADCASTING`.
 
@@ -29,11 +31,9 @@ The default user role in different channel profiles are different:
 - `CHANNEL_PROFILE_COMMUNICATION`: Host. You cannot change the user role.
 - `CHANNEL_PROFILE_LIVE_BROADCASTING`: Audience. You can call `setClientRole` to change the user role.
 
-<div class="alert note">
-  In scenarios involving co-host token authentication, if a user joins a channel with the token of a
-  subscriber, calling <code>setClientRole</code> alone does not take effect. For details, see{' '}
-  <Link to="/help/integration-issues/token_cohost">How can I use co-host token authentication</Link>.
-</div>
+<Admonition type="note">
+In scenarios involving co-host token authentication, if a user joins a channel with the token of a subscriber, calling `setClientRole` alone does not take effect. For details, see [How can I use co-host token authentication](/help/integration-issues/token_cohost).
+</Admonition>
 
 ## Audio route
 

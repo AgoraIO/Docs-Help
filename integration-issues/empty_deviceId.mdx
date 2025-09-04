@@ -9,7 +9,9 @@ export const toc = [{}];
 
 On Chrome 81, the `deviceId` field that the `getDevices` method returns is empty.
 
-<div class="alert info">You may also encounter this issue on Safari and Firefox.</div>
+<Admonition type="info">
+You may also encounter this issue on Safari and Firefox.
+</Admonition>
 
 ## Reason
 
@@ -30,20 +32,10 @@ You can create temporary streams for media capture to trigger the device permiss
 
 2. After the streams are initialized, call `getDevices` to get the complete device information.
 
-   <div class="alert note">
-     Note
-     <ul>
-       <li>
-         The capture may fail if no microphone or camera exists, or if the user has disabled these
-         devices. The capture is a workaround and you only need to ensure that the failure does not
-         stop the code execution.{' '}
-       </li>
-       <li>
-         If the capture fails, you may still get empty <code>deviceId</code> and <code>label</code>{' '}
-         fields in the returned device list.
-       </li>
-     </ul>
-   </div>
+  <Admonition type="note">
+  - The capture may fail if no microphone or camera exists, or if the user has disabled these devices. The capture is a workaround and you only need to ensure that the failure does not stop the code execution.  
+  - If the capture fails, you may still get empty `deviceId` and `label` fields in the returned device list.
+  </Admonition>
 
    ```javascript
    const audioPermissionOK = new Promise(resolve => {
