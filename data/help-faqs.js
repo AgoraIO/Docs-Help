@@ -1,7 +1,7 @@
 export const data = [
   {
     question: 'How to implement basic HTTP authentication?',
-    link: '/video-calling/channel-management-api/restful-authentication',
+    link: '/realtime-communication/channel-management-api/restful-authentication',
   },
   {
     question:
@@ -19,6 +19,6 @@ export const data = [
   },
   {
     question: 'Free-of-charge policy for the first 10,000 minutes',
-    link: '/video-calling/reference/billing-policies',
+    link: '/realtime-communication/reference/billing-policies',
   },
 ];
