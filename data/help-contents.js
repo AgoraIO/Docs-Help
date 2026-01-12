@@ -1,5 +1,18 @@
 export const data = {
   'integration-issues': {
+      multitasking: {
+      platforms: [
+        'all-platforms',
+        'ios',
+      ],
+      products: [        
+        'all-products',
+        'video-calling',
+        'interactive-live-streaming',
+        'broadcast-streaming',
+      ],
+      popular: false,
+    },    
       rtc_rtm_token: {
       platforms: [
         'all-platforms',
