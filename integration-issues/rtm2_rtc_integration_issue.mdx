@@ -11,23 +11,30 @@ import TabItem from '@theme/TabItem';
 
 export const toc = [{}];
 
-When integrating Signaling SDK version 2.2.0 and above with Video SDK version 4.3.0 and above, the following errors may appear in the IDE:
+When integrating Signaling SDK version 2.2.0 and above with <Vg k="VSDK" /> version 4.3.0 or higher, the following errors may appear in the IDE:
 
-- **Android:**
-    ```java
-    com.android.builder.merge.DuplicateRelativeFileException: More than one file was found with OS independent path 'lib/x86/libaosl.so'
-    ```
+<Tabs groupId="platform" >
+<TabItem value="android" label="Android">
 
-- **iOS:**
+```java
+com.android.builder.merge.DuplicateRelativeFileException: More than one file was found with OS independent path 'lib/x86/libaosl.so'
+```
 
-    ```objc
-    Unexpected duplicate tasks
-    Multiple commands produce <your_app_build_path>/Contents/Frameworks/aosl.framework/Versions/A'
-    ```
+</TabItem>
+<TabItem value="ios" label="iOS/macOS">
 
-    ```bash
-    The 'XXX' target has frameworks with conflicting names: aosl.xcframework.
-    ```
+```bash
+Unexpected duplicate tasks
+Multiple commands produce <your_app_build_path>/Contents/Frameworks/aosl.framework/Versions/A'
+```
+
+```bash
+The 'XXX' target has frameworks with conflicting names: aosl.xcframework.
+```
+
+</TabItem>  
+</Tabs>
+
 
 ## Why this happens
 
@@ -45,231 +52,259 @@ As a result, the IDE detects multiple files with the same path during the build 
 
 Follow these steps to resolve the issue:
 
-### Manually specify the `aosl` library version
+### Signaling version 2.2.8 or later
 
-Compare the `aosl` library versions included in both the Signaling and Video SDKs, and keep the version with the higher number.
+For Signaling SDK version 2.2.8 or later, compare the versions of the `aosl` libraries used in the <Vg k="VSDK" /> and Signaling SDK. Choose the subsequent operations based on the two.
 
-You can find version information in the following release notes:
+<Admonition type="info">
+You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" /> release notes](/video-calling/overview/release-notes) and [Signaling release notes](/signaling/overview/release-notes).
+</Admonition>
 
-* [<Vg k="VSDK"/> release notes](/video-calling/overview/release-notes)
-* [<Vg k="SIG"/> release notes](/signaling/overview/release-notes)
+<Tabs groupId="platform" >
+<TabItem value="android" label="Android">
 
-### Remove older version files
+- If the Signaling `aosl` version is lower, integrate the `lite` SDK:
 
-After identifying the latest version:
+    ```groovy
+    dependencies {
+        // If you are using RTM SDK version 2.2.8 or later
+        // Replace x.y.z with the specific SDK version number, such as 2.2.8
+        // You can obtain the latest version number from the release notes.
+        implementation 'io.agora.rtm:rtm-sdk-lite:2.2.8'
+    }
+    ```
 
-1. Delete the older version of the `aosl` library from your SDK package.
-2. Ensure the newer version is correctly linked in your build configuration.
-3. Rebuild the project.
+- If the Signaling `aosl` version is higher, integrate the latest `aosl` component and use `pickFirst` to ensure the higher-version `aosl` library is prioritized during the build process.
 
-Depending on your integration method, choose from the following solutions:
-
-<Tabs>
-  <TabItem value="video-sdk" label="Video SDK">
-
-  If the version of the `aosl` library included in the <Vg k="VSDK"/> package is lower than the version required by your project, delete the outdated library file based on the target platform:
-
-  * **Android**: Delete the older-version `libaosl.so` file from the SDK package.
-  * **iOS/macOS**: Delete the older-version `aosl.xcframework` file from the SDK package.
-  * **Windows**: Delete the older-version `libaosl.dll` file from the SDK package.
-  </TabItem>
-  <TabItem value="sig-sdk" label="Signaling SDK">
-  
-  If the version of the `aosl` library in the Signaling SDK package is lower, resolve the conflict using one of the following methods:
-
-  ### Upgrade to Signaling SDK v2.2.2 or higher
-
-    If you are using a Signaling SDK version earlier than 2.2.2, Agora recommends upgrading to v2.2.2 or later. Starting from this version, the Signaling SDK supports:
-
-    * **iOS**: Subspecs for CocoaPods
-    * **Android**: Lightweight Maven repositories
-
-    These improvements allow better compatibility with <Vg k="VSDK"/> v4.5.0 and above, and help prevent library conflicts.
-
-    * **Android** (Java)
-
-      <CodeBlock language="groovy" showLineNumbers>
-      {`dependencies {
-        // If you are using Signaling SDK v2.2.2 or later with Video SDK v4.5.0 or later,
-        // replace x.y.z with the specific version number (for example, 2.2.2).
-        implementation 'io.agora:agora-rtm-lite:x.y.z'
-      }`}
-      </CodeBlock>
-
-    * **iOS** (Objective-C)
-
-        <CodeBlock language="ruby" showLineNumbers>
-        {`platform :ios, '11.0'
-        target 'YourApp' do
-        # If you are using Signaling SDK v2.2.2 or later with Video SDK v4.5.0 or later,
-        # replace x.y.z with the specific version number (e.g., 2.2.2).
-        pod 'AgoraRtm', 'x.y.z', :subspecs => ['RtmKit']
-      end`}
-        </CodeBlock>
-
-    After upgrading, clean and rebuild your project to apply the changes.
-
-### Manually delete duplicate libraries
-
-If you do not want to upgrade to version 2.2.2 or higher, manually remove duplicate library files from the Signaling SDK package.
-
-  * **Android** 
-
-    Depending on your integration method (CDN or Maven), manually delete the following files from the Signaling SDK package:
-
-    <Tabs>
-      <TabItem value="Android-cdn" label="CDN">
-        1. Manually delete the following files:
-           - `lib/x86/libaosl.so`
-           - `lib/x86_64/libaosl.so`
-           - `lib/armeabi-v7a/libaosl.so`
-           - `lib/arm64-v8a/libaosl.so`
-
-        1. Rebuild the project.
-      </TabItem>
-
-      <TabItem value="Android-maven" label="Maven">
-        1. Add the `packagingOptions` block to your `build.gradle` file as shown below:
-            <CodeBlock language="yaml" showLineNumbers>
-            {`android {
-             // ...
-             packagingOptions {
-               pickFirst 'lib/x86/libaosl.so'
-               pickFirst 'lib/x86_64/libaosl.so'
-               pickFirst 'lib/armeabi-v7a/libaosl.so'
-               pickFirst 'lib/arm64-v8a/libaosl.so'
-             }  
-           }`}
-            </CodeBlock>
-        1. Rebuild the project to apply the changes.
-      </TabItem>
-    </Tabs>
-
-  * **iOS SDK** (Objective-C)
-
-    Depending on your integration method, choose one of the following approaches:
-
-    <Tabs>
-      <TabItem value="ios-cdn" label="CDN">
-        1. Manually delete the `libs/aosl.xcframework` file from the Signaling SDK package.
-        1. Rebuild the project.
-      </TabItem>
-
-      <TabItem value="ios-cocoapods" label="CocoaPods">
-        1. Add the following `pre_install` script to the end of your `Podfile`. This script automatically deletes the `aosl.xcframework` from the Agora Signaling Pod during installation.
-            <CodeBlock language="ruby" showLineNumbers>
-            {`pre_install do |installer|
-             
-             # Define the path to the AgoraRtm Pod
-             rtm_pod_path = File.join(installer.sandbox.root, 'AgoraRtm')
-             
-             # Define the full path to aosl.xcframework
-             aosl_xcframework_path = File.join(rtm_pod_path, 'aosl.xcframework')
-             
-             # Delete the framework if it exists
-             if File.exist?(aosl_xcframework_path)
-               puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
-               FileUtils.rm_rf(aosl_xcframework_path)
-             else
-               puts "aosl.xcframework not found, skipping deletion."
-             end
-           end`}
-            </CodeBlock>
-          2. Run `pod install` to reintegrate the SDKs.
-          3. Rebuild the project.
-      </TabItem>
-    </Tabs>
-
-  * **Flutter SDK**
+    ```groovy
+    android {
+      // ...
+      packagingOptions {
+        pickFirst 'lib/**/libaosl.so'
+      }
+    }
     
-    Depending on your target platform, follow the appropriate steps below:
-
-    <Tabs>
-     <TabItem value="android" label="Android">
     
-      1. Add the `aosl` dependency
+    dependencies {
+      implementation 'io.agora.infra:aosl:x.y.z'
+      // implementation RTM sdk
+      // implementation RTC sdk
+    }
+    ```
+</TabItem>
+<TabItem value="ios" label="iOS/macOS">
 
-          In your project’s root `build.gradle` file, add the following dependency:
+- If the Signaling `aosl` version is lower, integrate the `lite` SDK:
 
-            <CodeBlock language="bash" showLineNumbers>
-            {`dependencies {
-            api 'io.agora.infra:aosl:1.2.13'
-            // Other dependencies...
-         }`}
-            </CodeBlock>
+    ```ruby
+    platform :ios, '11.0'
+    target 'Your App' do
+      # If you are using RTM SDK version 2.2.8 or later
+      # Replace x.y.z with the specific SDK version number, such as 2.2.8
+      # You can obtain the latest version number from the release notes.
+      pod 'AgoraRtm', 'x.y.z', :subspecs => ['RtmKit']
+    end
+    ```
 
-      2. Resolve duplicate `.so` files
+- If the Signaling `aosl` version is higher, add the following script to your `Podfile`:    
 
-          If you are integrating using **Maven**, configure the build to prioritize the first matching native library by adding the `packagingOptions` block to your module-level `build.gradle` file:
+    <Admonition type="info">
+    The following code uses the <Vg k="VSDK" /> with the package name `AgoraRtcEngine_iOS` as an example. Use the actual platform and version for your integration.
+    </Admonition>
 
-            <CodeBlock language="yaml" showLineNumbers>
-            {`android {
-             // ...
-             packagingOptions {
-               pickFirst 'lib/x86/libaosl.so'
-               pickFirst 'lib/x86_64/libaosl.so'
-               pickFirst 'lib/armeabi-v7a/libaosl.so'
-               pickFirst 'lib/arm64-v8a/libaosl.so'
-             }  
-           }`}
-            </CodeBlock>
+    ```ruby
+    pre_install do |installer|
+      # Define the path to the RTC framework
+      rtc_pod_path = File.join(installer.sandbox.root, 'AgoraRtcEngine_iOS')
 
-      3. Rebuild the project
+      # Full path to aosl.xcframework
+      aosl_xcframework_path = File.join(rtc_pod_path, 'aosl.xcframework')
 
-          After synchronization is complete, clean and rebuild.
-     </TabItem>
-     <TabItem value="ios" label="iOS">
+      # Check if the file exists, and delete it if so
+      if File.exist?(aosl_xcframework_path)
+        puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
+        FileUtils.rm_rf(aosl_xcframework_path)
+      else
+        puts "aosl.xcframework not found, skipping deletion."
+      end
+    end
+    ```
+</TabItem>  
+</Tabs>
 
-      1. When integrating using Cocoapods,, add the following `pre_install` script at the **end** of your `Podfile`:
+### Signaling version 2.2.2 to 2.2.6
 
-          <CodeBlock language="bash" showLineNumbers>
-          {`pre_install do |installer|
-            # Define the path to the AgoraRtm framework
-            rtm_pod_path = File.join(installer.sandbox.root, 'AgoraRtm')
+For Signaling SDK versions between 2.2.2 and 2.2.6, compare the versions of the `aosl` libraries used in the <Vg k="VSDK" /> and Signaling SDK, then delete the library file with the lower version.
 
-            # Full path to aosl.xcframework
-            aosl_xcframework_path = File.join(rtm_pod_path, 'aosl.xcframework')
+<Admonition type="info">
+You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" /> release notes](/video-calling/overview/release-notes) and [Signaling release notes](/signaling/overview/release-notes).
+</Admonition>
 
-            # Delete the framework if it exists
-            if File.exist?(aosl_xcframework_path)
-              puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
-              FileUtils.rm_rf(aosl_xcframework_path)
-            else
-              puts "aosl.xcframework not found, skipping deletion."
-            end
-          end`}
-          </CodeBlock>
+If the version of the `aosl` library included in the <Vg k="VSDK" /> package is lower, delete the outdated library file based on the target platform:
 
-      2. Run `pod install` to reintegrate the SDKs.
+- **Android**: Delete the older-version `libaosl.so` file from the SDK package.
+- **iOS/macOS**: Delete the older-version `aosl.xcframework` file from the SDK package.
+- **Windows**: Delete the older-version `libaosl.dll` file from the SDK package.
 
-      3. Rebuild the project.
-     </TabItem>
-    </Tabs>
+If the version of the `aosl` library in the Signaling SDK package is lower, integrate the lite SDK, then clean and rebuild your project to resolve the library conflict.
 
-  </TabItem>
+<Tabs groupId="platform">
+<TabItem value="android" label="Android">
+
+```groovy
+// ...
+dependencies {
+    // If you are using RTM SDK version 2.2.2 to 2.2.6
+    // Replace x.y.z with the specific SDK version number, such as 2.2.2
+    // You can obtain the latest version number from the release notes.
+    implementation 'io.agora:agora-rtm-lite:x.y.z'
+}
+```
+
+</TabItem>
+<TabItem value="ios" label="iOS/macOS">
+
+```ruby
+platform :ios, '11.0'
+target 'Your App' do
+  # If you are using RTM SDK version 2.2.2 to 2.2.6
+  # Replace x.y.z with the specific SDK version number, such as 2.2.2
+  # You can obtain the latest version number from the release notes.
+  pod 'AgoraRtm', 'x.y.z', :subspecs => ['RtmKit']
+end
+```
+
+</TabItem>
 </Tabs>
 
 
+### Signaling versions prior to 2.2.2
 
+If you are using a Signaling SDK version prior to 2.2.2, refer to the following solutions based on your platform.
 
+<Tabs groupId="platform">
+<TabItem value="android" label="Android">
 
+- Using CDN
 
+  1. Manually delete the following files from the SDK package:
 
+    - `lib/x86/libaosl.so`
+    - `lib/x86_64/libaosl.so`
+    - `lib/armeabi-v7a/libaosl.so`
+    - `lib/arm64-v8a/libaosl.so`
 
+  1. Rebuild the project
 
+- Using Maven
 
+  1. Add a `packagingOptions` block to the `android` block of your `build.gradle` file to ensure the first matching native library is prioritized during the build process:
 
+      ```groovy
+      android {
+          // ...
+          packagingOptions {
+            pickFirst 'lib/x86/libaosl.so'
+            pickFirst 'lib/x86_64/libaosl.so'
+            pickFirst 'lib/armeabi-v7a/libaosl.so'
+            pickFirst 'lib/arm64-v8a/libaosl.so'
+          }
+      }    
+      ```
 
+  1. After the Gradle files are synchronized, rebuild the project.
 
+</TabItem>
+<TabItem value="ios" label="iOS/macOS">
 
+- Using CDN
 
+    1. Manually delete the `libs/aosl.xcframework` file from the SDK package.
 
+    1. Rebuild the project.
 
+- Using Cocoapods
 
+    1. Add the following script to the end of your project `podfile`:
 
+        ```ruby
+        pre_install do |installer|
+          # Define the path to the AgoraRtm framework
+          rtm_pod_path = File.join(installer.sandbox.root, 'AgoraRtm')
 
+          # The full path to `aosl.xcframework`
+          aosl_xcframework_path = File.join(rtm_pod_path, 'aosl.xcframework')
 
+          # Check if the file exists; delete it if it does.
+          if File.exist?(aosl_xcframework_path)
+            puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
+            FileUtils.rm_rf(aosl_xcframework_path)
+          else
+            puts "aosl.xcframework not found, skipping deletion."
+          end
+        end
+        ```
 
+    1. Run `pod install` to re-integrate the Signaling and <Vg k="VSDK" />.
 
+    1. Rebuild the project.        
 
+</TabItem>
+<TabItem value="flutter" label="Flutter">
 
+Select the solution based on your target platform:
+
+- **Android**
+
+    1. Add the dependency to the `build.gradle` file in the project root directory:
+
+        ```groovy
+        dependencies {
+        api 'io.agora.infra:aosl:1.2.13'
+        // ...
+        }
+        ```
+
+    1. When integrating through Maven, add a `packagingOptions` block to the `android` block of your `build.gradle` file to ensure the first matching native library is prioritized during the build process:
+
+        ```groovy
+        android {
+          // ...
+          packagingOptions {
+            pickFirst 'lib/x86/libaosl.so'
+            pickFirst 'lib/x86_64/libaosl.so'
+            pickFirst 'lib/armeabi-v7a/libaosl.so'
+            pickFirst 'lib/arm64-v8a/libaosl.so'
+          }
+        }
+        ```
+
+    1. After the Gradle files are synchronized, rebuild the project.
+
+- **iOS**
+
+    1. When integrating via CocoaPods, add the following script to the end of your project's `Podfile`:
+
+        ```ruby
+        pre_install do |installer|
+          # Define the path to the AgoraRtm framework
+          rtm_pod_path = File.join(installer.sandbox.root, 'AgoraRtm')
+
+          # The full path to `aosl.xcframework`
+          aosl_xcframework_path = File.join(rtm_pod_path, 'aosl.xcframework')
+
+          # Check if the file exists; delete it if it does.
+          if File.exist?(aosl_xcframework_path)
+            puts "Deleting aosl.xcframework from #{aosl_xcframework_path}"
+            FileUtils.rm_rf(aosl_xcframework_path)
+          else
+            puts "aosl.xcframework not found, skipping deletion."
+          end
+        end
+        ```
+    1. Run `pod install` to re-integrate the Signaling and <Vg k="VSDK" />.
+
+    1. Rebuild the project.
+
+</TabItem>
+</Tabs>
