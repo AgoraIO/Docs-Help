@@ -1,5 +1,5 @@
 ---
-title: 'How do I handle issues when integrating the Signaling SDK and Video SDK simultaneously?'
+title: 'How do I handle issues when integrating the Signaling SDK and Video/Voice SDK simultaneously?'
 sidebar_position: 664
 platforms: []
 products: []
@@ -38,7 +38,7 @@ The 'XXX' target has frameworks with conflicting names: aosl.xcframework.
 
 ## Why this happens
 
-Both Signaling SDK versions 2.2.0 and above and Video SDK versions 4.5.0 and above use the same library:
+Both Signaling SDK versions 2.2.0 and above and Video/Voice SDK versions 4.5.0 and above use the same library:
 
   - **Android**: `libaosl.so`
 
@@ -57,7 +57,7 @@ Follow these steps to resolve the issue:
 For Signaling SDK version 2.2.8 or later, compare the versions of the `aosl` libraries used in the <Vg k="VSDK" /> and Signaling SDK. Choose the subsequent operations based on the two.
 
 <Admonition type="info">
-You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" /> release notes](/video-calling/overview/release-notes) and [Signaling release notes](/signaling/overview/release-notes).
+You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" />](/video-calling/overview/release-notes) or [<Vg k="ASDK" />](/voice-calling/overview/release-notes) release notes and [Signaling release notes](/signaling/overview/release-notes).
 </Admonition>
 
 <Tabs groupId="platform" >
@@ -137,7 +137,7 @@ You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" /> rel
 For Signaling SDK versions between 2.2.2 and 2.2.6, compare the versions of the `aosl` libraries used in the <Vg k="VSDK" /> and Signaling SDK, then delete the library file with the lower version.
 
 <Admonition type="info">
-You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" /> release notes](/video-calling/overview/release-notes) and [Signaling release notes](/signaling/overview/release-notes).
+You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" />](/video-calling/overview/release-notes) or [<Vg k="ASDK" />](/voice-calling/overview/release-notes) release notes and [Signaling release notes](/signaling/overview/release-notes).
 </Admonition>
 
 If the version of the `aosl` library included in the <Vg k="VSDK" /> package is lower, delete the outdated library file based on the target platform:
