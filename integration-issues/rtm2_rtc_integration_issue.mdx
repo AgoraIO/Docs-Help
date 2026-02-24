@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 export const toc = [{}];
 
-When integrating Signaling SDK version 2.2.0 and above with <Vg k="VSDK" /> version 4.5.0 or higher, the following errors may appear in the IDE:
+When integrating Signaling SDK version 2.2.0 and above with Video/Voice SDK version 4.5.0 or higher, the following errors may appear in the IDE:
 
 <Tabs groupId="platform" >
 <TabItem value="android" label="Android">
@@ -54,7 +54,7 @@ Follow these steps to resolve the issue:
 
 ### Signaling version 2.2.8 or later
 
-For Signaling SDK version 2.2.8 or later, compare the versions of the `aosl` libraries used in the <Vg k="VSDK" /> and Signaling SDK. Choose the subsequent operations based on the two.
+For Signaling SDK version 2.2.8 or later, compare the versions of the `aosl` libraries used in the Video/Voice SDK and Signaling SDK. Choose the subsequent operations based on the two.
 
 <Admonition type="info">
 You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" />](/video-calling/overview/release-notes) or [<Vg k="ASDK" />](/voice-calling/overview/release-notes) release notes and [Signaling release notes](/signaling/overview/release-notes).
@@ -134,13 +134,13 @@ You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" />](/v
 
 ### Signaling version 2.2.2 to 2.2.6
 
-For Signaling SDK versions between 2.2.2 and 2.2.6, compare the versions of the `aosl` libraries used in the <Vg k="VSDK" /> and Signaling SDK, then delete the library file with the lower version.
+For Signaling SDK versions between 2.2.2 and 2.2.6, compare the versions of the `aosl` libraries used in the Video/Voice SDK and Signaling SDK, then delete the library file with the lower version.
 
 <Admonition type="info">
 You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" />](/video-calling/overview/release-notes) or [<Vg k="ASDK" />](/voice-calling/overview/release-notes) release notes and [Signaling release notes](/signaling/overview/release-notes).
 </Admonition>
 
-If the version of the `aosl` library included in the <Vg k="VSDK" /> package is lower, delete the outdated library file based on the target platform:
+If the version of the `aosl` library included in the Video/Voice SDK package is lower, delete the outdated library file based on the target platform:
 
 - **Android**: Delete the older-version `libaosl.so` file from the SDK package.
 - **iOS/macOS**: Delete the older-version `aosl.xcframework` file from the SDK package.
@@ -245,7 +245,7 @@ If you are using a Signaling SDK version prior to 2.2.2, refer to the following 
         end
         ```
 
-    1. Run `pod install` to re-integrate the Signaling and <Vg k="VSDK" />.
+    1. Run `pod install` to re-integrate the Signaling and Video/Voice SDK.
 
     1. Rebuild the project.        
 
@@ -302,7 +302,7 @@ Select the solution based on your target platform:
           end
         end
         ```
-    1. Run `pod install` to re-integrate the Signaling and <Vg k="VSDK" />.
+    1. Run `pod install` to re-integrate the Signaling and Video/Voice SDK.
 
     1. Rebuild the project.
 
