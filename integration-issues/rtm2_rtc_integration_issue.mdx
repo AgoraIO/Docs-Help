@@ -26,9 +26,7 @@ com.android.builder.merge.DuplicateRelativeFileException: More than one file was
 ```bash
 Unexpected duplicate tasks
 Multiple commands produce <your_app_build_path>/Contents/Frameworks/aosl.framework/Versions/A'
-```
 
-```bash
 The 'XXX' target has frameworks with conflicting names: aosl.xcframework.
 ```
 
@@ -40,11 +38,9 @@ The 'XXX' target has frameworks with conflicting names: aosl.xcframework.
 
 Both Signaling SDK versions 2.2.0 and above and Video/Voice SDK versions 4.5.0 and above use the same library:
 
-  - **Android**: `libaosl.so`
-
-  - **iOS/macOS**: `aosl.xcframework`
-
-  - **Windows**: `libaosl.dll`
+- **Android**: `libaosl.so`
+- **iOS/macOS**: `aosl.xcframework`
+- **Windows**: `libaosl.dll`
 
 As a result, the IDE detects multiple files with the same path during the build process, leading to errors.
 
@@ -76,21 +72,83 @@ You can find the `aosl` library version for the SDKs in the [<Vg k="VSDK" />](/v
 
 - If the Signaling `aosl` version is higher, integrate the latest `aosl` component and use `pickFirst` to ensure the higher-version `aosl` library is prioritized during the build process.
 
-    ```groovy
-    android {
-      // ...
-      packagingOptions {
-        pickFirst 'lib/**/libaosl.so'
-      }
-    }
-    
-    
-    dependencies {
-      implementation 'io.agora.infra:aosl:x.y.z'
-      // implementation RTM sdk
-      // implementation RTC sdk
-    }
-    ```
+    <Tabs groupId="build-script">
+    <TabItem value="groovy" label="Groovy">
+
+    * **Android Gradle Plugin &lt; 7.x**
+
+        ```groovy
+        android {
+            packagingOptions {
+                pickFirst 'lib/**/libaosl.so'
+            }
+        }
+
+        dependencies {
+            implementation 'io.agora.infra:aosl:x.y.z'
+            // implementation RTM sdk
+            // implementation RTC sdk
+        }
+        ```
+
+    * **Android Gradle Plugin 7.x or later (Recommended)**
+
+        ```groovy
+        android {
+            packaging {
+                jniLibs {
+                    pickFirsts += ["lib/**/libaosl.so"]
+                }
+            }
+        }
+
+        dependencies {
+            implementation 'io.agora.infra:aosl:x.y.z'
+            // implementation RTM sdk
+            // implementation RTC sdk
+        }
+        ```
+
+    </TabItem>
+    <TabItem value="kotlin" label="Kotlin DSL">
+
+    * **Android Gradle Plugin &lt; 7.x**
+
+        ```kotlin
+        android {
+            packagingOptions {
+                pickFirst("lib/**/libaosl.so")
+            }
+        }
+
+        dependencies {
+            implementation("io.agora.infra:aosl:x.y.z")
+            // implementation RTM sdk
+            // implementation RTC sdk
+        }
+        ```
+
+    * **Android Gradle Plugin 7.x or later (Recommended)**
+
+        ```kotlin
+        android {
+            packaging {
+                jniLibs {
+                    pickFirsts += setOf("lib/**/libaosl.so")
+                }
+            }
+        }
+
+        dependencies {
+            implementation("io.agora.infra:aosl:x.y.z")
+            // implementation RTM sdk
+            // implementation RTC sdk
+        }
+        ```
+
+    </TabItem>
+    </Tabs>
+
 </TabItem>
 <TabItem value="ios" label="iOS/macOS">
 
@@ -200,17 +258,74 @@ If you are using a Signaling SDK version prior to 2.2.2, refer to the following 
 
   1. Add a `packagingOptions` block to the `android` block of your `build.gradle` file to ensure the first matching native library is prioritized during the build process:
 
-      ```groovy
-      android {
-          // ...
-          packagingOptions {
-            pickFirst 'lib/x86/libaosl.so'
-            pickFirst 'lib/x86_64/libaosl.so'
-            pickFirst 'lib/armeabi-v7a/libaosl.so'
-            pickFirst 'lib/arm64-v8a/libaosl.so'
+      <Tabs groupId="build-script">
+      <TabItem value="groovy" label="Groovy">
+
+      * **Android Gradle Plugin &lt; 7.x**
+
+          ```groovy
+          android {
+              packagingOptions {
+                  pickFirst 'lib/x86/libaosl.so'
+                  pickFirst 'lib/x86_64/libaosl.so'
+                  pickFirst 'lib/armeabi-v7a/libaosl.so'
+                  pickFirst 'lib/arm64-v8a/libaosl.so'
+              }
           }
-      }    
-      ```
+          ```
+
+      * **Android Gradle Plugin 7.x or later (Recommended)**
+          
+          ```groovy
+          android {
+              packaging {
+                  jniLibs {
+                      pickFirsts += [
+                          "lib/x86/libaosl.so",
+                          "lib/x86_64/libaosl.so",
+                          "lib/armeabi-v7a/libaosl.so",
+                          "lib/arm64-v8a/libaosl.so"
+                      ]
+                  }
+              }
+          }
+          ```
+
+      </TabItem>
+      <TabItem value="kotlin" label="Kotlin DSL">
+
+      * **Android Gradle Plugin &lt; 7.x**
+
+          ```kotlin
+          android {
+              packagingOptions {
+                  pickFirst("lib/x86/libaosl.so")
+                  pickFirst("lib/x86_64/libaosl.so")
+                  pickFirst("lib/armeabi-v7a/libaosl.so")
+                  pickFirst("lib/arm64-v8a/libaosl.so")
+              }
+          }
+          ```
+
+      * **Android Gradle Plugin 7.x or later (Recommended)**
+
+          ```kotlin
+          android {
+              packaging {
+                  jniLibs {
+                      pickFirsts += setOf(
+                          "lib/x86/libaosl.so",
+                          "lib/x86_64/libaosl.so",
+                          "lib/armeabi-v7a/libaosl.so",
+                          "lib/arm64-v8a/libaosl.so"
+                      )
+                  }
+              }
+          }
+          ```
+
+      </TabItem>
+      </Tabs>
 
   1. After the Gradle files are synchronized, rebuild the project.
 
@@ -260,24 +375,81 @@ Select the solution based on your target platform:
 
         ```groovy
         dependencies {
-        api 'io.agora.infra:aosl:1.2.13'
-        // ...
+            api 'io.agora.infra:aosl:1.2.13'
+            // ...
         }
         ```
 
     1. When integrating through Maven, add a `packagingOptions` block to the `android` block of your `build.gradle` file to ensure the first matching native library is prioritized during the build process:
 
-        ```groovy
-        android {
-          // ...
-          packagingOptions {
-            pickFirst 'lib/x86/libaosl.so'
-            pickFirst 'lib/x86_64/libaosl.so'
-            pickFirst 'lib/armeabi-v7a/libaosl.so'
-            pickFirst 'lib/arm64-v8a/libaosl.so'
-          }
-        }
-        ```
+        <Tabs groupId="build-script">
+        <TabItem value="groovy" label="Groovy">
+
+        * **Android Gradle Plugin &lt; 7.x**
+            
+            ```groovy
+            android {
+                packagingOptions {
+                    pickFirst 'lib/x86/libaosl.so'
+                    pickFirst 'lib/x86_64/libaosl.so'
+                    pickFirst 'lib/armeabi-v7a/libaosl.so'
+                    pickFirst 'lib/arm64-v8a/libaosl.so'
+                }
+            }
+            ```
+
+        * **Android Gradle Plugin 7.x or later (Recommended)**
+
+            ```groovy
+            android {
+                packaging {
+                    jniLibs {
+                        pickFirsts += [
+                            "lib/x86/libaosl.so",
+                            "lib/x86_64/libaosl.so",
+                            "lib/armeabi-v7a/libaosl.so",
+                            "lib/arm64-v8a/libaosl.so"
+                        ]
+                    }
+                }
+            }
+            ```
+
+        </TabItem>
+        <TabItem value="kotlin" label="Kotlin DSL">
+
+        * **Android Gradle Plugin &lt; 7.x**
+
+            ```kotlin
+            android {
+                packagingOptions {
+                    pickFirst("lib/x86/libaosl.so")
+                    pickFirst("lib/x86_64/libaosl.so")
+                    pickFirst("lib/armeabi-v7a/libaosl.so")
+                    pickFirst("lib/arm64-v8a/libaosl.so")
+                }
+            }
+            ```
+
+        * **Android Gradle Plugin 7.x or later (Recommended)**
+
+            ```kotlin
+            android {
+                packaging {
+                    jniLibs {
+                        pickFirsts += setOf(
+                            "lib/x86/libaosl.so",
+                            "lib/x86_64/libaosl.so",
+                            "lib/armeabi-v7a/libaosl.so",
+                            "lib/arm64-v8a/libaosl.so"
+                        )
+                    }
+                }
+            }
+            ```
+
+        </TabItem>
+        </Tabs>
 
     1. After the Gradle files are synchronized, rebuild the project.
 
