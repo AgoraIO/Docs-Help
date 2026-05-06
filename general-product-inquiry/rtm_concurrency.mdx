@@ -1,5 +1,5 @@
 ---
-title: 'Does the Agora Signaling SDK have a limit on the number of concurrent online users and the frequency of sending channel messages?'
+title: 'Does the Agora Signaling SDK limit concurrent users or channel message frequency?'
 sidebar_position: 424
 platforms: []
 products: []
@@ -7,7 +7,9 @@ products: []
 
 export const toc = [{}];
 
-The Agora Signaling SDK does not have a limit on the number of concurrent online users. However, Agora has the following recommendations on the maximum number of channel messages per second for a single channel:
+The Agora Signaling SDK does not impose a hard limit on the number of concurrent online users. However, your pricing plan may impose a Peak Concurrent User (PCU) limit. Exceeding this limit could result in additional charges or service restrictions.
+
+Agora recommends the following maximum number of channel messages per second for a single channel:
 
 | Concurrent online users in a single channel | Number of channel messages per second |
 | ------------------------------------------- | ------------------------------------- |
@@ -21,4 +23,3 @@ The Agora Signaling SDK does not have a limit on the number of concurrent online
   - The user always stays in the RECONNECTING state or keeps switching between the CONNECTED state and the RECONNECTING state. For other users, the current user may appear offline.
 - Agora provides a customized service to increase the number of messages per second without affecting latency or stability. Contact [support@agora.io](mailto:support@agora.io) for more information.
 </Admonition>
-
